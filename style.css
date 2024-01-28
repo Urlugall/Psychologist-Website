@@ -1,0 +1,215 @@
+/* Основные стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    color: #333;
+    background-color: #f0f8ff; /* Light azure */
+}
+
+/* Навигация */
+nav ul {
+    list-style: none;
+    margin-bottom: 0;
+    padding: 10px 0 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px;
+}
+
+nav a {
+    color: #d6d6d6;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: x-large;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+/* Основное содержимое */
+main {
+    padding: 0 20px;
+}
+
+#about, #events, #blog, #services {
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #6a8faf;
+    color: #fff;
+}
+
+/* Социальные иконки */
+.social-icons {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    padding-right: 15px;
+}
+
+.social-icons a {
+    margin-left: 10px;
+}
+
+.social-icons img {
+    width: 24px;
+    height: auto;
+}
+
+/* Активная ссылка */
+.active {
+    font-size: 1.6em;
+    color: #fefefe;
+    font-weight: 900;
+}
+
+/* Фоновое изображение */
+.background-image {
+    position: relative;
+    background: url('Extra/Photos/ValentinaBG.png') center/cover;
+    min-height: 100vh;
+    border-radius: 10px;
+}
+
+/* Блоки контента */
+.content, .button-container, .service, .stat {
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    height: 100%;
+    padding-left: 10%;
+}
+
+.text-block, .service {
+    background: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 20px;
+    max-width: 500px;
+}
+
+/* Кнопки */
+.services-button, .join-button {
+    background-color: #46992d;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 1em;
+}
+
+/* Сервисы и статистика */
+#services, #stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f0f8ff;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    color: #6a8faf;
+}
+
+.service, .stat {
+    flex-basis: 30%;
+}
+
+/* Карусель */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Ширина контейнера карусели */
+    box-sizing: border-box;
+}
+
+.carousel-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: calc(100% / var(--visible-items)); /* Автоматический расчет ширины элемента */
+    margin: 10px;
+    background-color: #ddd;
+    text-align: center;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.carousel-control.left {
+    left: 10px;
+}
+
+.carousel-control.right {
+    right: 10px;
+}
+
+
+
+
+
+/* Медиа запросы для адаптивности */
+@media screen and (max-width: 600px) {
+    header, footer, nav ul li, .content, #services, #stats, .stat, .service {
+        text-align: center;
+    }
+
+    nav ul {
+        padding: 0;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    #about, #events, #blog, .service {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    #services, #stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service, .stat {
+        flex-basis: 100%;
+        margin-bottom: 15px;
+    }
+}
