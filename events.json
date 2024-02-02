@@ -1,12 +1,26 @@
 [
     {
-        "title": "Mindfulness Workshop",
-        "date": "2023-12-10",
-        "description": "A workshop on mindfulness and mental health."
+        "title": "Треннинг «12 недель»",
+        "startDate": "Старт в феврале 2024",
+        "description": "Планируем и ставим цели с любовью к себе и к своей жизни",
+        "image": "12weeks.png"
     },
     {
-        "title": "Stress Management Seminar",
-        "date": "2024-01-15",
-        "description": "Learn effective stress management techniques."
+        "title": "Группа «Поддержка»",
+        "startDate": "Каждое воскресенье",
+        "description": "Поддержка и помощь для женщин, вынужденно проживающих заграницей",
+        "image": "Support.png"
+    },
+    {
+        "title": "Финансовый марафон",
+        "startDate": "Активно сейчас",
+        "description": "Позвольте себе получать больше, мечтать больше и поднять планку возможностей",
+        "image": "Financial.png"
+    },
+    {
+        "title": "Курс «Понимание человека»",
+        "startDate": "Старт 17.02.2024",
+        "description": "Научитесь лучше понимать себя и других, а также отличать ложь",
+        "image": "HumanUnderstanding.png"
     }
 ]

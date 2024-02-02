@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Psychologist Valentina</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <main>
+        <section id="social-sidebar">
+            <a href="YOUR_INSTAGRAM_LINK" target="_blank" title="telegram"><img src="Extra/Icons/telegram.png"></a>
+            <a href="YOUR_FACEBOOK_LINK" target="_blank" title="instagram"><img src="Extra/Icons/instagram.png"></a>
+            <a href="YOUR_TWITTER_LINK" target="_blank" title="facebook"><img src="Extra/Icons/facebook.png"></a>
+        </section>
+
+
         <section id="about">
             <div class="background-image">
                 <nav>
@@ -34,66 +43,191 @@
                             <button id="services-button" class="services-button">Перейти к услугам</button>
                         </div>
                         <p>Модератор дивизиона Киберпсихологии Национальной Психологической Ассоциации.</p>
-                        <p>Член ассоциаций: «Психологи без кордонів», «Национальная Психологическая Ассоциация Украины», «European
-                            Federation of Psychologists Associations», "International Association of Applied Psychology (IAAP)".</p>
+                        <p>Член ассоциаций: «Психологи без кордонів», «Национальная Психологическая Ассоциация Украины»,
+                            «European
+                            Federation of Psychologists Associations», "International Association of Applied Psychology
+                            (IAAP)".</p>
                         <p>Ведущая психологических, финансовой, а также авторских игр.</p>
-                        <p>Волонтер в социальных проектах, с тяжелыми больными и членами их семей, brainspottinghelp.</p>
+                        <p>Волонтер в социальных проектах, с тяжелыми больными и членами их семей, brainspottinghelp.
+                        </p>
                         <p>Работаю со взрослыми. С детьми только в паре со взрослым.</p>
-                        
+
                     </div>
                 </div>
-                
+
             </div>
-            <section id="stats">
+            <section id="stats" fade="data-fade">
                 <div class="stat">
-                    <h2>500+</h2>
+                    <h2>
+                        <p>500+</p>
+                    </h2>
                     <p>Задоволених клієнтів</p>
                 </div>
                 <div class="stat">
-                    <h2>1000+</h2>
-                    <p>Задоволених клієнтів</p>
+                    <h2>
+                        <p>1000+</p>
+                    </h2>
+                    <p>Років в психології</p>
                 </div>
                 <div class="stat">
-                    <h2>200+</h2>
-                    <p>Задоволених клієнтів</p>
+                    <h2>
+                        <p>200+</p>
+                    </h2>
+                    <p>Проведених консультацій</p>
                 </div>
-                <!-- Добавьте еще два блока <div class="stat"> с другими цифрами и описаниями по вашему выбору -->
             </section>
-            <div class="carousel" data-visible-items="1">
+
+            <div class="carousel" data-visible-items="1" data-move-frequency="1.5" fade="data-fade">
+                <div class="carousel-items" id="events"></div>
+            </div>
+
+            <div class="title-text" id="services-header" fade="data-fade">
+                <h2><img src="Extra/Icons/vine-l.png" class="title-icon">Услуги<img src="Extra/Icons/vine-r.png"
+                        class="title-icon"></h2>
+            </div>
+            <section id="services" fade="data-fade">
+                <div class="service">
+                    <div class="service-card">
+                        <div class="card-front">
+                            <h2>Личная консультация</h2>
+                            <p>Персонализированный подход к решению личных и профессиональных проблем.</p>
+                            <p>
+                                <button class="join-button">Записаться</button>
+                                <button class="info-button">Узнать цену</button>
+                            </p>
+                        </div>
+                        <div class="card-back">
+                            <h2>Первая консультация — €50</h2>
+                            Последующие — €100<br>
+                            12 консультаций (рекомендуемо) — €1100<br>
+                            <b>Длительность — 60~80 минут</b><br>
+                            <button class="join-button">Записаться</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="service">
+                    <div class="service-card">
+                        <div class="card-front">
+                            <h2>Парная консультация</h2>
+                            <p>Помощь в укреплении семейных отношений и решении семейных конфликтов</p>
+                            <p>
+                                <button class="join-button">Записаться</button>
+                                <button class="info-button">Узнать цену</button>
+                            </p>
+                        </div>
+                        <div class="card-back">
+                            <h2>Первая консультация — €70</h2>
+                            Последующие — €150<br>
+                            12 консультаций (рекомендуемо) — €1600<br>
+                            <b>Длительность — 90 минут</b><br>
+                            <button class="join-button">Записаться</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="service">
+                    <div class="service-card">
+                        <div class="card-front">
+                            <h2>Консультация бизнес-тренера</h2>
+                            <p>Помощь в увеличении финансового состояния, развитии бизнеса, работа с прокрастинацией.</p>
+                            <p>
+                                <button class="join-button">Записаться</button>
+                                <button class="info-button">Узнать цену</button>
+                            </p>
+                        </div>
+                        <div class="card-back">
+                            <h2>Первая консультация — €100</h2>
+                            Последующие — по договоренности<br>
+                            <b>Длительность — в зависимости от запроса</b><br>
+                            <button class="join-button">Записаться</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="carousel carousel-white" fade="data-fade" data-visible-items="1" data-move-frequency="2">
                 <div class="carousel-items">
-                    <div class="carousel-item">1</div>
-                    <div class="carousel-item">2</div>
-                    <div class="carousel-item">3</div>
-                    <div class="carousel-item">4</div>
-                    <!-- Добавьте больше элементов по вашему выбору -->
+                    <div class="carousel-item">
+                        <div class="italic-text">
+                            "Вы здесь, а значит вы готовы к переменам в своей жизни. А это уже половина пути. Давайте
+                            пройдем его вместе..."
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="italic-text">
+                            "Каждая ситуация показывает нам что-то, главное понять что именно"
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="italic-text">
+                            "Каждый день - это шанс изменить свою жизнь к лучшему"
+                        </div>
+                    </div>
                 </div>
-                <button class="carousel-control left">&lt;</button>
-                <button class="carousel-control right">&gt;</button>
             </div>
-            
-            <!-- Новая секция для услуг -->
-            <section id="services">
-                <div class="service">
-                    <h2>Личная консультация</h2>
-                    <p>Персонализированный подход к решению личных и профессиональных проблем.</p>
-                    <button class="join-button">Записаться</button>
+
+            <div class="title-text" fade="data-fade">
+                <h2><img src="Extra/Icons/vine-l.png" class="title-icon">Игры<img src="Extra/Icons/vine-r.png"
+                        class="title-icon"></h2>
+            </div>
+            <section id="games" fade="data-fade">
+                <a href="" class="game" style="background-image: url('Extra/Photos/MySubpersonalities.png');">
+                    <h2>Мои Субличности</h2>
+                    <p>Трансформационная<br> игра для решения личных<br> запросов и конфликтов.</p>
+                </a>
+                <a href="" class="game" style="background-image: url('Extra/Photos/Satori.png');">
+                    <h2>Сатори</h2>
+                    <p>Глубокая трансформационная игра основанная на методах радикального прощения.</p>
+                </a>
+                <a href="" class="game" style="background-image: url('Extra/Photos/MyResource.png');">
+                    <h2>Мой ресурс</h2>
+                    <p>Легкая игра для нахождения решений и ресурсов в сложных ситуациях.</p>
+                </a>
+                <a href="" class="game" style="background-image: url('Extra/Photos/LilaChakra.png');">
+                    <h2>Лила Чакра</h2>
+                    <p>Трансформационная игра<br> для устранения внутренних препятствий на пути к цели.</p>
+                </a>
+                <a href="" class="game" style="background-image: url('Extra/Photos/RatRaces2.png');">
+                    <h2>Крысиные бега 2</h2>
+                    <p>Бизнес-тренажёр о приумножении капитала, реалистичный аналог Cash Flow.</p>
+                </a>
+                <a href="" class="game" style="background-image: url('Extra/Photos/RatRaces3.png');">
+                    <h2>Крысиные бега 3</h2>
+                    <p>Бизнес-тренажёр о<br> выживании и заработке<br> бизнеса в кризисных условиях.</p>
+                </a>
+            </section>
+
+            <section id="centred-container" fade="data-fade">
+                <div class="text-section">
+                    <h2>Вся наша жизнь - игра!</h2>
+                    <p>В игре вы можете прожить то, на что не решаетесь в реальной жизни.</p>
                 </div>
-                <div class="service">
-                    <h2>Парная консультация</h2>
-                    <p>Помощь в укреплении семейных отношений и решении семейных конфликтов.</p>
+                <div class="buttons-section">
                     <button class="join-button">Записаться</button>
-                </div>
-                <div class="service">
-                    <h2>Групповые тренинги</h2>
-                    <p>Работа в группах для личностного роста и развития коммуникативных навыков.</p>
-                    <button class="join-button">Записаться</button>
+                    <button class="info-button">Расписание игр</button>
                 </div>
             </section>
-        </section>  
+
+            <div class="title-text" fade="data-fade">
+                <h2><img src="Extra/Icons/vine-l.png" class="title-icon">Группы<img src="Extra/Icons/vine-r.png"
+                        class="title-icon"></h2>
+            </div>
+
+            <section id="events-description">
+                <section id="games" fade="data-fade">
+                    
+                </section>
+            </section>
+
+            <div class="review-image" fade="data-fade">
+                <img src="Extra/Photos/review.png">
+            </div>
+
+        </section>
     </main>
     <footer>
-        <p>© 2023 Valentyna Artamonova. All rights reserved.</p>
+        <p>© 2024 Valentyna Artamonova. All rights reserved.</p>
     </footer>
     <script src="script.js"></script>
 </body>
+
 </html>
