@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="game-header">
+            <div class="text-box">
+                <h1 id="title-text">
+                    </h2>
+                    <p id="short-description"></p>
+                    <div class="button-container">
+                        <button class="button green-button">Записаться</button>
+                        <button class="button white-button" id="price-details">Узнать цену</button>
+                        <button class="button white-button">Расписание игр</button>
+                    </div>
+
+                    <div id="details" class="details">
+                        <div class="info-block">
+                            <h2>Стоимость игры</h2>
+                            <p id="group-price"></p>
+                            <p id="solo-price"></p>
+                        </div>
+                        <div class="info-block">
+                            <h2>Длительность игры</h2>
+                            <p id="group-time"></p>
+                            <p id="solo-time"></p>
+                        </div>
+                    </div>
+            </div>
+
+            <div class="grid-container">
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/back-in-time.png" alt="Длительность групповой игры">
+                    <p>Длительность групповой игры</p>
+                    <b id="stats-group-time"></b>
+                </div>
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/clock.png" alt="Длительность индивидуальной игры">
+                    <p>Длительность индивидуальной игры</p>
+                    <b id="stats-solo-time"></b>
+                </div>
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/interface.png" alt="Тип игры">
+                    <p>Тип игры</p>
+                    <b id="stats-type"></b>
+                </div>
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/person.png" alt="Минимальное количество игроков">
+                    <p>Минимальное количество игроков</p>
+                    <b id="stats-players-min"></b>
+                </div>
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/group.png" alt="Максимальное количество игроков">
+                    <p>Максимальное количество игроков</p>
+                    <b id="stats-players-max"></b>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Valentyna Artamonova. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
