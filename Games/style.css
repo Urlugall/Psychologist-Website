@@ -49,7 +49,7 @@ a:hover, button:hover, .grid-item:hover {
   background-size: 100% auto;
   background-color: white;
   border-radius: 15px;
-  height: 200vh;
+  height: 200%;
   padding: 1px 1px;
 }
 
@@ -66,7 +66,26 @@ a:hover, button:hover, .grid-item:hover {
   margin: 0;
   text-align: center;
   font-size: 5ch;
-  margin-top: 10vh;
+  margin-top: 5vh;
+}
+
+.title-icon {
+  height: 1em;
+  vertical-align: middle;
+  margin: 0 0.5em;
+  display: inline-block;
+}
+
+.title-text {
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+  margin-top: 35px;
+  margin-bottom: 15px;
+}
+
+.title-text h1 {
+  display: inline-block;
 }
 
 /* Основные кнопки */
@@ -78,9 +97,10 @@ a:hover, button:hover, .grid-item:hover {
   padding: 20px 25%;
 }
 
-.button {
+button {
   display: flex;
   justify-content: center;
+  align-items: center;
   border: none;
   padding: 15px 0; /* Вертикальный отступ для кнопок */
   border-radius: 30px;
@@ -148,4 +168,100 @@ a:hover, button:hover, .grid-item:hover {
   max-width: 8em; /* Максимальная ширина изображения, чтобы оно не выходило за рамки элемента сетки */
   height: auto; /* Высота изображения будет изменяться автоматически */
   margin-bottom: 10px; /* Отступ снизу изображения */
+}
+
+/* Ведущие и квес игра*/
+
+.row-container {
+  display: flex;
+  justify-content: center; /* Распределяет пространство между элементами */
+}
+
+.alert-box, .quest-block {
+  margin: 10px 0; /* Добавляет немного пространства вокруг блоков */
+}
+
+/* квест игра */
+
+.quest-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  margin: 10px; /* Отступы вокруг блока */
+}
+
+.quest-block button {
+  padding: 10px 20px;
+}
+
+.quest-text {
+  color: var(--button-bg-color); /* Цвет текста */
+  font-size: x-large; /* Размер шрифта текста */
+}
+
+/* ведущие */
+
+.alert-box {
+  padding: 15px;
+  flex: 1.1;
+  display: flex;
+  color: white;
+  background-image: url('/Extra/Photos/AlertBG.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.alert-box h2 {
+  display: inline-block;
+  margin: 0;
+  padding-right: 15px;
+}
+
+.details-button {
+  background-color: #00000000;
+  color: rgba(255, 255, 255, 0.716);
+  border: none;
+  padding: 12px 25px;
+  cursor: pointer;
+  border-radius: 50px;
+  font-size: 1em;
+  display: inline-block;
+}
+
+/* Полное описание */
+
+.full-description {
+  padding: 0 30vh;
+}
+
+/* Приглашение */
+
+#centred-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+}
+
+.text-section {
+  max-width: 40%;
+  margin-right: 20px;
+}
+
+.buttons-section {
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.buttons-section .green-button {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-right: 50px;
+  padding-left: 50px;
 }

@@ -12,27 +12,28 @@
     <main>
         <div class="game-header">
             <div class="text-box">
-                <h1 id="title-text">
-                    </h2>
-                    <p id="short-description"></p>
-                    <div class="button-container">
-                        <button class="button green-button">Записаться</button>
-                        <button class="button white-button" id="price-details">Узнать цену</button>
-                        <button class="button white-button">Расписание игр</button>
-                    </div>
+                <div class="title-text">
+                    <img src="/Extra/Icons/vine-l.png" class="title-icon"><h1 id="title-text"></h1><img src="/Extra/Icons/vine-r.png" class="title-icon">
+                </div>
+                <p id="short-description"></p>
+                <div class="button-container">
+                    <button class="green-button">Записаться</button>
+                    <button class="white-button" id="price-details">Узнать цену</button>
+                    <button class="white-button">Расписание игр</button>
+                </div>
 
-                    <div id="details" class="details">
-                        <div class="info-block">
-                            <h2>Стоимость игры</h2>
-                            <p id="group-price"></p>
-                            <p id="solo-price"></p>
-                        </div>
-                        <div class="info-block">
-                            <h2>Длительность игры</h2>
-                            <p id="group-time"></p>
-                            <p id="solo-time"></p>
-                        </div>
+                <div id="details" class="details">
+                    <div class="info-block">
+                        <h2>Стоимость игры</h2>
+                        <p id="group-price"></p>
+                        <p id="solo-price"></p>
                     </div>
+                    <div class="info-block">
+                        <h2>Длительность игры</h2>
+                        <p id="group-time"></p>
+                        <p id="solo-time"></p>
+                    </div>
+                </div>
             </div>
 
             <div class="grid-container">
@@ -62,6 +63,30 @@
                     <b id="stats-players-max"></b>
                 </div>
             </div>
+
+            <div class="row-container">
+                <div class="alert-box" id="master-alert">
+                    <h2>Игра ищет ведущих! Возможно это ВЫ?</h2>
+                    <button class="details-button">Детальнее...</button>
+                </div>
+                <div class="quest-block">
+                    <span class="quest-text">Игра доступна в формате «Квест-игры»!</span>
+                    <button class="white-button">Узнать больше</button>
+                </div>
+            </div>
+
+            <div class="full-description" id="full-description"></div>
+
+            <section id="centred-container" fade="data-fade">
+                <div class="text-section">
+                    <h2>Вся наша жизнь - игра!</h2>
+                    <p>Приходите и измените свою жизнь играя</p>
+                </div>
+                <div class="buttons-section">
+                    <button class="green-button">Записаться</button>
+                    <button class="white-button">Расписание игр</button>
+                </div>
+            </section>
         </div>
     </main>
 

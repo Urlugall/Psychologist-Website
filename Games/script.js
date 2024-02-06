@@ -5,6 +5,13 @@ function getGameNameFromUrl() {
 }
 
 function loadGameData() {
+    const gameName = getGameNameFromUrl();
+    if (!gameName) {
+        console.error('Игра не указана в URL');
+        // Можно отобразить сообщение об ошибке или перенаправить пользователя обратно на главную страницу
+        return;
+    }
+
     // Путь к JSON-файлу, он может быть динамически изменен в зависимости от URL
     const gameDataUrl = `/Games/games-data/${gameName}.json`;
 
@@ -25,7 +32,6 @@ function loadGameData() {
         });
 }
 
-
 function updatePageWithGameData(game) {
     document.getElementById('title-text').textContent = game.name;
     document.getElementById('short-description').textContent = game.shortDescription;
@@ -41,11 +47,19 @@ function updatePageWithGameData(game) {
     document.getElementById('stats-players-min').textContent = game.stats.players.min;
     document.getElementById('stats-players-max').textContent = game.stats.players.max;
 
+    document.getElementById('master-alert').style.display = game.masterAvailable ? 'block' : 'none';
+
+    const fullDescriptionContainer = document.getElementById('full-description');
+    Object.keys(game.fullDescription).forEach(key => {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = game.fullDescription[key];
+        fullDescriptionContainer.appendChild(paragraph);
+    });
+
     // Временные меры
     const randomValue = Math.random();
     document.querySelector('.game-header').style.backgroundImage = `url(${game.image}?v=${randomValue})`;
 }
-
 
 function setupPricePanel() {
     const detailsButton = document.getElementById('price-details');
@@ -62,13 +76,7 @@ function setupPricePanel() {
     });
 }
 
-
-
-const gameName = getGameNameFromUrl();
-if (gameName) {
-    document.addEventListener('DOMContentLoaded', loadGameData);
-    document.addEventListener('DOMContentLoaded', setupPricePanel);
-} else {
-    console.error('Игра не указана в URL');
-    // Можно отобразить сообщение об ошибке или перенаправить пользователя обратно на главную страницу
-}
+document.addEventListener('DOMContentLoaded', () => {
+    loadGameData();
+    setupPricePanel();
+});
