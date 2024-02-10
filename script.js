@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupFade();
     setupCarousels();
     initializeFlip();
+    addSocialSidebar();
 });
 
 const loadContent = (url, containerId, createElement, isHTML = false) => {
@@ -190,3 +191,26 @@ const setupCarousels = () => {
         updateCarousel(carousel, index); // Initialize position on load
     });
 };
+
+
+function addSocialSidebar() {
+    const socialSidebar = document.createElement('section');
+    socialSidebar.id = 'social-sidebar';
+    document.body.appendChild(socialSidebar);
+
+    const socialLinks = [
+        { href: "YOUR_TELEGRAM_LINK", title: "Telegram", icon: "Extra/Icons/telegram.png" },
+        { href: "YOUR_INSTAGRAM_LINK", title: "Instagram", icon: "Extra/Icons/instagram.png" },
+        { href: "YOUR_FACEBOOK_LINK", title: "Facebook", icon: "Extra/Icons/facebook.png" }
+    ];
+
+    socialLinks.forEach(({ href, title, icon }) => {
+        const link = document.createElement('a');
+        link.href = href;
+        link.title = title;
+        const img = document.createElement('img');
+        img.src = icon;
+        link.appendChild(img);
+        socialSidebar.appendChild(link);
+    });
+}

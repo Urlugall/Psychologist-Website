@@ -25,10 +25,6 @@ function loadGameData() {
         .then(data => {
             // Вызов функции для обновления содержимого страницы данными из JSON
             updatePageWithGameData(data);
-
-            document.getElementById('details-button').addEventListener('click', () => {
-                window.location.href = `/Masters/master.html?game=${gameName}`;
-            });
         })
         .catch(error => {
             console.error('Ошибка при загрузке данных игры:', error);
@@ -38,26 +34,30 @@ function loadGameData() {
 
 function updatePageWithGameData(game) {
     document.getElementById('title-text').textContent = game.name;
-    document.getElementById('short-description').textContent = game.shortDescription;
-
-    document.getElementById('group-price').textContent = game.price.group;
-    document.getElementById('solo-price').textContent = game.price.individual;
-    document.getElementById('group-time').textContent = game.duration.group;
-    document.getElementById('solo-time').textContent = game.duration.individual;
-
-    document.getElementById('stats-group-time').textContent = game.stats.duration.group;
-    document.getElementById('stats-solo-time').textContent = game.stats.duration.individual;
-    document.getElementById('stats-type').textContent = game.stats.type;
-    document.getElementById('stats-players-min').textContent = game.stats.players.min;
-    document.getElementById('stats-players-max').textContent = game.stats.players.max;
-
-    document.getElementById('master-alert').style.display = game.masterAvailable ? 'block' : 'none';
+    document.getElementById('short-description').textContent = game.masterInfo.shortDescription;
+    document.getElementById('master-note').textContent = game.masterInfo.masterNote;
+    document.getElementById('price').textContent = `${game.masterInfo.price}`;
+    
 
     const fullDescriptionContainer = document.getElementById('full-description');
-    Object.keys(game.fullDescription).forEach(key => {
+    Object.keys(game.masterInfo.fullDescription).forEach(key => {
         const paragraph = document.createElement('p');
-        paragraph.textContent = game.fullDescription[key];
+        paragraph.textContent = game.masterInfo.fullDescription[key];
         fullDescriptionContainer.appendChild(paragraph);
+    });
+
+    const priceInclude = document.getElementById('price-include');
+    Object.keys(game.masterInfo.priceInclude).forEach(key => {
+        const element = document.createElement('li');
+        element.textContent = game.masterInfo.priceInclude[key];
+        priceInclude.appendChild(element);
+    });
+
+    const demoInfo = document.getElementById('demo-info');
+    Object.keys(game.masterInfo.demoInfo).forEach(key => {
+        const element = document.createElement('p');
+        element.textContent = game.masterInfo.demoInfo[key];
+        demoInfo.appendChild(element);
     });
 
     // Временные меры
@@ -65,22 +65,7 @@ function updatePageWithGameData(game) {
     document.querySelector('.game-header').style.backgroundImage = `url(${game.image}?v=${randomValue})`;
 }
 
-function setupPricePanel() {
-    const detailsButton = document.getElementById('price-details');
-    const details = document.getElementById('details');
-
-    detailsButton.addEventListener('click', () => {
-        if (details.classList.contains('expanded')) {
-            details.classList.remove('expanded');
-        } else {
-            // Перед установкой класса expanded, необходимо сбросить задержку для свойства visibility
-            details.style.transitionDelay = '0s';
-            details.classList.add('expanded');
-        }
-    });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     loadGameData();
-    setupPricePanel();
 });
