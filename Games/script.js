@@ -13,7 +13,7 @@ function loadGameData() {
     }
 
     // Путь к JSON-файлу, он может быть динамически изменен в зависимости от URL
-    const gameDataUrl = `/Games/games-data/${gameName}.json`;
+    const gameDataUrl = `/Data/Ru/games-data/${gameName}.json`;
 
     fetch(gameDataUrl)
         .then(response => {

@@ -10,27 +10,25 @@
 
 <body>
     <main>
-        <div class="game-header">
+        <div class="game-header" id="image-img">
             <div class="text-box">
                 <div class="title-text">
                     <img src="/Extra/Icons/vine-l.png" class="title-icon">
-                    <h1 id="title-text"></h1>
+                    <h1 id="name"></h1>
                     <img src="/Extra/Icons/vine-r.png" class="title-icon">
                 </div>
 
-                <p id="short-description"></p>
-                <p>Автор игры: <b>Валентина Артамонова</b></p>
-                <p class="green-text"><b>Игра ищет ведущих! Возможно это ВЫ?</b></p>
-                <b>
-                    <p id="master-note"></p>
-                </b>
+                <p id="masterInfo-shortDescription"></p>
+                <p id="authorText" style="display: inline-block; margin: 0; margin-right: 5px;"></p><b id="masterInfo-author"></b>
+                <p class="green-text"><b id="findMasterText"></b></p>
+                <p><b id="masterInfo-masterNote"></b></p>
 
                 <div class="button-container">
                     <button class="green-button">Записаться на демоверсию (30мин)</button>
                 </div>
             </div>
 
-            <div class="full-description" id="full-description"></div>
+            <div class="full-description" id="masterInfo-fullDescription-array-p"></div>
 
             <div class="tabletopia-container">
                 <p>Игра находится на платформе Tabletopia. Вы можете играть или проводить её онлайн</p>
@@ -48,15 +46,13 @@
             <div class="price-content hoverable">
                 <div class="title-text">
                     <img src="/Extra/Icons/vine-l.png" class="title-icon">
-                    <div id="price" class="small-header">Стоимость игры</div>
+                    <div id="masterInfo-price" class="small-header"></div>
                     <img src="/Extra/Icons/vine-r.png" class="title-icon">
                 </div>
 
 
                 <h3>В стоимость игры входит 👇</h3>
-                <ul id="price-include">
-                    
-                </ul>
+                <ul id="masterInfo-priceInclude-array-li"></ul>
 
                 <div class="title-text">
                     <img src="/Extra/Icons/vine-l.png" class="title-icon">
@@ -65,7 +61,7 @@
                 </div>
 
                 <div class="join-container">
-                    <div class="join-text-side" id="demo-info"></div>
+                    <div class="join-text-side" id="masterInfo-demoInfo-array-p"></div>
                     <div class="join-button-side">
                         <button class="green-button">Записаться</button>
                     </div>
@@ -78,7 +74,7 @@
     <footer>
         <p>© 2024 Valentyna Artamonova. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="/text-loader.js" defer></script>
 </body>
 
 </html>

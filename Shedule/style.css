@@ -1,0 +1,190 @@
+/* Основные стили */
+:root {
+  --primary-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --main-bg-color: #f0f8ff;
+  --text-color: #333;
+  --link-color: #d6d6d6;
+  --footer-bg-color: #6a8faf;
+  --button-bg-color: #46992d;
+  --transparent-white: rgba(255, 255, 255, 0.8);
+  --light-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: var(--primary-font);
+  line-height: 1.6;
+  height: 100%; /* Задает высоту всей страницы */
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--main-bg-color);
+  cursor: pointer;
+}
+
+/* Основное содержимое */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Высота равна высоте видимой области браузера */
+  overflow: hidden; /* Предотвращает прокрутку страницы */
+}
+
+.main-block {
+  position: relative;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  box-shadow: var(--light-shadow);
+  border-radius: 15px;
+  background-color: white;
+  text-align: center;
+}
+
+.visible {
+  opacity: 1;
+}
+
+/* Подвал */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: var(--main-bg-color);
+  color: var(--footer-bg-color);
+}
+
+/* Анимация кнопок */
+
+a, button, .hoverable {
+  transition: transform 0.3s ease;
+}
+
+a:hover, button:hover, .hoverable:hover {
+  transform: scale(1.05);
+}
+
+/* Основные кнопки */
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: .9em;
+  padding: 5px 10px;
+}
+
+.green-button {
+  background-color: var(--button-bg-color);
+  color: white;
+  text-align: center;
+}
+
+.white-button {
+  background-color: white;
+  color: var(--button-bg-color);
+  border: 2px solid var(--button-bg-color); /* Зеленая рамка */
+}
+
+.button-container {
+  display: flex;
+  place-items: center;
+  flex-direction: row;
+  padding: 10px;
+  gap: 5px;
+}
+
+/* Заголовок */
+
+.title-icon {
+  height: 1em;
+  vertical-align: middle;
+  margin: 0 0.5em;
+  display: inline-block;
+}
+
+.title-text {
+  text-align: center;
+  font-size: larger;
+  margin-top: 15px;
+}
+
+.title-text h1 {
+  display: inline-block;
+  margin: 0;
+}
+
+/* Основные блоки */
+
+.center-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.left-item, .right-item {
+  padding: 20px 0;
+  background-color: var(--transparent-white);
+  display: inline-flex;
+  width: max-content;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-item {
+  flex: 1; /* Левый блок займет меньше места */
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.right-item {
+  flex: 2; /* Правый блок займет больше места */
+}
+
+/* Левая часть */
+
+.type-info {
+  border-radius: 15px;
+  border: 2px solid var(--button-bg-color);
+  margin-bottom: 15px;
+  padding: 15px 25px;
+  width: 200px;
+  text-align: center;
+}
+
+/* Правая часть */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Создаем 4 колонки с одинаковой шириной */
+  grid-gap: 10px; /* Расстояние между ячейками */
+  padding: 10px; /* Отступ вокруг всей сетки */
+}
+
+.grid-item {
+  background-color: #e9f5e9; /* Цвет фона элемента */
+  border: 1px solid #cccccc; /* Граница вокруг элемента */
+  border-radius: 10px; /* Скругление углов */
+  padding: 10px; /* Отступ внутри элемента */
+  text-align: center; /* Выравнивание текста по центру */
+  font-size: 1.2em; /* Размер шрифта */
+  display: flex;
+  flex-direction: column; /* Элементы внутри будут располагаться в столбец */
+  justify-content: center; /* Центрирование содержимого по вертикали */
+}
+
+.grid-item p {
+  margin: 0;
+}
+
+/* Стрелочка назад */
+
+.back-button {
+  position: absolute;
+  top: 10px; /* Расстояние от верхнего края контейнера */
+  left: 10px; /* Расстояние от левого края контейнера */
+  cursor: pointer;
+  font-size: 30px; /* Размер стрелочки */
+  margin-left: 20px;
+}
