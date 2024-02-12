@@ -23,5 +23,4 @@ function handleClick(e) {
 document.addEventListener('DOMContentLoaded', () => {
     fadeInMainBlock(); // Плавное проявление основного блока
     document.body.addEventListener('click', handleClick); // Обработка кликов по странице
-    loadData();
 });

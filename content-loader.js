@@ -6,21 +6,33 @@ const dataCache = {};
 
 // Функция для загрузки данных с сервера
 async function fetchData(url) {
-    const cacheKey = `${currentLanguage}_${url}`; // Ключ кеша с учетом языка
+    const cacheKey = `${currentLanguage}_${url}`;
 
     if (dataCache[cacheKey]) {
         return dataCache[cacheKey];
     }
 
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
+    try {
+        const response = await fetch(url);
 
-    dataCache[cacheKey] = data;
-    return data;
+        // Проверка на статус 404 - файл не найден
+        if (response.status === 404) {
+            throw new Error('File not found: The requested file does not exist. Ensure that json file`s name is similar to the html file');
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        dataCache[cacheKey] = data;
+        return data;
+    } catch (error) {
+        console.error(error.message);
+        throw error; 
+    }
 }
+
 
 
 function getGameNameFromUrl() {
@@ -30,24 +42,31 @@ function getGameNameFromUrl() {
 }
 
 // Инициализация и обработка загрузки данных страницы и игры
-async function loadData() {
+async function loadContentData() {
     try {
+        // Используем тернарный оператор для определения имени файла
         const pathname = window.location.pathname;
-        const filename = pathname.split('/').pop().split('.').slice(0, -1).join('.');
+        const isRootPath = pathname === '/' || pathname.endsWith('/');
+        const filename = isRootPath ? 'index' : pathname.split('/').pop().split('.')[0];
+
+        // Загружаем и обновляем данные страницы
         const pageData = await fetchData(`/Data/Ru/pages-data/${filename}.json`);
         updateData(pageData);
 
+        // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
         const gameName = getGameNameFromUrl();
         if (gameName) {
             const gameData = await fetchData(`/Data/Ru/games-data/${gameName}.json`);
             updateData(gameData);
         } else {
-            console.log('Игра не указана в URL');
+            console.log('There are no game in the URL');
         }
     } catch (error) {
         console.error('Error during data loading:', error);
     }
 }
+
+
 
 // -- Load functions --
 
@@ -74,10 +93,15 @@ function updateImage(element, value) {
 
 function updateData(data) {
     document.querySelectorAll('[id]').forEach(element => {
+        // Проверяем, обработан ли элемент ранее
+        if (element.getAttribute('data-processed') === 'true') {
+            return; // Элемент уже обработан, пропускаем его
+        }
+
         const baseId = element.id.replace(/-array-\w+$|-img$/, '').replace(/-/g, '.');
         const value = baseId.split('.').reduce((acc, prop) => acc && acc[prop], data);
 
-        if (value !== undefined && !loadedIds.has(element.id)) {
+        if (value !== undefined) {
             const matchArray = element.id.match(/-array-(\w+)$/);
             const matchImg = element.id.match(/-img$/);
 
@@ -88,12 +112,16 @@ function updateData(data) {
             } else {
                 updateText(element, value);
             }
+            
+            // Маркируем элемент как обработанный
+            element.setAttribute('data-processed', 'true');
             loadedIds.add(element.id);
         }
     });
 }
 
+
 // Инициализация и установка обработчиков событий при загрузке документа
 document.addEventListener('DOMContentLoaded', () => {
-    loadData();
+    loadContentData();
 });

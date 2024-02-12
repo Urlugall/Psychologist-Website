@@ -21,30 +21,13 @@
                 </nav>
                 <div class="content">
                     <div class="text-block">
-                        <h1>Психолог Валентина Артамонова</h1>
-                        <p>Практикующий психолог c 2013г.:</p>
-                        <ul>
-                            <li>корпоративный,</li>
-                            <li>индивидуальный,</li>
-                            <li>семейный,</li>
-                            <li>тренер личностного роста,</li>
-                            <li>бизнес тренер,</li>
-                            <li>специалист Brainspotting,</li>
-                            <li>экрааналитик (работа с эмоциями).</li>
-                        </ul>
+                        <h1 id="name"></h1>
+                        <p id="psychologist"></p>
+                        <ul id="biography-array-li"></ul>
                         <div class="button-container">
                             <button id="services-button" class="services-button">Перейти к услугам</button>
                         </div>
-                        <p>Модератор дивизиона Киберпсихологии Национальной Психологической Ассоциации.</p>
-                        <p>Член ассоциаций: «Психологи без кордонів», «Национальная Психологическая Ассоциация Украины»,
-                            «European
-                            Federation of Psychologists Associations», "International Association of Applied Psychology
-                            (IAAP)".</p>
-                        <p>Ведущая психологических, финансовой, а также авторских игр.</p>
-                        <p>Волонтер в социальных проектах, с тяжелыми больными и членами их семей, brainspottinghelp.
-                        </p>
-                        <p>Работаю со взрослыми. С детьми только в паре со взрослым.</p>
-
+                        <div id="aboutPsychologist-array-p"></div>
                     </div>
                 </div>
 
@@ -52,21 +35,21 @@
             <section id="stats" fade="data-fade">
                 <div class="stat">
                     <h2>
-                        <p>500+</p>
+                        <p id="shortStats-count1"></p>
                     </h2>
-                    <p>Задоволених клієнтів</p>
+                    <p id="shortStats-header1"></p>
                 </div>
                 <div class="stat">
                     <h2>
-                        <p>1000+</p>
+                        <p id="shortStats-count2"></p>
                     </h2>
-                    <p>Років в психології</p>
+                    <p id="shortStats-header2"></p>
                 </div>
                 <div class="stat">
                     <h2>
-                        <p>200+</p>
+                        <p id="shortStats-count3"></p>
                     </h2>
-                    <p>Проведених консультацій</p>
+                    <p id="shortStats-header3"></p>
                 </div>
             </section>
 
@@ -75,63 +58,62 @@
             </div>
 
             <div class="title-text" id="services-header" fade="data-fade">
-                <h2><img src="Extra/Icons/vine-l.png" class="title-icon">Услуги<img src="Extra/Icons/vine-r.png"
-                        class="title-icon"></h2>
+                <img src="Extra/Icons/vine-l.png" class="title-icon">
+                <h2 id="servicesText"></h2>
+                <img src="Extra/Icons/vine-r.png" class="title-icon">
             </div>
             <section id="services" fade="data-fade">
                 <div class="service">
                     <div class="service-card">
                         <div class="card-front">
-                            <h2>Личная консультация</h2>
-                            <p>Персонализированный подход к решению личных и профессиональных проблем.</p>
+                            <h2 id="service1-header"></h2>
+                            <p id="service1-description"></p>
                             <p>
-                                <button class="join-button">Записаться</button>
-                                <button class="info-button">Узнать цену</button>
+                                <button class="join-button" id="joinButton"></button>
+                                <button class="info-button" id="priceButton"></button>
                             </p>
                         </div>
                         <div class="card-back">
-                            <h2>Первая консультация — €50</h2>
-                            Последующие — €100<br>
-                            12 консультаций (рекомендуемо) — €1100<br>
-                            <b>Длительность — 60~80 минут</b><br>
-                            <button class="join-button">Записаться</button>
+                            <h2 id="service1-backHeader"></h2>
+                            <div id="service1-backText-array-div"></div>
+                            <b id="service1-duration"></b>
+                            <button class="join-button" id="joinButton"></button>
                         </div>
                     </div>
                 </div>
                 <div class="service">
                     <div class="service-card">
                         <div class="card-front">
-                            <h2>Парная консультация</h2>
-                            <p>Помощь в укреплении семейных отношений и решении семейных конфликтов</p>
+                            <h2 id="service2-header"></h2>
+                            <p id="service2-description"></p>
                             <p>
-                                <button class="join-button">Записаться</button>
-                                <button class="info-button">Узнать цену</button>
+                                <button class="join-button" id="joinButton"></button>
+                                <button class="info-button" id="priceButton"></button>
                             </p>
                         </div>
                         <div class="card-back">
-                            <h2>Первая консультация — €70</h2>
-                            Последующие — €150<br>
-                            12 консультаций (рекомендуемо) — €1600<br>
-                            <b>Длительность — 90 минут</b><br>
-                            <button class="join-button">Записаться</button>
+                            <h2 id="service2-backHeader"></h2>
+                            <div id="service2-backText-array-div"></div>
+                            <b id="service2-duration"></b>
+                            <button class="join-button" id="joinButton"></button>
                         </div>
                     </div>
                 </div>
                 <div class="service">
                     <div class="service-card">
                         <div class="card-front">
-                            <h2>Консультация бизнес-тренера</h2>
-                            <p>Помощь в увеличении финансового состояния, развитии бизнеса, работа с прокрастинацией.</p>
+                            <h2 id="service3-header"></h2>
+                            <p id="service3-description"></p>
                             <p>
-                                <button class="join-button">Записаться</button>
-                                <button class="info-button">Узнать цену</button>
+                                <button class="join-button" id="joinButton"></button>
+                                <button class="info-button" id="priceButton"></button>
                             </p>
                         </div>
                         <div class="card-back">
-                            <h2>Первая консультация — €100</h2>
-                            Последующие — по договоренности<br>
-                            <b>Длительность — в зависимости от запроса</b><br>
-                            <button class="join-button">Записаться</button>
+                            <h2 id="service3-backHeader"></h2>
+                            <div id="service3-backText-array-div"></div>
+                            <b id="service3-duration"></b>
+                            <button class="join-button" id="joinButton"></button>
                         </div>
                     </div>
                 </div>
@@ -140,74 +122,69 @@
             <div class="carousel carousel-white" fade="data-fade" data-visible-items="1" data-move-frequency="2">
                 <div class="carousel-items">
                     <div class="carousel-item">
-                        <div class="italic-text">
-                            "Вы здесь, а значит вы готовы к переменам в своей жизни. А это уже половина пути. Давайте
-                            пройдем его вместе..."
-                        </div>
+                        <div class="italic-text" id="phrase1"></div>
                     </div>
                     <div class="carousel-item">
-                        <div class="italic-text">
-                            "Каждая ситуация показывает нам что-то, главное понять что именно"
-                        </div>
+                        <div class="italic-text" id="phrase2"></div>
                     </div>
                     <div class="carousel-item">
-                        <div class="italic-text">
-                            "Каждый день - это шанс изменить свою жизнь к лучшему"
-                        </div>
+                        <div class="italic-text" id="phrase3"></div>
                     </div>
                 </div>
             </div>
 
             <div class="title-text" fade="data-fade">
-                <h2><img src="Extra/Icons/vine-l.png" class="title-icon">Игры<img src="Extra/Icons/vine-r.png"
-                        class="title-icon"></h2>
+                <img src="Extra/Icons/vine-l.png" class="title-icon">
+                <h2 id="gamesText"></h2>
+                <img src="Extra/Icons/vine-r.png"
+                        class="title-icon">
             </div>
             <section id="games" fade="data-fade">
                 <a href="/Games/game.html?game=mySubpersonalities" class="game" style="background-image: url('Extra/Photos/MySubpersonalities.png');">
-                    <h2>Мои Субличности</h2>
-                    <p>Трансформационная<br> игра для решения личных<br> запросов и конфликтов.</p>
+                    <h2 id="gamesList-mySubpersonalities-header"></h2>
+                    <p id="gamesList-mySubpersonalities-description-array-div"></p>
                 </a>
                 <a href="/Games/game.html?game=satori" class="game" style="background-image: url('Extra/Photos/Satori.png');">
-                    <h2>Сатори</h2>
-                    <p>Глубокая трансформационная игра...</p>
+                    <h2 id="gamesList-satori-header"></h2>
+                    <p id="gamesList-satori-description-array-div"></p>
                 </a>
                 <a href="/Games/game.html?game=myResource" class="game" style="background-image: url('Extra/Photos/MyResource.png');">
-                    <h2>Мой ресурс</h2>
-                    <p>Легкая игра для нахождения решений и ресурсов в сложных ситуациях.</p>
+                    <h2 id="gamesList-myResource-header"></h2>
+                    <p id="gamesList-myResource-description-array-div"></p>
                 </a>
                 <a href="/Games/game.html?game=lilaChakra" class="game" style="background-image: url('Extra/Photos/LilaChakra.png');">
-                    <h2>Лила Чакра</h2>
-                    <p>Трансформационная игра<br> для устранения внутренних препятствий на пути к цели.</p>
+                    <h2 id="gamesList-lilaChakra-header"></h2>
+                    <p id="gamesList-lilaChakra-description-array-div"></p>
                 </a>
                 <a href="/Games/game.html?game=ratRaces2" class="game" style="background-image: url('Extra/Photos/RatRaces2.png');">
-                    <h2>Крысиные бега 2</h2>
-                    <p>Бизнес-тренажёр о приумножении капитала, реалистичный аналог Cash Flow.</p>
+                    <h2 id="gamesList-ratRaces2-header"></h2>
+                    <p id="gamesList-ratRaces2-description-array-div"></p>
                 </a>
                 <a href="/Games/game.html?game=ratRaces3" class="game" style="background-image: url('Extra/Photos/RatRaces3.png');">
-                    <h2>Крысиные бега 3</h2>
-                    <p>Бизнес-тренажёр о<br> выживании и заработке<br> бизнеса в кризисных условиях.</p>
+                    <h2 id="gamesList-ratRaces3-header"></h2>
+                    <p id="gamesList-ratRaces3-description-array-div"></p>
                 </a>
             </section>
 
             <section id="centred-container" fade="data-fade">
                 <div class="text-section">
-                    <h2>Вся наша жизнь - игра!</h2>
-                    <p>В игре вы можете прожить то, на что не решаетесь в реальной жизни.</p>
+                    <h2 id="gamesBottom-title"></h2>
+                    <p id="gamesBottom-text"></p>
                 </div>
                 <div class="buttons-section">
-                    <button class="join-button">Записаться</button>
-                    <button class="info-button" onclick="location.href='Shedule/shedule.html';">Расписание игр</button>
+                    <button class="join-button" id="joinButton">Заисаться</button>
+                    <button class="info-button" id="scheduleButton" onclick="location.href='/Schedule/schedule.html';"></button>
                 </div>
             </section>
 
             <div class="title-text" fade="data-fade">
-                <h2><img src="Extra/Icons/vine-l.png" class="title-icon">Группы<img src="Extra/Icons/vine-r.png"
-                        class="title-icon"></h2>
+                <img src="Extra/Icons/vine-l.png" class="title-icon">
+                <h2 id="groupsText"></h2>
+                <img src="Extra/Icons/vine-r.png" class="title-icon">
             </div>
 
             <section id="events-description">
                 <section id="games" fade="data-fade">
-                    
                 </section>
             </section>
 
@@ -220,7 +197,9 @@
     <footer>
         <p>© 2024 Valentyna Artamonova. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <script src="content-loader.js" defer></script>
+    <script src="href-manager.js" defer></script>
 </body>
 
 </html>

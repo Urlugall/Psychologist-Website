@@ -10,81 +10,81 @@
 
 <body>
     <main>
-        <div class="game-header">
+        <div class="game-header" id="image-img">
             <div class="text-box">
                 <div class="title-text">
-                    <img src="/Extra/Icons/vine-l.png" class="title-icon"><h1 id="title-text"></h1><img src="/Extra/Icons/vine-r.png" class="title-icon">
+                    <img src="/Extra/Icons/vine-l.png" class="title-icon"><h1 id="name"></h1><img src="/Extra/Icons/vine-r.png" class="title-icon">
                 </div>
-                <p id="short-description"></p>
+                <p id="shortDescription"></p>
                 <div class="button-container">
-                    <button class="green-button">Записаться</button>
-                    <button class="white-button" id="price-details">Узнать цену</button>
-                    <button class="white-button">Расписание игр</button>
+                    <button class="green-button" id="joinButton"></button>
+                    <button class="white-button" id="price-details"></button>
+                    <button class="white-button" id="sheduleButton" onclick=openSchedule()></button>
                 </div>
 
                 <div id="details" class="details">
                     <div class="info-block">
-                        <h2>Стоимость игры</h2>
-                        <p id="group-price"></p>
-                        <p id="solo-price"></p>
+                        <h2 id="price-text"></h2>
+                        <p id="price-group"></p>
+                        <p id="price-individual"></p>
                     </div>
                     <div class="info-block">
-                        <h2>Длительность игры</h2>
-                        <p id="group-time"></p>
-                        <p id="solo-time"></p>
+                        <h2 id="duration-gameText"></h2>
+                        <p id="duration-group"></p>
+                        <p id="duration-individual"></p>
                     </div>
                 </div>
             </div>
 
             <div class="grid-container">
                 <div class="grid-item">
-                    <img src="/Extra/Icons/GameDetails/back-in-time.png" alt="Длительность групповой игры">
-                    <p>Длительность групповой игры</p>
-                    <b id="stats-group-time"></b>
+                    <img src="/Extra/Icons/GameDetails/back-in-time.png">
+                    <p id="duration-groupText"></p>
+                    <b id="stats-duration-group"></b>
                 </div>
                 <div class="grid-item">
-                    <img src="/Extra/Icons/GameDetails/clock.png" alt="Длительность индивидуальной игры">
-                    <p>Длительность индивидуальной игры</p>
-                    <b id="stats-solo-time"></b>
+                    <img src="/Extra/Icons/GameDetails/clock.png">
+                    <p id="duration-individualText"></p>
+                    <b id="stats-duration-individual"></b>
                 </div>
                 <div class="grid-item">
-                    <img src="/Extra/Icons/GameDetails/interface.png" alt="Тип игры">
-                    <p>Тип игры</p>
+                    <img src="/Extra/Icons/GameDetails/interface.png">
+                    <p id="typeText"></p>
                     <b id="stats-type"></b>
                 </div>
                 <div class="grid-item">
-                    <img src="/Extra/Icons/GameDetails/person.png" alt="Минимальное количество игроков">
-                    <p>Минимальное количество игроков</p>
+                    <img src="/Extra/Icons/GameDetails/person.png">
+                    <p id="players-minText"></p>
                     <b id="stats-players-min"></b>
                 </div>
                 <div class="grid-item">
-                    <img src="/Extra/Icons/GameDetails/group.png" alt="Максимальное количество игроков">
-                    <p>Максимальное количество игроков</p>
+                    <img src="/Extra/Icons/GameDetails/group.png">
+                    <p id="players-maxText"></p>
                     <b id="stats-players-max"></b>
                 </div>
             </div>
 
             <div class="row-container">
                 <div class="alert-box" id="master-alert">
-                    <h2>Игра ищет ведущих! Возможно это ВЫ?</h2>
-                    <button class="details-button" id="details-button">Детальнее...</button>
+                    <h2 id="masterText"></h2>
+                    <button class="details-button" id="detailsButton" onclick=openMasterPage()></button>
                 </div>
                 <div class="quest-block">
-                    <span class="quest-text">Игра доступна в формате «Квест-игры»!</span>
-                    <button class="white-button">Узнать больше</button>
+                    <span class="quest-text" id="questText"></span>
+                    <button class="white-button" id="questButton"></button>
                 </div>
             </div>
 
-            <div class="full-description" id="full-description"></div>
+            <div class="full-description" id="fullDescription-array-p"></div>
 
             <section id="centred-container" fade="data-fade">
                 <div class="text-section">
-                    <h2>Вся наша жизнь - игра!</h2>
-                    <p>Приходите и измените свою жизнь играя</p>
+                    <h2 id="bottom-header"></h2>
+                    <p id="bottom-description"></p>
                 </div>
                 <div class="buttons-section">
-                    <button class="green-button">Записаться</button>
-                    <button class="white-button">Расписание игр</button>
+                    <button class="green-button" id="joinButton"></button>
+                    <button class="white-button" id="sheduleButton" onclick=openSchedule()></button>
                 </div>
             </section>
         </div>
@@ -93,7 +93,9 @@
     <footer>
         <p>© 2024 Valentyna Artamonova. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <script src="/content-loader.js" defer></script>
+    <script src="/href-manager.js" defer></script>
 </body>
 
 </html>

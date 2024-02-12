@@ -90,6 +90,7 @@ footer {
     height: 0.5em;
     vertical-align: middle;
     margin: 0 0.5em;
+    display: inline-block;
 }
 
 /* Images */
@@ -132,6 +133,7 @@ footer {
 
 .title-text h2 {
     margin: 0px;
+    display: inline-block;
 }
 
 .alert-box h2 {
