@@ -199,111 +199,74 @@ async function addSocialSidebar() {
 
 /* -- Language -- */
 
-function createLanguageSelector() {
-    const languages = ['English', 'Русский', 'Українська'];
-    const languageCodes = { 'eng': 'English', 'ru': 'Русский', 'ukr': 'Українська' };
+// Инициализация списка языков и выбор текущего языка
+const initLanguageSelector = () => {
+    const languages = { eng: 'English', ru: 'Русский', ukr: 'Українська' };
+    const defaultLang = 'eng';
+    const langCode = localStorage.getItem('selectedLanguage') || new URLSearchParams(window.location.search).get('language') || defaultLang;
 
-    // Сначала проверяем язык в localStorage, затем в URL
-    const savedLangCode = localStorage.getItem('selectedLanguage');
-    const currentLangCode = savedLangCode || getCurrentLanguageFromUrl(); // должна возвращать 'eng', 'ru', или 'ukr'
-    let currentLanguage = languageCodes[currentLangCode] || 'English';
+    // Создание селектора языков
+    createLanguageSelector(languages, langCode);
+    // Обеспечение наличия выбранного языка в URL
+    ensureLanguageInUrl(langCode);
+};
 
-    const langSelector = document.createElement('div');
-    langSelector.id = 'language-selector';
-    langSelector.textContent = currentLanguage; // Отображаем текущий язык
-    document.body.appendChild(langSelector);
+// Создание селектора языков
+const createLanguageSelector = (languages, currentLangCode) => {
+    const selectorHTML = `<div id="language-selector" style="position: absolute; top: 30px; right: 30px; background-color: #ffffff; padding: 10px; cursor: pointer; z-index: 5; border-radius: 9px; text-align: center;">${languages[currentLangCode]}</div>`;
+    document.body.insertAdjacentHTML('beforeend', selectorHTML);
 
+    const langSelector = document.getElementById('language-selector');
     const langList = document.createElement('ul');
     langList.id = 'language-list';
-    updateLanguageList(); // Инициализация списка языков
-    langList.style.display = 'none';
+    langList.style.cssText = 'list-style-type: none; padding: 0; margin: 0; display: none;';
     langSelector.appendChild(langList);
 
+    // Заполнение списка доступными языками
+    Object.entries(languages).forEach(([code, name]) => {
+        if (code !== currentLangCode) {
+            langList.insertAdjacentHTML('beforeend', `<li data-lang="${code}" style="padding: 2px 5px; cursor: pointer; border-radius: 5px; text-align: center;">${name}</li>`);
+        }
+    });
+
+    setupEventListeners(langSelector, langList, languages);
+};
+
+// Настройка обработчиков событий
+const setupEventListeners = (langSelector, langList, languages) => {
+    document.head.insertAdjacentHTML('beforeend', `<style>#language-list li:hover { background-color: #46992d; color: #ffffff; }</style>`);
+
+    // Переключение отображения списка языков
     langSelector.addEventListener('click', () => {
         langList.style.display = langList.style.display === 'none' ? 'block' : 'none';
     });
 
-    langSelector.addEventListener('mouseleave', () => {
-        langList.style.display = 'none';
+    // Внешний клик для закрытия списка
+    document.addEventListener('click', e => {
+        if (!langSelector.contains(e.target)) langList.style.display = 'none';
     });
 
-    const styles = `
-        #language-selector {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            background-color: #ffffff;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 5;
-            border-radius: 9px;
-            text-align: center;
+    // Выбор языка
+    langList.addEventListener('click', e => {
+        const selectedLangCode = e.target.dataset.lang;
+        if (selectedLangCode) {
+            localStorage.setItem('selectedLanguage', selectedLangCode);
+            const url = new URL(window.location);
+            url.searchParams.set('language', selectedLangCode);
+            window.history.pushState({}, '', url);
+            window.location.reload();
         }
-        #language-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: none;
-        }
-        #language-list li {
-            padding: 2px 5px;
-            cursor: pointer;
-            border-radius: 5px;
-            text-align: center;
-        }
-        #language-list li:hover {
-            background-color: #46992d;
-            color: #ffffff;
-        }
-    `;
+    });
+};
 
-    const styleSheet = document.createElement('style');
-    styleSheet.innerText = styles;
-    document.head.appendChild(styleSheet);
-
-    function updateLanguageList() {
-        langList.innerHTML = '';
-        languages.forEach(lang => {
-            if (lang === currentLanguage) return;
-
-            const langItem = document.createElement('li');
-            langItem.textContent = lang;
-            langItem.onclick = function() {
-                changeLanguage(this.textContent);
-            };
-            langList.appendChild(langItem);
-        });
-    }
-
-    function changeLanguage(lang) {
-        const langCode = Object.keys(languageCodes).find(key => languageCodes[key] === lang);
-        if (!langCode) return;
-
-        updateUrlLanguageParam(langCode);
-        currentLanguage = lang;
-        langSelector.textContent = currentLanguage;
-        updateLanguageList();
-        localStorage.setItem('selectedLanguage', langCode); // Сохраняем выбранный язык в localStorage
-        window.location.reload();
-    }
-}
-
-function getCurrentLanguageFromUrl() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('language') || 'eng';
-}
-
-function ensureLanguageInUrl() {
+// Обеспечение наличия выбранного языка в URL
+const ensureLanguageInUrl = (currentLangCode) => {
     const url = new URL(window.location);
-    const urlParams = new URLSearchParams(window.location.search);
-    const langInUrl = urlParams.get('language');
-
-    if (langInUrl) return;
-
-    const currentLanguageCode = localStorage.getItem('selectedLanguage') || getCurrentLanguageFromUrl();
-    url.searchParams.set('language', currentLanguageCode);
-    window.history.replaceState({}, '', url.toString());
-}
+    if (!url.searchParams.has('language')) {
+        url.searchParams.set('language', currentLangCode);
+        window.history.replaceState({}, '', url.toString());
+    }
+};
 
 
 /* -- DOM -- */
@@ -312,6 +275,5 @@ document.addEventListener('DOMContentLoaded', () => {
     loadContentData();
     addFooterFromJSON();
     addSocialSidebar();
-    ensureLanguageInUrl();
-    createLanguageSelector();
+    initLanguageSelector();
 });
