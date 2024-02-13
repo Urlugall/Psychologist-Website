@@ -1,0 +1,8 @@
+{
+    "footerText": "© 2024 Valentyna Artamonova. All rights reserved.",
+    "links": [
+        { "href": "YOUR_TELEGRAM_LINK", "title": "Telegram", "icon": "/Extra/Icons/telegram.png" },
+        { "href": "YOUR_INSTAGRAM_LINK", "title": "Instagram", "icon": "/Extra/Icons/instagram.png" },
+        { "href": "YOUR_FACEBOOK_LINK", "title": "Facebook", "icon": "/Extra/Icons/facebook.png" }
+    ]
+}

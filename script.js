@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-    loadContent('events.json', 'events', createEventElement);
-    loadAndDisplayEvents('events.json', 'events-description');
+    loadContent('/Data/Ru/events.json', 'events', createEventElement);
+    loadAndDisplayEvents('/Data/Ru/events.json', 'events-description');
+    setupNavigationScroll();
     setupServicesNavigation();
     setupFade();
     setupCarousels();
     initializeFlip();
-    addSocialSidebar();
 });
 
 const loadContent = (url, containerId, createElement, isHTML = false) => {
@@ -27,6 +27,25 @@ const loadContent = (url, containerId, createElement, isHTML = false) => {
 };
 
 
+function setupNavigationScroll() {
+    document.querySelectorAll('a[id^="navigation-"]').forEach(navElement => {
+        navElement.addEventListener('click', function(event) {
+            event.preventDefault(); // Предотвращаем стандартное действие ссылки
+
+            const sectionId = navElement.id.replace('navigation', 'section');
+
+            const sectionElement = document.getElementById(sectionId);
+            if (sectionElement) {
+                sectionElement.scrollIntoView({ behavior: 'smooth' });
+            }
+            else {
+                console.error(`There are no section with name ${sectionId}`);
+            }
+        });
+    });
+}
+
+
 function createEventElement(event) {
     const element = document.createElement('div');
     element.classList.add('carousel-item'); // Добавляем класс "carousel-item" для стилизации
@@ -39,11 +58,11 @@ function createEventElement(event) {
     `;
 
     // Найти кнопку в созданном элементе и добавить обработчик событий
-    const detailsButton = element.querySelector('.details-button');
+    /*const detailsButton = element.querySelector('.details-button');
     detailsButton.addEventListener('click', function (e) {
         e.preventDefault();
         document.getElementById('events-description').scrollIntoView({ behavior: 'smooth' });
-    });
+    });*/
 
     return element;
 }
@@ -98,10 +117,10 @@ const initializeFlip = () => {
 
 
 function setupServicesNavigation() {
-    const servicesButton = document.getElementById('services-button');
+    const servicesButton = document.getElementById('servicesButton');
     servicesButton.addEventListener('click', function (e) {
         e.preventDefault();
-        document.getElementById('services-header').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('section-services').scrollIntoView({ behavior: 'smooth' });
     });
 }
 
@@ -191,26 +210,3 @@ const setupCarousels = () => {
         updateCarousel(carousel, index); // Initialize position on load
     });
 };
-
-
-function addSocialSidebar() {
-    const socialSidebar = document.createElement('section');
-    socialSidebar.id = 'social-sidebar';
-    document.body.appendChild(socialSidebar);
-
-    const socialLinks = [
-        { href: "YOUR_TELEGRAM_LINK", title: "Telegram", icon: "Extra/Icons/telegram.png" },
-        { href: "YOUR_INSTAGRAM_LINK", title: "Instagram", icon: "Extra/Icons/instagram.png" },
-        { href: "YOUR_FACEBOOK_LINK", title: "Facebook", icon: "Extra/Icons/facebook.png" }
-    ];
-
-    socialLinks.forEach(({ href, title, icon }) => {
-        const link = document.createElement('a');
-        link.href = href;
-        link.title = title;
-        const img = document.createElement('img');
-        img.src = icon;
-        link.appendChild(img);
-        socialSidebar.appendChild(link);
-    });
-}

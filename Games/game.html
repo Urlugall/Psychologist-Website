@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Игра</title>
+    <title id="pageName"></title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div id="social-sidebar-container"></div>
     <main>
         <div class="game-header" id="image-img">
             <div class="text-box">
@@ -71,7 +72,7 @@
                 </div>
                 <div class="quest-block">
                     <span class="quest-text" id="questText"></span>
-                    <button class="white-button" id="questButton"></button>
+                    <button class="white-button" id="questButton" onclick=openQuestPage()></button>
                 </div>
             </div>
 
@@ -89,10 +90,6 @@
             </section>
         </div>
     </main>
-
-    <footer>
-        <p>© 2024 Valentyna Artamonova. All rights reserved.</p>
-    </footer>
     <script src="script.js" defer></script>
     <script src="/content-loader.js" defer></script>
     <script src="/href-manager.js" defer></script>

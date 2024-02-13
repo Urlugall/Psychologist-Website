@@ -4,28 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psychologist Valentina</title>
+    <title id="pageName"></title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div id="social-sidebar-container"></div>
     <main>
         <section id="about">
             <div class="background-image">
                 <nav>
                     <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="events.html">Events</a></li>
+                        <li><a id="navigation-about"></a></li>
+                        <li><a id="navigation-services"></a></li>
+                        <li><a id="navigation-games"></a></li>
+                        <li><a id="navigation-groups"></a></li>
                     </ul>
                 </nav>
-                <div class="content">
+                <div class="content" id="section-about">
                     <div class="text-block">
                         <h1 id="name"></h1>
                         <p id="psychologist"></p>
                         <ul id="biography-array-li"></ul>
                         <div class="button-container">
-                            <button id="services-button" class="services-button">Перейти к услугам</button>
+                            <button id="servicesButton" class="services-button"></button>
                         </div>
                         <div id="aboutPsychologist-array-p"></div>
                     </div>
@@ -57,7 +59,7 @@
                 <div class="carousel-items" id="events"></div>
             </div>
 
-            <div class="title-text" id="services-header" fade="data-fade">
+            <div class="title-text" id="section-services" fade="data-fade">
                 <img src="Extra/Icons/vine-l.png" class="title-icon">
                 <h2 id="servicesText"></h2>
                 <img src="Extra/Icons/vine-r.png" class="title-icon">
@@ -133,34 +135,34 @@
                 </div>
             </div>
 
-            <div class="title-text" fade="data-fade">
+            <div class="title-text" id="section-games" fade="data-fade">
                 <img src="Extra/Icons/vine-l.png" class="title-icon">
                 <h2 id="gamesText"></h2>
                 <img src="Extra/Icons/vine-r.png"
                         class="title-icon">
             </div>
             <section id="games" fade="data-fade">
-                <a href="/Games/game.html?game=mySubpersonalities" class="game" style="background-image: url('Extra/Photos/MySubpersonalities.png');">
+                <a onclick="openGameInfo('mySubpersonalities')" class="game" style="background-image: url('Extra/Photos/MySubpersonalities.png');">
                     <h2 id="gamesList-mySubpersonalities-header"></h2>
                     <p id="gamesList-mySubpersonalities-description-array-div"></p>
                 </a>
-                <a href="/Games/game.html?game=satori" class="game" style="background-image: url('Extra/Photos/Satori.png');">
+                <a onclick="openGameInfo('satori')" class="game" style="background-image: url('Extra/Photos/Satori.png');">
                     <h2 id="gamesList-satori-header"></h2>
                     <p id="gamesList-satori-description-array-div"></p>
                 </a>
-                <a href="/Games/game.html?game=myResource" class="game" style="background-image: url('Extra/Photos/MyResource.png');">
+                <a onclick="openGameInfo('myResource')" class="game" style="background-image: url('Extra/Photos/MyResource.png');">
                     <h2 id="gamesList-myResource-header"></h2>
                     <p id="gamesList-myResource-description-array-div"></p>
                 </a>
-                <a href="/Games/game.html?game=lilaChakra" class="game" style="background-image: url('Extra/Photos/LilaChakra.png');">
+                <a onclick="openGameInfo('lilaChakra')" class="game" style="background-image: url('Extra/Photos/LilaChakra.png');">
                     <h2 id="gamesList-lilaChakra-header"></h2>
                     <p id="gamesList-lilaChakra-description-array-div"></p>
                 </a>
-                <a href="/Games/game.html?game=ratRaces2" class="game" style="background-image: url('Extra/Photos/RatRaces2.png');">
+                <a onclick="openGameInfo('ratRaces2')" class="game" style="background-image: url('Extra/Photos/RatRaces2.png');">
                     <h2 id="gamesList-ratRaces2-header"></h2>
                     <p id="gamesList-ratRaces2-description-array-div"></p>
                 </a>
-                <a href="/Games/game.html?game=ratRaces3" class="game" style="background-image: url('Extra/Photos/RatRaces3.png');">
+                <a onclick="openGameInfo('ratRaces3')" class="game" style="background-image: url('Extra/Photos/RatRaces3.png');">
                     <h2 id="gamesList-ratRaces3-header"></h2>
                     <p id="gamesList-ratRaces3-description-array-div"></p>
                 </a>
@@ -172,12 +174,12 @@
                     <p id="gamesBottom-text"></p>
                 </div>
                 <div class="buttons-section">
-                    <button class="join-button" id="joinButton">Заисаться</button>
+                    <button class="join-button" id="joinButton"></button>
                     <button class="info-button" id="scheduleButton" onclick="location.href='/Schedule/schedule.html';"></button>
                 </div>
             </section>
 
-            <div class="title-text" fade="data-fade">
+            <div class="title-text" id="section-groups" fade="data-fade">
                 <img src="Extra/Icons/vine-l.png" class="title-icon">
                 <h2 id="groupsText"></h2>
                 <img src="Extra/Icons/vine-r.png" class="title-icon">
@@ -194,9 +196,6 @@
 
         </section>
     </main>
-    <footer>
-        <p>© 2024 Valentyna Artamonova. All rights reserved.</p>
-    </footer>
     <script src="script.js" defer></script>
     <script src="content-loader.js" defer></script>
     <script src="href-manager.js" defer></script>

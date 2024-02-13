@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageName"></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="social-sidebar-container"></div>
+    <main>
+        <div class="game-header" id="image-img">
+            <div class="text-box">
+                <div class="title-text">
+                    <img src="/Extra/Icons/vine-l.png" class="title-icon">
+                    <h1 id="title"></h1>
+                    <img src="/Extra/Icons/vine-r.png" class="title-icon">
+                </div>
+
+                <p id="description-array-p"></p>
+
+                <div class="button-container">
+                    <button class="green-button" id="joinButton"></button>
+                </div>
+
+                <b id="explanation-header"></b>
+
+                <div id="explanation-text-array-p"></div>
+            </div>
+
+            <div class="title-text">
+                <img src="/Extra/Icons/vine-l.png" class="title-icon">
+                <h2 id="gamesText"></h2>
+                <img src="/Extra/Icons/vine-r.png" class="title-icon">
+            </div>
+
+            <section id="gamesBlock">
+                <a href="/Games/game.html?game=mySubpersonalities" class="game" style="background-image: url('/Extra/Photos/MySubpersonalities.png');">
+                    <h2 id="games-game1-title"></h2>
+                    <p id="games-game1-briefInfo"></p>
+                </a>
+                <a href="/Games/game.html?game=satori" class="game" style="background-image: url('/Extra/Photos/Satori.png');">
+                    <h2 id="games-game2-title"></h2>
+                    <p id="games-game2-briefInfo"></p>
+                </a>
+            </section>
+        </div>
+    </main>
+    <script src="/content-loader.js" defer></script>
+    <script src="/href-manager.js" defer></script>
+</body>
+
+</html>
