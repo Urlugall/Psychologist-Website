@@ -231,6 +231,7 @@ button {
   min-height: 200px;
   color: #424242;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .game:nth-child(2n) {

@@ -1,3 +1,7 @@
+function openHomePage() {
+    location.href=`/index.html?language=${getCurrentLanguageFromUrl()}`;
+}
+
 function openMasterPage() {
     location.href=`/Masters/master.html?language=${getCurrentLanguageFromUrl()}&game=${getGameNameFromUrl()}`;
 }

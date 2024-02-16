@@ -148,15 +148,9 @@ async function addFooterFromJSON() {
 /* -- Sidebar -- */
 
 async function addSocialSidebar() {
-    // Проверяем, есть ли в документе элемент с нужным ID
-    if (!document.getElementById('social-sidebar-container')) {
-        console.log('Элемент для добавления социальной панели не найден.');
-        return;
-    }
-
     try {
         // Загружаем данные из JSON файла
-        const response = await fetch('/Data/Ru/assets.json');
+        const response = await fetch(`/Data/${getCurrentLanguageFromUrl()}/assets.json`);
         const { links } = await response.json();
 
         const socialSidebar = document.createElement('section');
@@ -167,6 +161,7 @@ async function addSocialSidebar() {
             const link = document.createElement('a');
             link.href = href;
             link.title = title;
+            link.target = "_blank";
             const img = document.createElement('img');
             img.src = icon;
             link.appendChild(img);
@@ -214,7 +209,7 @@ function createContactPanel() {
         .then(response => response.json())
         .then(data => {
             let socialIconsHTML = data.joinSocial.map(social => 
-                `<a href="${social.href}" title="${social.title}" style="margin:0 10px;text-decoration:none;">
+                `<a href="${social.href}" title="${social.title}" target="_blank" style="margin:0 10px;text-decoration:none;">
                     <img src="${social.icon}" alt="${social.title}" style="width:50px;height:50px;">
                 </a>`
             ).join('');
@@ -247,7 +242,7 @@ function createContactPanel() {
 }
 
 
-function initializeJoinButtons() {
+function initJoinButtons() {
     const openModal = createContactPanel();
 
     document.querySelectorAll('[id]').forEach(element => {
@@ -260,6 +255,15 @@ function initializeJoinButtons() {
 }
 
 
+/* -- Home Return -- */
+
+function initHomeButton() {
+    const link = document.createElement('a');
+    link.href = `/index.html?language=${getCurrentLanguageFromUrl()}`;
+    link.innerHTML = '<img src="/favicon.ico" alt="Main Page" style="width:70px; height:auto; border-radius:10px;">';
+    link.style.cssText = 'position:absolute; top:30px; left:30px; z-index:10;';
+    document.body.appendChild(link);
+}
 
 
 
@@ -340,7 +344,11 @@ const ensureLanguageInUrl = (currentLangCode) => {
 document.addEventListener('DOMContentLoaded', () => {
     loadContentData();
     addFooterFromJSON();
-    addSocialSidebar();
-    initLanguageSelector();
-    initializeJoinButtons();
+    initJoinButtons();
+
+    if (!window.location.pathname.endsWith('schedule.html')) {
+        initHomeButton();
+        initLanguageSelector();
+        addSocialSidebar();
+    }
 });

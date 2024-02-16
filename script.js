@@ -103,7 +103,7 @@ const setupCarousels = () => {
         const items = carousel.querySelector('.carousel-items');
         const item = items.querySelector('.carousel-item');
         if (!item) {
-            console.error("No element with class 'carousel-item' found inside 'items'.");
+            //console.error("No element with class 'carousel-item' found inside 'items'.");
             return;
         }
         const itemStyle = getComputedStyle(item);
