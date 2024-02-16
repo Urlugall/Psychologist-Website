@@ -1,36 +1,56 @@
 /* -- Page Section -- */
 
 let currentLanguage = getCurrentLanguageFromUrl(); // Установка текущего языка
-const dataCache = {};
-
-
-// Функция для загрузки данных с сервера
-async function fetchData(url) {
-    const cacheKey = `${currentLanguage}_${url}`;
-    console.log("Checking Cache...");
-
-    if (dataCache[cacheKey]) {
-        console.log("Cache...");
-        return dataCache[cacheKey];
+const dataCache = {
+    get(cacheKey) {
+        const item = localStorage.getItem(cacheKey);
+        return item ? JSON.parse(item) : undefined;
+    },
+    set(cacheKey, data, lastModified) {
+        const cachedItem = {
+            data: data,
+            lastModified: lastModified
+        };
+        localStorage.setItem(cacheKey, JSON.stringify(cachedItem));
     }
+};
+
+async function fetchData(url) {
+    const cacheKey = `data_${url}`;
+    const cached = dataCache.get(cacheKey);
 
     try {
-        const response = await fetch(url);
-
-        // Проверка на статус 404 - файл не найден
-        if (response.status === 404) {
-            throw new Error('File not found: The requested file does not exist. Ensure that json file`s name is similar to the html file');
+        const headers = new Headers();
+        // Если в кеше есть дата последнего изменения, добавляем If-Modified-Since
+        if (cached?.lastModified) {
+            headers.append('If-Modified-Since', cached.lastModified);
         }
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        const response = await fetch(url, { headers });
+
+        // Если данные не изменились с момента последнего кеширования
+        if (response.status === 304) {
+            console.log('Data hasn\'t changed. Using cache.');
+            return cached.data;
         }
 
-        const data = await response.json();
-        dataCache[cacheKey] = data;
-        return data;
+        // Если есть новые данные
+        if (response.ok) {
+            const lastModified = response.headers.get('Last-Modified');
+            const data = await response.json();
+            // Обновляем кеш
+            dataCache.set(cacheKey, data, lastModified);
+            return data;
+        }
+
+        throw new Error(`HTTP error! status: ${response.status}`);
     } catch (error) {
-        console.error(error.message);
+        console.error('Fetching data failed:', error);
+        // В случае ошибки, если в кеше есть данные, используем их
+        if (cached?.data) {
+            console.log('Using cached data due to error.');
+            return cached.data;
+        }
         throw error;
     }
 }
@@ -40,12 +60,17 @@ async function fetchData(url) {
 function getGameNameFromUrl() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    return urlParams.get('game'); // Получение названия игры из параметров URL
+    return urlParams.get('game');
 }
 
 function getCurrentLanguageFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('language');
+}
+
+function getGroupFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('group');
 }
 
 // Инициализация и обработка загрузки данных страницы и игры
@@ -131,7 +156,7 @@ function updateData(data) {
 
 async function addFooterFromJSON() {
     try {
-        const response = await fetch('/Data/Ru/assets.json');
+        const response = await fetch(`/Data/${getCurrentLanguageFromUrl()}/assets.json`);
         const data = await response.json();
 
         const footer = document.createElement('footer');
@@ -208,7 +233,7 @@ function createContactPanel() {
     fetch(`/Data/${getCurrentLanguageFromUrl()}/assets.json`)
         .then(response => response.json())
         .then(data => {
-            let socialIconsHTML = data.joinSocial.map(social => 
+            let socialIconsHTML = data.joinSocial.map(social =>
                 `<a href="${social.href}" title="${social.title}" target="_blank" style="margin:0 10px;text-decoration:none;">
                     <img src="${social.icon}" alt="${social.title}" style="width:50px;height:50px;">
                 </a>`
@@ -228,7 +253,7 @@ function createContactPanel() {
         setTimeout(() => modal.style.opacity = "1", 10);
     }
 
-    modal.addEventListener('click', function(event) {
+    modal.addEventListener('click', function (event) {
         if (event.target === modal) {
             modal.style.opacity = "0";
             setTimeout(() => modal.style.display = "none", 500);
@@ -247,7 +272,7 @@ function initJoinButtons() {
 
     document.querySelectorAll('[id]').forEach(element => {
         if (element.id.includes('joinButton')) {
-            element.addEventListener('click', function() {
+            element.addEventListener('click', function () {
                 openModal();
             });
         }

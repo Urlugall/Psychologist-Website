@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageName"></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="game-header" id="image-img">
+            <div class="text-box">
+                <div class="title-text">
+                    <img src="/Extra/Icons/vine-l.png" class="title-icon"><h1 id="name"></h1><img src="/Extra/Icons/vine-r.png" class="title-icon">
+                </div>
+                <p id="shortDescription"></p>
+                <div class="button-container">
+                    <button class="green-button" id="joinButton"></button>
+                    <button class="white-button" id="price-details"></button>
+                    <button class="white-button" id="sheduleButton" onclick=openSchedule()></button>
+                </div>
+
+                <div id="details" class="details">
+                    <div class="info-block">
+                        <h2 id="price-text"></h2>
+                        <p id="price-group"></p>
+                        <p id="price-individual"></p>
+                    </div>
+                    <div class="info-block">
+                        <h2 id="duration-gameText"></h2>
+                        <p id="duration-group"></p>
+                        <p id="duration-individual"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-container">
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/back-in-time.png">
+                    <p id="duration-groupText"></p>
+                    <b id="stats-duration-group"></b>
+                </div>
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/clock.png">
+                    <p id="duration-individualText"></p>
+                    <b id="stats-duration-individual"></b>
+                </div>
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/interface.png">
+                    <p id="typeText"></p>
+                    <b id="stats-type"></b>
+                </div>
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/person.png">
+                    <p id="players-minText"></p>
+                    <b id="stats-players-min"></b>
+                </div>
+                <div class="grid-item">
+                    <img src="/Extra/Icons/GameDetails/group.png">
+                    <p id="players-maxText"></p>
+                    <b id="stats-players-max"></b>
+                </div>
+            </div>
+
+            <div class="row-container">
+                <div class="alert-box" id="master-alert">
+                    <h2 id="masterText"></h2>
+                    <button class="details-button" id="detailsButton" onclick=openMasterPage()></button>
+                </div>
+                <div class="quest-block">
+                    <span class="quest-text" id="questText"></span>
+                    <button class="white-button" id="questButton" onclick=openQuestPage()></button>
+                </div>
+            </div>
+
+            <div class="full-description" id="fullDescription-array-p"></div>
+
+            <section id="centred-container" fade="data-fade">
+                <div class="text-section">
+                    <h2 id="bottom-header"></h2>
+                    <p id="bottom-description"></p>
+                </div>
+                <div class="buttons-section">
+                    <button class="green-button" id="joinButton"></button>
+                    <button class="white-button" id="sheduleButton" onclick=openSchedule()></button>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="script.js" defer></script>
+    <script src="/content-loader.js" defer></script>
+    <script src="/href-manager.js" defer></script>
+</body>
+
+</html>

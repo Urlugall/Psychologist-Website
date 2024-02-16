@@ -1,0 +1,401 @@
+/* Основные стили */
+:root {
+  --primary-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --main-bg-color: #f0f8ff;
+  --text-color: #333;
+  --link-color: #d6d6d6;
+  --footer-bg-color: #6a8faf;
+  --button-bg-color: #46992d;
+  --transparent-white: rgba(255, 255, 255, 0.8);
+  --light-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: var(--primary-font);
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--main-bg-color);
+}
+
+/* Основное содержимое */
+main {
+  padding: 20px;
+}
+
+/* Подвал */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: var(--main-bg-color);
+  color: var(--footer-bg-color);
+}
+
+/* Анимация кнопок */
+
+a, button, .grid-item {
+  transition: transform 0.3s ease;
+}
+
+a:hover, button:hover, .grid-item:hover {
+  transform: scale(1.05);
+}
+
+/* Изобржение и заголовок */
+
+.game-header {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-color: white;
+  border-radius: 15px;
+  height: 200%;
+  padding: 1px 1px;
+}
+
+.text-box {
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 150px;
+  margin-right: 20vh;
+  margin-left: 20vh;
+  padding: 1px 15vh;
+}
+
+.text-box h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 5ch;
+  margin-top: 5vh;
+}
+
+.title-icon {
+  height: 1em;
+  vertical-align: middle;
+  margin: 0 0.5em;
+  display: inline-block;
+}
+
+.title-text {
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+  margin-top: 35px;
+  margin-bottom: 15px;
+}
+
+.title-text h1 {
+  display: inline-block;
+}
+
+/* Основные кнопки */
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Две колонки с одинаковой шириной */
+  grid-gap: 10px; /* Отступ между элементами сетки */
+  padding: 20px 25%;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 15px 0; /* Вертикальный отступ для кнопок */
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.green-button {
+  grid-column: 1 / -1; /* Растягиваем зелёную кнопку на всю ширину сетки */
+  background-color: var(--button-bg-color);
+  color: white;
+}
+
+.white-button {
+  background-color: white;
+  color: var(--button-bg-color);
+  border: 2px solid var(--button-bg-color); /* Зеленая рамка */
+}
+
+/*Информация про цену*/
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15ch;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.5s, transform 0.5s, max-height 0.5s, visibility 0s 0.5s;
+  max-height: 0; /* Начальное максимальное значение высоты */
+  overflow: hidden;
+  pointer-events: none; /* Блокируем клики, когда блок свернут */
+  padding: 10px 5ch;
+}
+
+.details.expanded {
+  max-height: 500px; /* Примерная максимальная высота контента */
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s, transform 0.5s, max-height 0.5s;
+  pointer-events: all; /* Включаем клики, когда блок развернут */
+  visibility: visible;
+}
+
+.info-block {
+  border: 2px solid var(--button-bg-color);
+  border-radius: 15px;
+  padding: 0 20px;
+}
+
+/* сетка конкретной информации */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Количество колонок будет меняться в зависимости от ширины экрана */
+  gap: 10px; /* Отступы между элементами сетки */
+  padding: 10px 100px; /* Отступы внутри контейнера сетки */
+}
+
+.grid-item {
+  border-radius: 10px; /* Скругление углов границы */
+  text-align: center;
+}
+
+.grid-item img {
+  max-width: 8em; /* Максимальная ширина изображения, чтобы оно не выходило за рамки элемента сетки */
+  height: auto; /* Высота изображения будет изменяться автоматически */
+  margin-bottom: 10px; /* Отступ снизу изображения */
+}
+
+/* Ведущие и квес игра*/
+
+.row-container {
+  display: flex;
+  justify-content: center; /* Распределяет пространство между элементами */
+}
+
+.alert-box, .quest-block {
+  margin: 10px 0; /* Добавляет немного пространства вокруг блоков */
+}
+
+/* квест игра */
+
+.quest-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  margin: 10px; /* Отступы вокруг блока */
+}
+
+.quest-block button {
+  padding: 10px 20px;
+}
+
+.quest-text {
+  color: var(--button-bg-color); /* Цвет текста */
+  font-size: x-large; /* Размер шрифта текста */
+}
+
+/* ведущие */
+
+.alert-box {
+  padding: 15px;
+  flex: 1.1;
+  display: flex;
+  color: white;
+  background-image: url('/Extra/Images/AlertBG.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.alert-box h2 {
+  display: inline-block;
+  margin: 0;
+  padding-right: 15px;
+}
+
+.details-button {
+  background-color: #00000000;
+  color: rgba(255, 255, 255, 0.716);
+  border: none;
+  padding: 12px 25px;
+  cursor: pointer;
+  border-radius: 50px;
+  font-size: 1em;
+  display: inline-block;
+}
+
+/* Полное описание */
+
+.full-description {
+  padding: 0 30vh;
+}
+
+/* Приглашение */
+
+#centred-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+}
+
+.text-section {
+  max-width: 40%;
+  margin-right: 20px;
+}
+
+.buttons-section {
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.buttons-section .green-button {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+@media (max-width: 768px) {
+  /* Общие изменения */
+  main {
+    padding: 10px;
+  }
+
+  /* Уменьшаем отступы для текста и заголовка */
+  .text-box {
+    margin-top: 20px;
+    margin-right: 10vh;
+    margin-left: 10vh;
+    padding: 1px 5vh;
+  }
+
+  .text-box h1 {
+    font-size: 4ch;
+    margin-top: 2vh;
+  }
+
+  /* Адаптация кнопок */
+  .button-container {
+    grid-template-columns: 1fr; /* Теперь только одна колонка */
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px 0; /* Меньше отступ для кнопок */
+  }
+
+  .green-button, .white-button {
+    grid-column: 1; /* Не нужно растягивать на всю ширину */
+  }
+
+  /* Информация про цену */
+  .details {
+    padding: 10px 3ch;
+  }
+
+  .info-block {
+    padding: 0 10px;
+  }
+
+  /* Адаптация сетки информации */
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Более маленькие колонки */
+    padding: 10px;
+  }
+
+  .grid-item img {
+    max-width: 6em; /* Меньше изображения */
+  }
+
+  /* Адаптация для ведущих и квест игры */
+  .row-container {
+    flex-direction: column;
+  }
+
+  .quest-block, .alert-box {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .quest-block button, .details-button {
+    padding: 8px 16px;
+  }
+
+  .quest-text {
+    font-size: large;
+  }
+
+  /* Полное описание */
+  .full-description {
+    padding: 0 10vh;
+  }
+
+  /* Приглашение */
+  #centred-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .text-section, .buttons-section {
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .buttons-section .green-button {
+    padding: 10px 25px;
+  }
+
+  .title-icon {
+    height: .5em;
+  }
+
+  .title-text {
+    font-size:medium;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Дополнительные стили для очень маленьких устройств */
+  .text-box {
+    margin-right: 5vh;
+    margin-left: 5vh;
+    padding: 1px 3vh;
+  }
+
+  .text-box h1 {
+    font-size: 3ch;
+  }
+
+  .button-container {
+    padding: 10px 10px;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr; /* Все элементы становятся одноколоночными */
+  }
+
+  /* Уменьшаем размер текста еще больше */
+  .quest-text, .alert-box h2 {
+    font-size: medium;
+  }
+
+  /* Меняем расположение кнопок и уменьшаем их размеры */
+  .details-button, .quest-block button {
+    font-size: 0.9em;
+  }
+
+  .full-description {
+    padding: 0 5vh;
+  }
+}
