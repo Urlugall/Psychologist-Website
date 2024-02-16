@@ -4,5 +4,12 @@
         { "href": "YOUR_TELEGRAM_LINK", "title": "Telegram", "icon": "/Extra/Icons/telegram.png" },
         { "href": "YOUR_INSTAGRAM_LINK", "title": "Instagram", "icon": "/Extra/Icons/instagram.png" },
         { "href": "YOUR_FACEBOOK_LINK", "title": "Facebook", "icon": "/Extra/Icons/facebook.png" }
-    ]
+    ],
+    "joinSocial": [
+        { "href": "YOUR_TELEGRAM_LINK", "title": "Telegram", "icon": "/Extra/Icons/telegram.png" },
+        { "href": "YOUR_INSTAGRAM_LINK", "title": "Instagram", "icon": "/Extra/Icons/instagram.png" },
+        { "href": "YOUR_FACEBOOK_LINK", "title": "Facebook", "icon": "/Extra/Icons/facebook.png" },
+        { "href": "YOUR_WHATSAPP_LINK", "title": "Whatsapp", "icon": "/Extra/Icons/whatsapp.png" }
+    ],
+    "socialText": "Свяжитесь со мной в..."
 }

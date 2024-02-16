@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    loadContent('/Data/Ru/events.json', 'events', createEventElement);
-    loadAndDisplayEvents('/Data/Ru/events.json', 'events-description');
+    loadAndDisplayEvents();
     setupNavigationScroll();
     setupServicesNavigation();
     setupFade();
@@ -8,24 +7,35 @@ document.addEventListener('DOMContentLoaded', function () {
     initializeFlip();
 });
 
-const loadContent = (url, containerId, createElement, isHTML = false) => {
+
+function loadAndDisplayEvents() {
+    const url = `/Data/${getCurrentLanguageFromUrl()}/events.json`; // Захардкодили URL
+    const containerId = 'events'; // Захардкодили идентификатор контейнера
+
     fetch(url)
-        .then(response => isHTML ? response.text() : response.json())
-        .then(data => {
+        .then(response => response.json())
+        .then(events => {
             const container = document.getElementById(containerId);
             if (!container) {
                 console.error(`The ${containerId} container does not exist!`);
                 return;
             }
-            // Динамическое обновление контента контейнера
-            container.innerHTML = isHTML ? data : '';
-            if (!isHTML) {
-                data.forEach(item => container.appendChild(createElement(item)));
-            }
+            container.innerHTML = ''; // Очистка текущего содержимого контейнера
+            events.forEach(event => {
+                const eventElement = document.createElement('div');
+                eventElement.classList.add('carousel-item');
+                eventElement.innerHTML = `
+                    <div class="alert-box">
+                        <div class="event-details">${event.startDate}</div>
+                        <h2>${event.title}</h2>
+                        <button class="details-button">Детальнее...</button>
+                    </div>
+                `;
+                container.appendChild(eventElement);
+            });
         })
         .catch(error => console.error(`Error loading ${containerId}:`, error));
-};
-
+}
 
 function setupNavigationScroll() {
     document.querySelectorAll('a[id^="navigation-"]').forEach(navElement => {
@@ -46,74 +56,12 @@ function setupNavigationScroll() {
 }
 
 
-function createEventElement(event) {
-    const element = document.createElement('div');
-    element.classList.add('carousel-item'); // Добавляем класс "carousel-item" для стилизации
-    element.innerHTML = `
-        <div class="alert-box">
-            <div class="event-details">${event.startDate}</div>
-            <h2>${event.title}</h2>
-            <button class="details-button">Детальнее...</button>
-        </div>
-    `;
-
-    // Найти кнопку в созданном элементе и добавить обработчик событий
-    /*const detailsButton = element.querySelector('.details-button');
-    detailsButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.getElementById('events-description').scrollIntoView({ behavior: 'smooth' });
-    });*/
-
-    return element;
-}
-
-
-function loadAndDisplayEvents(url, containerId) {
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const container = document.getElementById(containerId);
-            if (!container) {
-                console.error(`The ${containerId} container does not exist!`);
-                return;
-            }
-
-            const gamesContainer = container.querySelector('#games');
-            if (!gamesContainer) {
-                console.error('The games container does not exist inside ' + containerId + '!');
-                return;
-            }
-
-            gamesContainer.innerHTML = ''; // Очищаем контейнер перед добавлением новых элементов
-
-            data.forEach(eventData => {
-                const eventDescription = document.createElement('a');
-                eventDescription.className = 'game';
-                eventDescription.href = ''; // Установите нужный URL
-                eventDescription.style.backgroundImage = `url('Extra/Photos/Groups/${eventData.image}')`; // Пример пути к изображению
-
-                eventDescription.innerHTML = `
-                    <h2>${eventData.title}</h2>
-                    <p>${eventData.description}</p>
-                `;
-
-                gamesContainer.appendChild(eventDescription);
-            });
-        })
-        .catch(error => console.error(`Error loading content into ${containerId}:`, error));
-}
-
-
-
-
 const initializeFlip = () => {
     document.querySelectorAll('.service').forEach(service => {
         service.querySelector('.info-button').addEventListener('click', () => service.classList.add('flip'));
         service.addEventListener('mouseleave', () => service.classList.remove('flip'));
     });
 };
-
-
 
 
 function setupServicesNavigation() {

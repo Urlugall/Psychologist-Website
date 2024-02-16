@@ -1,12 +1,6 @@
-function getGameNameFromUrl() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    return urlParams.get('game'); // Получение названия игры из параметров URL
-}
-
 async function checkAndShowMasterAlert() {
     try {
-        const data = await fetchData(`/Data/Ru/games-data/${getGameNameFromUrl()}.json`);
+        const data = await fetchData(`/Data/${getCurrentLanguageFromUrl()}/games-data/${getGameNameFromUrl()}.json`);
         document.getElementById('master-alert').style.display = data.masterAvailable ? 'block' : 'none';
 
     } catch (error) {

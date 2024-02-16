@@ -188,3 +188,74 @@ button {
   font-size: 30px; /* Размер стрелочки */
   margin-left: 20px;
 }
+
+/* Медиа запросы для мобильных устройств */
+@media (max-width: 768px) {
+  /* Уменьшаем размер основного содержимого */
+  main {
+    flex-direction: column; /* Элементы будут располагаться вертикально */
+    padding: 10px;
+  }
+
+  .main-block {
+    width: 100%; /* Блок будет занимать всю ширину */
+    margin-bottom: 20px; /* Добавляем нижний отступ */
+  }
+
+  .button-container {
+    flex-direction: column; /* Кнопки будут располагаться вертикально */
+    gap: 10px;
+  }
+
+  button {
+    width: 100%; /* Кнопки будут занимать всю ширину */
+    padding: 10px; /* Уменьшаем отступы кнопок */
+  }
+
+  .title-text {
+    font-size: medium; /* Уменьшаем размер шрифта заголовков */
+  }
+
+  /* Адаптируем структуру основных блоков */
+  .center-block {
+    flex-direction: column;
+  }
+
+  .left-item, .right-item {
+    width: 100%; /* Блоки будут занимать всю ширину */
+    margin-right: 0; /* Убираем маржин справа */
+  }
+
+  .right-item {
+    order: -1; /* Помещаем правый блок над левым блоком */
+  }
+
+  /* Стили для сетки */
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); /* Меньшее количество колонок в сетке */
+  }
+
+  /* Стрелочка назад становится меньше и перемещается ближе к верху экрана */
+  .back-button {
+    font-size: 20px;
+    top: 5px;
+    left: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Еще более узкие экраны требуют дальнейших адаптаций */
+  .main-block, .full-description, .price-content, .additional-info {
+    padding: 5px; /* Уменьшаем внутренние отступы */
+  }
+
+  /* В сетке теперь будет только одна колонка */
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Уменьшаем размер шрифта в блоках */
+  .grid-item {
+    font-size: 1em;
+  }
+}

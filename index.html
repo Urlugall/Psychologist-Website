@@ -12,7 +12,7 @@
     <div id="social-sidebar-container"></div>
     <main>
         <section id="about">
-            <div class="background-image">
+            <div class="background-image" id="imageBG-img">
                 <nav>
                     <ul>
                         <li><a id="navigation-about"></a></li>
@@ -142,27 +142,27 @@
                         class="title-icon">
             </div>
             <section id="games" fade="data-fade">
-                <a onclick="openGameInfo('mySubpersonalities')" class="game" style="background-image: url('Extra/Photos/MySubpersonalities.png');">
+                <a onclick="openGameInfo('mySubpersonalities')" class="game" id="gamesList-mySubpersonalities-imageBG-img">
                     <h2 id="gamesList-mySubpersonalities-header"></h2>
                     <p id="gamesList-mySubpersonalities-description-array-div"></p>
                 </a>
-                <a onclick="openGameInfo('satori')" class="game" style="background-image: url('Extra/Photos/Satori.png');">
+                <a onclick="openGameInfo('satori')" class="game" id="gamesList-satori-imageBG-img">
                     <h2 id="gamesList-satori-header"></h2>
                     <p id="gamesList-satori-description-array-div"></p>
                 </a>
-                <a onclick="openGameInfo('myResource')" class="game" style="background-image: url('Extra/Photos/MyResource.png');">
+                <a onclick="openGameInfo('myResource')" class="game" id="gamesList-myResource-imageBG-img">
                     <h2 id="gamesList-myResource-header"></h2>
                     <p id="gamesList-myResource-description-array-div"></p>
                 </a>
-                <a onclick="openGameInfo('lilaChakra')" class="game" style="background-image: url('Extra/Photos/LilaChakra.png');">
+                <a onclick="openGameInfo('lilaChakra')" class="game" id="gamesList-lilaChakra-imageBG-img">
                     <h2 id="gamesList-lilaChakra-header"></h2>
                     <p id="gamesList-lilaChakra-description-array-div"></p>
                 </a>
-                <a onclick="openGameInfo('ratRaces2')" class="game" style="background-image: url('Extra/Photos/RatRaces2.png');">
+                <a onclick="openGameInfo('ratRaces2')" class="game" id="gamesList-ratRaces2-imageBG-img">
                     <h2 id="gamesList-ratRaces2-header"></h2>
                     <p id="gamesList-ratRaces2-description-array-div"></p>
                 </a>
-                <a onclick="openGameInfo('ratRaces3')" class="game" style="background-image: url('Extra/Photos/RatRaces3.png');">
+                <a onclick="openGameInfo('ratRaces3')" class="game" id="gamesList-ratRaces3-imageBG-img">
                     <h2 id="gamesList-ratRaces3-header"></h2>
                     <p id="gamesList-ratRaces3-description-array-div"></p>
                 </a>
@@ -175,7 +175,7 @@
                 </div>
                 <div class="buttons-section">
                     <button class="join-button" id="joinButton"></button>
-                    <button class="info-button" id="scheduleButton" onclick="location.href='/Schedule/schedule.html';"></button>
+                    <button class="info-button" id="scheduleButton" onclick="openSchedule()"></button>
                 </div>
             </section>
 
@@ -185,13 +185,27 @@
                 <img src="Extra/Icons/vine-r.png" class="title-icon">
             </div>
 
-            <section id="events-description">
-                <section id="games" fade="data-fade">
-                </section>
+            <section id="games" fade="data-fade">
+                <a onclick="" class="game" id="groupsList-twelveWeeks-imageBG-img">
+                    <h2 id="groupsList-twelveWeeks-header"></h2>
+                    <p id="groupsList-twelveWeeks-description-array-div"></p>
+                </a>
+                <a onclick="" class="game" id="groupsList-support-imageBG-img">
+                    <h2 id="groupsList-support-header"></h2>
+                    <p id="groupsList-support-description-array-div"></p>
+                </a>
+                <a onclick="" class="game" id="groupsList-financialMaraphone-imageBG-img">
+                    <h2 id="groupsList-financialMaraphone-header"></h2>
+                    <p id="groupsList-financialMaraphone-description-array-div"></p>
+                </a>
+                <a onclick="" class="game" id="groupsList-humanUnderstanding-imageBG-img">
+                    <h2 id="groupsList-humanUnderstanding-header"></h2>
+                    <p id="groupsList-humanUnderstanding-description-array-div"></p>
+                </a>
             </section>
 
             <div class="review-image" fade="data-fade">
-                <img src="Extra/Photos/review.png">
+                <div class="phrase-image" id="phraseImage-img"></div>
             </div>
 
         </section>

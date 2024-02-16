@@ -208,7 +208,7 @@ button {
   flex: 1.1;
   display: flex;
   color: white;
-  background-image: url('/Extra/Photos/AlertBG.png');
+  background-image: url('/Extra/Images/AlertBG.png');
   background-position: right;
   background-repeat: no-repeat;
   position: relative;
@@ -264,4 +264,138 @@ button {
   margin-bottom: 10px;
   padding-right: 50px;
   padding-left: 50px;
+}
+
+@media (max-width: 768px) {
+  /* Общие изменения */
+  main {
+    padding: 10px;
+  }
+
+  /* Уменьшаем отступы для текста и заголовка */
+  .text-box {
+    margin-top: 20px;
+    margin-right: 10vh;
+    margin-left: 10vh;
+    padding: 1px 5vh;
+  }
+
+  .text-box h1 {
+    font-size: 4ch;
+    margin-top: 2vh;
+  }
+
+  /* Адаптация кнопок */
+  .button-container {
+    grid-template-columns: 1fr; /* Теперь только одна колонка */
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px 0; /* Меньше отступ для кнопок */
+  }
+
+  .green-button, .white-button {
+    grid-column: 1; /* Не нужно растягивать на всю ширину */
+  }
+
+  /* Информация про цену */
+  .details {
+    padding: 10px 3ch;
+  }
+
+  .info-block {
+    padding: 0 10px;
+  }
+
+  /* Адаптация сетки информации */
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Более маленькие колонки */
+    padding: 10px;
+  }
+
+  .grid-item img {
+    max-width: 6em; /* Меньше изображения */
+  }
+
+  /* Адаптация для ведущих и квест игры */
+  .row-container {
+    flex-direction: column;
+  }
+
+  .quest-block, .alert-box {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .quest-block button, .details-button {
+    padding: 8px 16px;
+  }
+
+  .quest-text {
+    font-size: large;
+  }
+
+  /* Полное описание */
+  .full-description {
+    padding: 0 10vh;
+  }
+
+  /* Приглашение */
+  #centred-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .text-section, .buttons-section {
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .buttons-section .green-button {
+    padding: 10px 25px;
+  }
+
+  .title-icon {
+    height: .5em;
+  }
+
+  .title-text {
+    font-size:medium;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Дополнительные стили для очень маленьких устройств */
+  .text-box {
+    margin-right: 5vh;
+    margin-left: 5vh;
+    padding: 1px 3vh;
+  }
+
+  .text-box h1 {
+    font-size: 3ch;
+  }
+
+  .button-container {
+    padding: 10px 10px;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr; /* Все элементы становятся одноколоночными */
+  }
+
+  /* Уменьшаем размер текста еще больше */
+  .quest-text, .alert-box h2 {
+    font-size: medium;
+  }
+
+  /* Меняем расположение кнопок и уменьшаем их размеры */
+  .details-button, .quest-block button {
+    font-size: 0.9em;
+  }
+
+  .full-description {
+    padding: 0 5vh;
+  }
 }

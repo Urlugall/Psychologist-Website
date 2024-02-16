@@ -1,14 +1,16 @@
 /* -- Page Section -- */
 
-let currentLanguage = 'Ru'; // Пример установки текущего языка
+let currentLanguage = getCurrentLanguageFromUrl(); // Установка текущего языка
 const dataCache = {};
 
 
 // Функция для загрузки данных с сервера
 async function fetchData(url) {
     const cacheKey = `${currentLanguage}_${url}`;
+    console.log("Checking Cache...");
 
     if (dataCache[cacheKey]) {
+        console.log("Cache...");
         return dataCache[cacheKey];
     }
 
@@ -41,6 +43,11 @@ function getGameNameFromUrl() {
     return urlParams.get('game'); // Получение названия игры из параметров URL
 }
 
+function getCurrentLanguageFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('language');
+}
+
 // Инициализация и обработка загрузки данных страницы и игры
 async function loadContentData() {
     try {
@@ -50,13 +57,13 @@ async function loadContentData() {
         const filename = isRootPath ? 'index' : pathname.split('/').pop().split('.')[0];
 
         // Загружаем и обновляем данные страницы
-        const pageData = await fetchData(`/Data/Ru/pages-data/${filename}.json`);
+        const pageData = await fetchData(`/Data/${currentLanguage}/pages-data/${filename}.json`);
         updateData(pageData);
 
         // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
         const gameName = getGameNameFromUrl();
         if (gameName) {
-            const gameData = await fetchData(`/Data/Ru/games-data/${gameName}.json`);
+            const gameData = await fetchData(`/Data/${currentLanguage}/games-data/${gameName}.json`);
             updateData(gameData);
         } else {
             console.log('There are no game in the URL');
@@ -196,6 +203,65 @@ async function addSocialSidebar() {
     }
 }
 
+/* -- Contact Panel -- */
+
+function createContactPanel() {
+    const modal = document.createElement('div');
+    modal.style.cssText = 'display:none;position:fixed;z-index:10;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.4);cursor:pointer;';
+
+    // Загрузка данных о социальных сетях из внешнего файла
+    fetch(`/Data/${getCurrentLanguageFromUrl()}/assets.json`)
+        .then(response => response.json())
+        .then(data => {
+            let socialIconsHTML = data.joinSocial.map(social => 
+                `<a href="${social.href}" title="${social.title}" style="margin:0 10px;text-decoration:none;">
+                    <img src="${social.icon}" alt="${social.title}" style="width:50px;height:50px;">
+                </a>`
+            ).join('');
+
+            modal.innerHTML = `
+              <div style="background-color:#fefefe;margin:15% auto;padding:20px;border:1px solid #888;width:60%;text-align:center;box-shadow:0 4px 8px rgba(0,0,0,0.2);border-radius:15px;transition:all 0.5s ease-in-out;cursor:default;">
+                <h1>${data.socialText}</h1>
+                <div style="cursor:pointer;margin-bottom:20px;">${socialIconsHTML}</div>
+              </div>`;
+
+            document.body.appendChild(modal);
+        });
+
+    function openModal() {
+        modal.style.display = "block";
+        setTimeout(() => modal.style.opacity = "1", 10);
+    }
+
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.opacity = "0";
+            setTimeout(() => modal.style.display = "none", 500);
+        }
+    });
+
+    modal.style.transition = "opacity 0.5s ease";
+    modal.style.opacity = "0";
+
+    return openModal;
+}
+
+
+function initializeJoinButtons() {
+    const openModal = createContactPanel();
+
+    document.querySelectorAll('[id]').forEach(element => {
+        if (element.id.includes('joinButton')) {
+            element.addEventListener('click', function() {
+                openModal();
+            });
+        }
+    });
+}
+
+
+
+
 
 /* -- Language -- */
 
@@ -229,11 +295,11 @@ const createLanguageSelector = (languages, currentLangCode) => {
         }
     });
 
-    setupEventListeners(langSelector, langList, languages);
+    setupEventListeners(langSelector, langList);
 };
 
 // Настройка обработчиков событий
-const setupEventListeners = (langSelector, langList, languages) => {
+const setupEventListeners = (langSelector, langList) => {
     document.head.insertAdjacentHTML('beforeend', `<style>#language-list li:hover { background-color: #46992d; color: #ffffff; }</style>`);
 
     // Переключение отображения списка языков
@@ -276,4 +342,5 @@ document.addEventListener('DOMContentLoaded', () => {
     addFooterFromJSON();
     addSocialSidebar();
     initLanguageSelector();
+    initializeJoinButtons();
 });

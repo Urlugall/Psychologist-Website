@@ -20,11 +20,13 @@ body {
     background-color: #f0f8ff;
 }
 
-a, button {
+a,
+button {
     transition: transform 0.3s ease;
 }
 
-a:hover, button:hover {
+a:hover,
+button:hover {
     transform: scale(1.05);
 }
 
@@ -57,7 +59,10 @@ main {
     padding: 0 20px;
 }
 
-#about, #blog, #services, #games {
+#about,
+#blog,
+#services,
+#games {
     background-color: #fff;
     border-radius: 15px;
 }
@@ -87,8 +92,10 @@ footer {
     align-items: center;
 }
 
-.review-image img {
+.review-image .phrase-image {
     height: 8em;
+    width: 30em;
+    background: center/cover;
     vertical-align: middle;
     margin: 0 0.5em;
 }
@@ -103,7 +110,7 @@ footer {
 /* Фоновое изображение */
 .background-image {
     position: relative;
-    background: url('Extra/Photos/ValentinaBG.png') center/cover;
+    background: center/cover;
     min-height: 100vh;
     border-radius: 10px;
 }
@@ -155,7 +162,10 @@ footer {
 }
 
 /* Блоки контента */
-.content, .button-container, .service, .stat {
+.content,
+.button-container,
+.service,
+.stat {
     text-align: center;
 }
 
@@ -198,7 +208,8 @@ footer {
 }
 
 /* Стили для передней и задней стороны карточки */
-.card-front, .card-back {
+.card-front,
+.card-back {
     position: absolute;
     top: 0;
     left: 0;
@@ -251,10 +262,11 @@ footer {
 [fade=".data-fade"] {
     opacity: 1;
     transform: translateY(0);
-  }
+}
 
 /* Кнопки */
-.services-button, .join-button {
+.services-button,
+.join-button {
     background-color: #46992d;
     color: white;
     border: none;
@@ -268,13 +280,18 @@ footer {
 }
 
 .info-button {
-    border: 2px solid #46992d; /* зеленая рамка */
-    color: #46992d; /* зеленый текст */
-    background-color: transparent; /* прозрачный фон */
+    border: 2px solid #46992d;
+    /* зеленая рамка */
+    color: #46992d;
+    /* зеленый текст */
+    background-color: transparent;
+    /* прозрачный фон */
     padding: 12px 35px;
-    text-align: center; /* выравнивание текста по центру */
+    text-align: center;
+    /* выравнивание текста по центру */
     font-size: 1em;
-    cursor: pointer; /* указатель мыши в виде руки */
+    cursor: pointer;
+    /* указатель мыши в виде руки */
     border-radius: 50px;
     margin-top: auto;
     white-space: nowrap;
@@ -301,7 +318,8 @@ footer {
     display: inline-block;
 }
 
-#services, #stats {
+#services,
+#stats {
     display: flex;
     justify-content: space-around;
     border-radius: 15px;
@@ -380,7 +398,7 @@ footer {
     overflow: hidden;
     width: 100%;
     box-sizing: border-box;
-    background-color: #46992d;    
+    background-color: #46992d;
 }
 
 .carousel-white {
@@ -424,19 +442,25 @@ footer {
     z-index: 100;
 }
 
-.carousel-control.left {left: 10px;}
-.carousel-control.right {right: 10px;}
+.carousel-control.left {
+    left: 10px;
+}
+
+.carousel-control.right {
+    right: 10px;
+}
 
 
 
 /* Медиа запросы для адаптивности */
-@media screen and (max-width: 600px) {
-    header, footer, nav ul li, .content, #services, #stats, .stat, .service {
-        text-align: center;
+@media (max-width: 768px) {
+    body {
+        background-color: var(--main-bg-color);
     }
 
     nav ul {
         padding: 0;
+        display: block;
     }
 
     nav ul li {
@@ -444,26 +468,119 @@ footer {
         margin: 10px 0;
     }
 
-    #about, #blog, .service {
-        padding: 10px;
-        margin-bottom: 15px;
+    /* Уменьшаем размер шрифта для заголовков и текста */
+    .title-text,
+    .italic-text,
+    .event-details,
+    .stat p,
+    .service h2 {
+        font-size: smaller;
     }
 
-    .content {
-        flex-direction: column;
-    }
-
-    #services, #stats {
+    /* Адаптация блоков контента и кнопок */
+    .content,
+    .button-container,
+    .service,
+    .stat,
+    #services,
+    #stats,
+    .text-block {
         flex-direction: column;
         align-items: center;
+        padding: 20px;
+        text-align: center;
     }
 
-    .service, .stat {
+    .service,
+    .stat {
         flex-basis: 100%;
-        margin-bottom: 15px;
+        margin: 10px 0;
+    }
+
+    #games {
+        grid-template-columns: 1fr;
     }
 
     .game {
+        padding-right: 5%;
+        padding-left: 5%;
         margin-right: 0;
+    }
+
+    .buttons-section .join-button {
+        padding-right: 25px;
+        padding-left: 25px;
+    }
+
+    /* Уменьшаем внутренние отступы и маржины для карточек и блоков */
+    .service-card,
+    .card-front,
+    .card-back,
+    .alert-box,
+    .text-section,
+    .buttons-section {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .carousel-item {
+        padding: 0 20px;
+    }
+
+    /* Уменьшаем размер иконок */
+    .title-icon,
+    .review-image .phrase-image {
+        height: 0.4em;
+    }
+
+    /* Уменьшение отступов и размеров текста в футере и навбаре */
+    footer,
+    nav a {
+        font-size: small;
+    }
+
+    /* Адаптация размера кнопок */
+    .services-button,
+    .join-button,
+    .info-button,
+    .details-button {
+        font-size: 0.8em;
+        padding: 8px 15px;
+    }
+
+    /* Адаптация блоков услуг */
+    .service {
+        margin: 10px 5px;
+        flex-basis: auto; /* Делаем ширину блока адаптивной */
+        width: 90%; /* Устанавливаем ширину блока относительно ширины экрана */
+        min-height: auto; /* Убираем фиксированную высоту, чтобы блок мог адаптироваться под содержимое */
+        display: block; /* Устанавливаем блочное отображение */
+    }
+
+    .service-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-front, .card-back {
+        padding: 10px; /* Уменьшаем внутренние отступы для мобильных устройств */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Центрируем содержимое */
+    }
+
+    .service.flip .card-front, .service.flip .card-back {
+        transform: none; /* Убираем эффект переворота для мобильных, если он мешает */
+    }
+
+    /* Уменьшаем размер текста внутри карточек услуг */
+    .service h2, .service p {
+        font-size: smaller;
+    }
+
+    /* Адаптируем кнопки внутри блоков услуг */
+    .services-button, .join-button {
+        padding: 10px 20px; /* Уменьшаем размер кнопок */
+        font-size: 0.8em; /* Уменьшаем размер шрифта кнопок */
     }
 }
