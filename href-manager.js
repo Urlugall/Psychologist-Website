@@ -1,19 +1,23 @@
 function openHomePage() {
-    location.href=`/index.html?language=${getCurrentLanguageFromUrl()}`;
+    location.href=`/index.html`;
 }
 
 function openMasterPage() {
-    location.href=`/Masters/master.html?language=${getCurrentLanguageFromUrl()}&game=${getGameNameFromUrl()}`;
+    location.href=`/Masters/master.html?game=${getGameNameFromUrl()}`;
 }
 
 function openGameInfo(gameName) {
-    location.href=`/Games/game.html?language=${getCurrentLanguageFromUrl()}&game=${gameName}`;
+    location.href=`/Games/game.html?game=${gameName}`;
+}
+
+function openGroupInfo(groupName) {
+    location.href=`/Groups/group.html?group=${groupName}`;
 }
 
 function openSchedule() {
-    location.href=`/Schedule/schedule.html?language=${getCurrentLanguageFromUrl()}`;
+    location.href=`/Schedule/schedule.html`;
 }
 
 function openQuestPage() {
-    location.href=`/Quest/quest.html?language=${getCurrentLanguageFromUrl()}`;
+    location.href=`/Quest/quest.html`;
 }

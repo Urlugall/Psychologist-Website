@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function loadAndDisplayEvents() {
-    const url = `/Data/${getCurrentLanguageFromUrl()}/events.json`; // Захардкодили URL
+    let url = `/Data/${getCurrentLanguage()}/events.json`; // Захардкодили URL
     const containerId = 'events'; // Захардкодили идентификатор контейнера
+    //url = getStorageUrl(url);
 
     fetch(url)
         .then(response => response.json())

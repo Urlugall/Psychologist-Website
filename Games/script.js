@@ -1,6 +1,6 @@
 async function checkAndShowMasterAlert() {
     try {
-        const data = await fetchData(`/Data/${getCurrentLanguageFromUrl()}/games-data/${getGameNameFromUrl()}.json`);
+        const data = await fetchData(`/Data/${getCurrentLanguage()}/games-data/${getGameNameFromUrl()}.json`);
         document.getElementById('master-alert').style.display = data.masterAvailable ? 'block' : 'none';
 
     } catch (error) {

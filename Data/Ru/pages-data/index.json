@@ -132,28 +132,28 @@
             "description": [
                 "Бизнес-тренажёр о приумножении капитала, реалистичный аналог Cash Flow."
             ],
-            "imageBG": "Extra/Images/Groups/12weeks.png"
+            "imageBG": "Extra/Images/GroupsMini/12weeks.png"
         },
         "support": {
             "header": "Группа «Поддержка»",
             "description": [
                 "Поддержка и помощь для женщин, вынужденно проживающих заграницей"
             ],
-            "imageBG": "Extra/Images/Groups/Support.png"
+            "imageBG": "Extra/Images/GroupsMini/Support.png"
         },
         "financialMaraphone": {
             "header": "Финансовый марафон",
             "description": [
                 "Позвольте себе получать больше, мечтать больше и поднять планку возможностей"
             ],
-            "imageBG": "Extra/Images/Groups/Financial.png"
+            "imageBG": "Extra/Images/GroupsMini/Financial.png"
         },
         "humanUnderstanding": {
             "header": "Курс «Понимание человека»",
             "description": [
                 "Научитесь лучше понимать себя и других, а также отличать ложь"
             ],
-            "imageBG": "Extra/Images/Groups/HumanUnderstanding.png"
+            "imageBG": "Extra/Images/GroupsMini/HumanUnderstanding.png"
         }
     },
     "phraseImage": "Extra/Images/review.png"

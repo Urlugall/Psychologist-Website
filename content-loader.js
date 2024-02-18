@@ -1,6 +1,25 @@
+function getStorageUrl(url) {
+    let basePath = 'https://storage.googleapis.com/www.illia-bodrov.com';
+    return basePath + url;
+}
+
+function getGameNameFromUrl() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get('game');
+}
+
+const getCurrentLanguage = () => {
+    return localStorage.getItem('selectedLanguage') || 'en';
+};
+
+function getGroupFromUrl() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('group');
+}
+
 /* -- Page Section -- */
 
-let currentLanguage = getCurrentLanguageFromUrl(); // Установка текущего языка
 const dataCache = {
     get(cacheKey) {
         const item = localStorage.getItem(cacheKey);
@@ -16,6 +35,8 @@ const dataCache = {
 };
 
 async function fetchData(url) {
+    //url = getStorageUrl(url);
+    
     const cacheKey = `data_${url}`;
     const cached = dataCache.get(cacheKey);
 
@@ -55,24 +76,6 @@ async function fetchData(url) {
     }
 }
 
-
-
-function getGameNameFromUrl() {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    return urlParams.get('game');
-}
-
-function getCurrentLanguageFromUrl() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('language');
-}
-
-function getGroupFromUrl() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('group');
-}
-
 // Инициализация и обработка загрузки данных страницы и игры
 async function loadContentData() {
     try {
@@ -82,16 +85,21 @@ async function loadContentData() {
         const filename = isRootPath ? 'index' : pathname.split('/').pop().split('.')[0];
 
         // Загружаем и обновляем данные страницы
-        const pageData = await fetchData(`/Data/${currentLanguage}/pages-data/${filename}.json`);
+        const pageData = await fetchData(`/Data/${getCurrentLanguage()}/pages-data/${filename}.json`);
         updateData(pageData);
 
         // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
         const gameName = getGameNameFromUrl();
         if (gameName) {
-            const gameData = await fetchData(`/Data/${currentLanguage}/games-data/${gameName}.json`);
+            const gameData = await fetchData(`/Data/${getCurrentLanguage()}/games-data/${gameName}.json`);
             updateData(gameData);
-        } else {
-            console.log('There are no game in the URL');
+        }
+
+        // Проверяем наличие параметра группы в URL и загружаем соответствующие данные
+        const groupName = getGroupFromUrl();
+        if (groupName) {
+            const groupData = await fetchData(`/Data/${getCurrentLanguage()}/groups-data/${groupName}.json`);
+            updateData(groupData);
         }
     } catch (error) {
         console.error('Error during data loading:', error);
@@ -99,20 +107,28 @@ async function loadContentData() {
 }
 
 
-
 /* -- Load functions -- */
 
 const loadedIds = new Set();
 
+function setTextContent(element, value) {
+    // Проверяем, содержит ли значение HTML-теги для форматирования
+    if (/<\/?[a-z][\s\S]*>/i.test(value)) {
+        element.innerHTML = value;
+    } else {
+        element.textContent = value;
+    }
+}
+
 function updateText(element, value) {
-    element.textContent = value;
+    setTextContent(element, value);
 }
 
 function updateArray(element, value, elementType) {
     const fragment = document.createDocumentFragment();
     Object.entries(value).forEach(([key, itemValue]) => {
         const childElement = document.createElement(elementType);
-        childElement.textContent = itemValue;
+        setTextContent(childElement, itemValue);
         fragment.appendChild(childElement);
     });
     element.appendChild(fragment);
@@ -156,7 +172,7 @@ function updateData(data) {
 
 async function addFooterFromJSON() {
     try {
-        const response = await fetch(`/Data/${getCurrentLanguageFromUrl()}/assets.json`);
+        const response = await fetch(`/Data/${getCurrentLanguage()}/assets.json`);
         const data = await response.json();
 
         const footer = document.createElement('footer');
@@ -175,7 +191,7 @@ async function addFooterFromJSON() {
 async function addSocialSidebar() {
     try {
         // Загружаем данные из JSON файла
-        const response = await fetch(`/Data/${getCurrentLanguageFromUrl()}/assets.json`);
+        const response = await fetch(`/Data/${getCurrentLanguage()}/assets.json`);
         const { links } = await response.json();
 
         const socialSidebar = document.createElement('section');
@@ -230,7 +246,7 @@ function createContactPanel() {
     modal.style.cssText = 'display:none;position:fixed;z-index:10;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.4);cursor:pointer;';
 
     // Загрузка данных о социальных сетях из внешнего файла
-    fetch(`/Data/${getCurrentLanguageFromUrl()}/assets.json`)
+    fetch(`/Data/${getCurrentLanguage()}/assets.json`)
         .then(response => response.json())
         .then(data => {
             let socialIconsHTML = data.joinSocial.map(social =>
@@ -284,7 +300,7 @@ function initJoinButtons() {
 
 function initHomeButton() {
     const link = document.createElement('a');
-    link.href = `/index.html?language=${getCurrentLanguageFromUrl()}`;
+    link.href = `/index.html`;
     link.innerHTML = '<img src="/favicon.ico" alt="Main Page" style="width:70px; height:auto; border-radius:10px;">';
     link.style.cssText = 'position:absolute; top:30px; left:30px; z-index:10;';
     document.body.appendChild(link);
@@ -294,16 +310,14 @@ function initHomeButton() {
 
 /* -- Language -- */
 
-// Инициализация списка языков и выбор текущего языка
 const initLanguageSelector = () => {
-    const languages = { eng: 'English', ru: 'Русский', ukr: 'Українська' };
-    const defaultLang = 'eng';
-    const langCode = localStorage.getItem('selectedLanguage') || new URLSearchParams(window.location.search).get('language') || defaultLang;
+    const languages = { en: 'English', ru: 'Русский', uk: 'Українська', fr: 'Français' };
+    const defaultLang = 'en';
+    const browserLang = navigator.language.slice(0, 2); // Получаем двухбуквенный код языка браузера
+    const langCode = languages.hasOwnProperty(browserLang) ? browserLang : defaultLang;
+    const selectedLangCode = localStorage.getItem('selectedLanguage') || langCode;
 
-    // Создание селектора языков
-    createLanguageSelector(languages, langCode);
-    // Обеспечение наличия выбранного языка в URL
-    ensureLanguageInUrl(langCode);
+    createLanguageSelector(languages, selectedLangCode);
 };
 
 // Создание селектора языков
@@ -346,21 +360,9 @@ const setupEventListeners = (langSelector, langList) => {
         const selectedLangCode = e.target.dataset.lang;
         if (selectedLangCode) {
             localStorage.setItem('selectedLanguage', selectedLangCode);
-            const url = new URL(window.location);
-            url.searchParams.set('language', selectedLangCode);
-            window.history.pushState({}, '', url);
             window.location.reload();
         }
     });
-};
-
-// Обеспечение наличия выбранного языка в URL
-const ensureLanguageInUrl = (currentLangCode) => {
-    const url = new URL(window.location);
-    if (!url.searchParams.has('language')) {
-        url.searchParams.set('language', currentLangCode);
-        window.history.replaceState({}, '', url.toString());
-    }
 };
 
 
@@ -370,6 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadContentData();
     addFooterFromJSON();
     initJoinButtons();
+    console.log('Текущий язык:', getCurrentLanguage());
 
     if (!window.location.pathname.endsWith('schedule.html')) {
         initHomeButton();
