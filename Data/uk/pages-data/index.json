@@ -1,0 +1,160 @@
+{
+    "imageBG": "Extra/Images/ValentinaBG.png",
+    "pageName": "Психолог Валентина Артамонова",
+    "navigation": {
+        "about": "Про мене",
+        "services": "Послуги",
+        "games": "Ігри",
+        "groups": "Групи"
+    },
+    "name": "Психолог Валентина Артамонова",
+    "psychologist": "Практикуючий психолог з 2013 року:",
+    "servicesButton": "Перейти до послуг",
+    "biography": [
+        "корпоративний,",
+        "індивідуальний,",
+        "сімейний,",
+        "тренер особистісного зростання,",
+        "бізнес-тренер,",
+        "спеціаліст Brainspotting,",
+        "екрананалітик (робота з емоціями)."
+    ],
+    "aboutPsychologist": [
+        "Модератор дивізіону Кіберпсихології Національної Психологічної Асоціації.",
+        "Член асоціацій: «Психологи без кордонів», «Національна Психологічна Асоціація України», «European Federation of Psychologists Associations», 'International Association of Applied Psychology (IAAP)'.",
+        "Ведуча психологічних, фінансової, а також авторських ігор.",
+        "Волонтер в соціальних проектах, з важкохворими пацієнтами та членами їх сімей, brainspottinghelp.",
+        "Працюю з дорослими. З дітьми лише у парі з дорослим."
+    ],
+    "shortStats": {
+        "count1": "500+",
+        "header1": "Задоволених клієнтів",
+        "count2": "1000+",
+        "header2": "Років в психології",
+        "count3": "200+",
+        "header3": "Проведених консультацій"
+    },
+    "joinButton": "Записатися",
+    "priceButton": "Дізнатися ціну",
+    "scheduleButton": "Розклад ігор",
+    "servicesText": "Послуги",
+    "gamesText": "Ігри",
+    "groupsText": "Групи",
+    "service1": {
+        "header": "Особиста консультація",
+        "description": "Персоналізований підхід до вирішення особистих та професійних проблем.",
+        "backHeader": "Перша консультація — €50",
+        "backText": [
+            "Подальші — €100",
+            "12 консультацій (рекомендовано) — €1100"
+        ],
+        "duration": "Тривалість — 60~80 хвилин"
+    },
+    "service2": {
+        "header": "Парна консультація",
+        "description": "Допомога в зміцненні сімейних відносин та вирішенні сімейних конфліктів.",
+        "backHeader": "Перша консультація — €70",
+        "backText": [
+            "Подальші — €150",
+            "12 консультацій (рекомендовано) — €1600"
+        ],
+        "duration": "Тривалість — 90 хвилин"
+    },
+    "service3": {
+        "header": "Консультація бізнес-тренера",
+        "description": "Допомога в збільшенні фінансового стану, розвитку бізнесу, роботі з прокрастинацією.",
+        "backHeader": "Перша консультація — €100",
+        "backText": [
+            "Подальші — за домовленістю",
+            "Тривалість — в залежності від запиту"
+        ],
+        "duration": "Тривалість — 60~80 хвилин"
+    },
+    "phrase1": "\"Ви тут, отже ви готові до змін у своєму житті. І це вже половина шляху. Давайте пройдемо його разом...\"",
+    "phrase2": "\"Кожна ситуація щось нам показує, головне - зрозуміти що саме\"",
+    "phrase3": "\"Кожен день - це шанс змінити своє життя до кращого\"",
+    "gamesList": {
+        "mySubpersonalities": {
+            "header": "Мої Субособистості",
+            "description": [
+                "Трансформаційна",
+                "гра для вирішення особистих",
+                "запитів та конфліктів."
+            ],
+            "imageBG": "Extra/Images/GamesMini/MySubpersonalities.png"
+        },
+        "satori": {
+            "header": "Саторі",
+            "description": [
+                "Глибока трансформаційна гра..."
+            ],
+            "imageBG": "Extra/Images/GamesMini/Satori.png"
+        },
+        "myResource": {
+            "header": "Мій ресурс",
+            "description": [
+                "Легка гра для знаходження рішень та ресурсів у складних ситуаціях."
+            ],
+            "imageBG": "Extra/Images/GamesMini/MyResource.png"
+        },
+        "lilaChakra": {
+            "header": "Ліла Чакра",
+            "description": [
+                "Трансформаційна гра",
+                "для усунення внутрішніх перешкод на шляху до цілі."
+            ],
+            "imageBG": "Extra/Images/GamesMini/LilaChakra.png"
+        },
+        "ratRaces2": {
+            "header": "Мишачі біги 2",
+            "description": [
+                "Бізнес-тренажер про множення капіталу, реалістичний аналог Cash Flow."
+            ],
+            "imageBG": "Extra/Images/GamesMini/RatRaces2.png"
+        },
+        "ratRaces3": {
+            "header": "Мишачі біги 3",
+            "description": [
+                "Бізнес-тренажер про",
+                "виживання та заробіток",
+                "бізнесу в кризових умовах."
+            ],
+            "imageBG": "Extra/Images/GamesMini/RatRaces3.png"
+        }
+    },
+    "gamesBottom": {
+        "title": "Вся наша життя - гра!",
+        "text": "У грі ви можете прожити те, на що не осмілилися в реальному житті."
+    },
+    "groupsList": {
+        "twelveWeeks": {
+            "header": "Тренінг «12 тижнів»",
+            "description": [
+                "Бізнес-тренажер про множення капіталу, реалістичний аналог Cash Flow."
+            ],
+            "imageBG": "Extra/Images/GroupsMini/12weeks.png"
+        },
+        "support": {
+            "header": "Група «Підтримка»",
+            "description": [
+                "Підтримка та допомога для жінок, які примусово проживають за кордоном"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/Support.png"
+        },
+        "financialMaraphone": {
+            "header": "Фінансовий марафон",
+            "description": [
+                "Дозвольте собі отримувати більше, мріяти більше та підвищити планку можливостей"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/Financial.png"
+        },
+        "humanUnderstanding": {
+            "header": "Курс «Розуміння людини»",
+            "description": [
+                "Навчіться краще розуміти себе та інших, а також відрізняти брехню"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/HumanUnderstanding.png"
+        }
+    },
+    "phraseImage": "Extra/Images/review.png"
+}

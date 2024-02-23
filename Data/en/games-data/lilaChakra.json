@@ -1,0 +1,35 @@
+{
+  "name": "Lila Chakra",
+  "shortDescription": "This game allows you to work through all the internal obstacles that prevent you from reaching your goal. By addressing them through the game, these obstacles dissipate in real life. The solutions are retained in your subconscious, resulting in achieving the goal much faster and easier. The results are noticeable even during the game.",
+  "image": "/Extra/Images/Games/LilaChakra.png",
+  "price": {
+    "group": "Group Game: €35",
+    "individual": "Individual Game: €60"
+  },
+  "duration": {
+    "group": "Group: 2-4 hours",
+    "individual": "Individual: 1.5 hours"
+  },
+  "stats": {
+    "type": "deep transformational",
+    "duration": {
+      "group": "2-4 hours",
+      "individual": "1.5 hours"
+    },
+    "players": {
+      "min": "1 person",
+      "max": "6 people"
+    }
+  },
+  "fullDescription": [
+    "With this game, you can get answers to your questions, identify obstacles on your path to achieving your goal, and eliminate them. Then desired outcomes in life are achieved more easily and quickly.",
+    "“Lila Chakra” is a quick and easy way to get answers to your questions.",
+    "You can:",
+    "- use the game for personal growth and self-awareness;",
+    "- find faster ways to achieve your goal;",
+    "- understand where you are heading (both consciously and subconsciously);",
+    "- see how any process in your life will unfold (creative, business project, marriage, relocation, etc.).",
+    "The game is based on the wisdom of the ages: the Ancient Indian self-awareness game “Lila” and the Book of Changes and the Tao."
+  ],
+  "masterAvailable": false
+}

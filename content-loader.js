@@ -135,8 +135,7 @@ function updateArray(element, value, elementType) {
 }
 
 function updateImage(element, value) {
-    const randomValue = Math.random(); // Избегаем кеширования
-    element.style.backgroundImage = `url(${value}?v=${randomValue})`;
+    element.style.backgroundImage = `url(${value})`;
 }
 
 function updateData(data) {

@@ -1,0 +1,40 @@
+{
+    "pageName": "Quest Games",
+    "title": "Quest Game",
+    "image": "/Extra/Images/QuestGames.png",
+    "description": [
+        "A quest game is a game that doesn't require dedicating a whole day to play.",
+        "At your convenience, you enter the game space and make your move. Usually, this is one move per day, but it could be more or less depending on the group's conditions or individual circumstances for individual games.",
+        "You make your move, other participants do too, and you receive feedback from the game. You then contemplate and write to the game master. The game master helps to unfold each of your moves for maximum effect.",
+        "Typically, a quest game lasts for a week, but there may be different durations depending on the game's conditions or the group.",
+        "It's an interesting and unusual experience."
+    ],
+    "joinButton": "Sign Up for the Game",
+    "explanation": {
+        "header": "Features of Quest Games",
+        "text": [
+            "When you play for a week with a request and as you solve it, changes in life related to the request begin to occur. You can immediately make changes in your life and see real-time changes.",
+            "There's no need to set aside a whole day for the game and wait for a group to gather. You can play at any time that suits you.",
+            "The results of the game will be the same as in a regular game."
+        ]
+    },
+    "gamesText": "Games available in this format",
+    "games": {
+        "joinButton": "Sign Up",
+        "detailsButton": "About the Game",
+        "game1": {
+            "title": "My Subpersonalities",
+            "type": "Transformational deep game.",
+            "briefInfo": "You will journey through different ages of your life tied to your request, to untangle knots that have formed.",
+            "masterSearch": "The game is looking for game masters! Could it be YOU?",
+            "image": "/Extra/Images/GamesMini/MySubpersonalities.png"
+        },
+        "game2": {
+            "title": "My Resource",
+            "type": "Easy resource game.",
+            "briefInfo": "Helps to find resources in any situation. You will be transported to beautiful places that will inspire you to new stages of resolving your situation.",
+            "masterSearch": "The game is looking for game masters! Could it be YOU?",
+            "image": "/Extra/Images/GamesMini/MyResource.png"
+        }
+    }
+}

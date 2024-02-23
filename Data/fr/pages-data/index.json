@@ -1,0 +1,159 @@
+{
+    "imageBG": "Extra/Images/ValentinaBG.png",
+    "pageName": "Psychologue Valentina Artamonova",
+    "navigation": {
+        "about": "À propos de moi",
+        "services": "Services",
+        "games": "Jeux",
+        "groups": "Groupes"
+    },
+    "name": "Psychologue Valentina Artamonova",
+    "psychologist": "Psychologue praticien depuis 2013 :",
+    "servicesButton": "Aller aux services",
+    "biography": [
+        "d'entreprise,",
+        "individuel,",
+        "familial,",
+        "formateur en croissance personnelle,",
+        "formateur en affaires,",
+        "spécialiste en Brainspotting,",
+        "écranalyste (travail avec les émotions)."
+    ],
+    "aboutPsychologist": [
+        "Modérateur de la division Cyberpsychologie de l'Association Psychologique Nationale.",
+        "Membre des associations : 'Psychologues Sans Frontières', 'Association Psychologique Nationale d'Ukraine', 'Fédération Européenne des Associations de Psychologues', 'Association Internationale de Psychologie Appliquée (IAAP)'.",
+        "Psychologue principal de jeux psychologiques, financiers et d'auteur.",
+        "Bénévole dans des projets sociaux, auprès de patients gravement malades et de leurs familles, brainspottinghelp.",
+        "Je travaille avec des adultes. Avec les enfants uniquement en tandem avec un adulte."
+    ],
+    "shortStats": {
+        "count1": "500+",
+        "header1": "Clients satisfaits",
+        "count2": "1000+",
+        "header2": "Années en psychologie",
+        "count3": "200+",
+        "header3": "Consultations effectuées"
+    },
+    "joinButton": "S'inscrire",
+    "priceButton": "Vérifier le prix",
+    "scheduleButton": "Planning des jeux",
+    "servicesText": "Services",
+    "gamesText": "Jeux",
+    "groupsText": "Groupes",
+    "service1": {
+        "header": "Consultation individuelle",
+        "description": "Approche personnalisée pour résoudre les problèmes personnels et professionnels.",
+        "backHeader": "Première consultation — 50 €",
+        "backText": [
+            "Les suivantes — 100 €",
+            "12 consultations (recommandé) — 1100 €"
+        ],
+        "duration": "Durée — 60~80 minutes"
+    },
+    "service2": {
+        "header": "Consultation en couple",
+        "description": "Aide à renforcer les relations familiales et à résoudre les conflits familiaux.",
+        "backHeader": "Première consultation — 70 €",
+        "backText": [
+            "Les suivantes — 150 €",
+            "12 consultations (recommandé) — 1600 €"
+        ],
+        "duration": "Durée — 90 minutes"
+    },
+    "service3": {
+        "header": "Consultation de formateur en affaires",
+        "description": "Aide à augmenter le statut financier, au développement des affaires, à la lutte contre la procrastination.",
+        "backHeader": "Première consultation — 100 €",
+        "backText": [
+            "Les suivantes — sur accord",
+            "Durée — en fonction de la demande"
+        ],
+        "duration": "Durée — 60~80 minutes"
+    },
+    "phrase1": "\"Vous êtes ici, ce qui signifie que vous êtes prêt pour des changements dans votre vie. Et c'est déjà la moitié du chemin. Marchons-le ensemble...\"",
+    "phrase2": "\"Chaque situation nous montre quelque chose, le principal est de comprendre quoi exactement\"",
+    "phrase3": "\"Chaque jour est une chance de changer sa vie pour le mieux\"",
+    "gamesList": {
+        "mySubpersonalities": {
+            "header": "Mes Sous-personnalités",
+            "description": [
+                "Jeu de transformation",
+                "pour résoudre les demandes et les conflits personnels."
+            ],
+            "imageBG": "Extra/Images/GamesMini/MySubpersonalities.png"
+        },
+        "satori": {
+            "header": "Satori",
+            "description": [
+                "Jeu de transformation profonde..."
+            ],
+            "imageBG": "Extra/Images/GamesMini/Satori.png"
+        },
+        "myResource": {
+            "header": "Ma Ressource",
+            "description": [
+                "Jeu léger pour trouver des solutions et des ressources dans des situations difficiles."
+            ],
+            "imageBG": "Extra/Images/GamesMini/MyResource.png"
+        },
+        "lilaChakra": {
+            "header": "Chakra Lila",
+            "description": [
+                "Jeu de transformation",
+                "pour éliminer les obstacles internes sur le chemin de l'objectif."
+            ],
+            "imageBG": "Extra/Images/GamesMini/LilaChakra.png"
+        },
+        "ratRaces2": {
+            "header": "Rat Races 2",
+            "description": [
+                "Simulateur d'entreprise sur la multiplication du capital, analogue réaliste de Cash Flow."
+            ],
+            "imageBG": "Extra/Images/GamesMini/RatRaces2.png"
+        },
+        "ratRaces3": {
+            "header": "Rat Races 3",
+            "description": [
+                "Simulateur d'entreprise sur",
+                "la survie et l'obtention de revenus",
+                "en période de crise."
+            ],
+            "imageBG": "Extra/Images/GamesMini/RatRaces3.png"
+        }
+    },
+    "gamesBottom": {
+        "title": "Toute notre vie est un jeu !",
+        "text": "Dans le jeu, vous pouvez vivre ce que vous n'osez pas dans la vraie vie."
+    },
+    "groupsList": {
+        "twelveWeeks": {
+            "header": "Formation de 12 semaines",
+            "description": [
+                "Simulateur d'entreprise sur la multiplication du capital, analogue réaliste de Cash Flow."
+            ],
+            "imageBG": "Extra/Images/GroupsMini/12weeks.png"
+        },
+        "support": {
+            "header": "Groupe de soutien",
+            "description": [
+                "Soutien et assistance aux femmes vivant à l'étranger de force"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/Support.png"
+        },
+        "financialMaraphone": {
+            "header": "Marathon financier",
+            "description": [
+                "Permettez-vous de recevoir plus, de rêver plus et d'augmenter le niveau des opportunités"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/Financial.png"
+        },
+        "humanUnderstanding": {
+            "header": "Cours sur la compréhension humaine",
+            "description": [
+                "Apprenez à mieux vous comprendre et à comprendre les autres, ainsi qu'à distinguer les mensonges"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/HumanUnderstanding.png"
+        }
+    },
+    "phraseImage": "Extra/Images/review.png"
+}

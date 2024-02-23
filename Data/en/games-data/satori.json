@@ -1,0 +1,37 @@
+{
+  "name": "Satori",
+  "shortDescription": "This game is about the process of Radical Forgiveness in 5 stages, as a result of which the player will be able to see a clear picture of the cause of what happened, truly forgive the 'offender', release pain, anger, resentment, and other feelings that disturb them and steal their joy, as well as see what false beliefs have formed in their consciousness and let them go. This game will help you unload the heavy burden of negative emotions from your shoulders and make room for happiness and joy.",
+  "image": "/Extra/Images/Games/Satori.png",
+  "price": {
+    "group": "Group game: €35",
+    "individual": "Individual game: €60"
+  },
+  "duration": {
+    "group": "Group: 2-4 hours",
+    "individual": "Individual: 1.5 hours"
+  },
+  "stats": {
+    "type": "deep transformational",
+    "duration": {
+      "group": "2-4 hours",
+      "individual": "1.5 hours"
+    },
+    "players": {
+      "min": "1 person",
+      "max": "6 people"
+    }
+  },
+  "fullDescription": [
+    "This game is about the process of Radical Forgiveness in 5 stages, as a result of which the player will be able to see a clear picture of the cause of what happened, truly forgive the 'offender', release pain, anger, resentment, and other feelings that disturb them and steal their joy, as well as see what false beliefs have formed in their consciousness and let them go.",
+    "The game starts in the Victimland, where a situation to work with is chosen. The player draws a card that directs them to a topic somehow related to events in their life, based on which their story is recalled and voiced.",
+    "During the game, you pass through three gates.",
+    "First Gate: Awareness.",
+    "The player determines what lies behind this event: what beliefs and what blocks in the body it has generated.",
+    "Second Gate: Shift.",
+    "The player creates a new story about the past event, which helps to look at the situation from a different angle.",
+    "Third Gate: Full Acceptance.",
+    "The author also calls this stage 'Surrender', that is, the opportunity to fully surrender to what happened and accept it unconditionally, finally freeing oneself from the burden of pain and resentment. At this stage, the player frees themselves from their negative beliefs that gave rise to past stories and surrenders to the power of the Higher Power.",
+    "The end of the game is achieving the level of Satori ('Awakening'). Here the player can look at their story from a spiritual point of view, choosing a new happy, joyful, and free reality."
+  ],
+  "masterAvailable": false
+}

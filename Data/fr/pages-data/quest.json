@@ -1,0 +1,40 @@
+{
+    "pageName": "Jeux de quête",
+    "title": "Jeu de quête",
+    "image": "/Extra/Images/QuestGames.png",
+    "description": [
+        "Un jeu de quête est un jeu pour lequel il n'est pas nécessaire de consacrer une journée entière.",
+        "À votre convenance, vous entrez dans l'espace de jeu et effectuez votre mouvement. Habituellement, il s'agit d'un mouvement par jour, mais cela pourrait être plus ou moins en fonction des conditions du groupe ou des circonstances individuelles pour les jeux individuels.",
+        "Vous effectuez votre mouvement, les autres participants également, et vous recevez un retour du jeu. Vous réfléchissez alors et écrivez au maître du jeu. Le maître du jeu aide à déployer chacun de vos mouvements pour un effet maximal.",
+        "Généralement, un jeu de quête dure une semaine, mais il peut y avoir différentes durées en fonction des conditions du jeu ou du groupe.",
+        "C'est une expérience intéressante et inhabituelle."
+    ],
+    "joinButton": "Inscrivez-vous au jeu",
+    "explanation": {
+        "header": "Caractéristiques des jeux de quête",
+        "text": [
+            "Lorsque vous jouez pendant une semaine avec une demande et que vous la résolvez, des changements dans la vie liés à la demande commencent à se produire. Vous pouvez immédiatement apporter des changements dans votre vie et voir des changements en temps réel.",
+            "Il n'est pas nécessaire de consacrer une journée entière au jeu et d'attendre qu'un groupe se forme. Vous pouvez jouer à tout moment qui vous convient.",
+            "Les résultats du jeu seront les mêmes que dans un jeu régulier."
+        ]
+    },
+    "gamesText": "Jeux disponibles dans ce format",
+    "games": {
+        "joinButton": "Inscrivez-vous",
+        "detailsButton": "À propos du jeu",
+        "game1": {
+            "title": "Mes sous-personnalités",
+            "type": "Jeu de transformation profonde.",
+            "briefInfo": "Vous parcourrez différents âges de votre vie liés à votre demande, pour défaire les nœuds qui se sont formés.",
+            "masterSearch": "Le jeu recherche des maîtres de jeu ! Pourrait-ce être VOUS ?",
+            "image": "/Extra/Images/GamesMini/MySubpersonalities.png"
+        },
+        "game2": {
+            "title": "Ma ressource",
+            "type": "Jeu de ressources facile.",
+            "briefInfo": "Aide à trouver des ressources dans n'importe quelle situation. Vous serez transporté dans des endroits magnifiques qui vous inspireront pour de nouvelles étapes de résolution de votre situation.",
+            "masterSearch": "Le jeu recherche des maîtres de jeu ! Pourrait-ce être VOUS ?",
+            "image": "/Extra/Images/GamesMini/MyResource.png"
+        }
+    }
+}

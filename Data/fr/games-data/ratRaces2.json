@@ -1,0 +1,32 @@
+{
+  "name": "Courses de rats 2",
+  "shortDescription": "Dans ce jeu de société, vous devrez passer du statut de pauvre à celui de personne possédant une richesse fabuleuse. Vous ouvrirez des entreprises, les développerez, et même les perdrez, tout en construisant une famille et votre propre vie. Mais surtout, vous apprendrez comment augmenter et multiplier votre capital. Vous jouez simplement. Mais avec le dernier lancer de dés, vous pensez déjà comme un millionnaire. Et les pensées - c'est le début des actions. Le jeu est basé sur le jeu de société 'Cashflow' de Robert Kiyosaki, mais utilise des mécanismes plus complexes, intéressants et réalistes.",
+  "image": "/Extra/Images/Games/RatRaces2.png",
+  "price": {
+    "group": "Jeu en groupe : 40 €",
+    "individual": "Jeu individuel : 80 €"
+  },
+  "duration": {
+    "group": "Groupe : 5-7 heures",
+    "individual": "Individuel : 2-3 heures"
+  },
+  "stats": {
+    "type": "ressource légère",
+    "duration": {
+      "group": "5-7 heures",
+      "individual": "2-3 heures"
+    },
+    "players": {
+      "min": "1 personne",
+      "max": "6 personnes"
+    }
+  },
+  "fullDescription": [
+    "Le jeu de société Courses de rats 2 est un jeu économique très populaire, basé sur l'idée de Robert Kiyosaki, d'abord incarnée par lui dans le jeu de société 'Cashflow', comme dans la première version. Mais comme notre économie est basée sur des principes très différents du modèle américain, ce jeu ne nous convient pas très bien.",
+    "Le jeu de société Courses de rats 2 est un jeu financier entièrement adapté à notre réalité.",
+    "Dans ce jeu de société Courses de rats 2, des règles différentes s'appliquent pour les hommes et les femmes, et il existe différentes professions. Cela rend le jeu Courses de rats 2 vraiment unique. Cela signifie que pour atteindre un certain succès dans l'accumulation d'argent, hommes et femmes doivent utiliser des recettes complètement différentes et activer différentes qualités. Cela augmente considérablement l'efficacité éducative du jeu.",
+    "Dans ce jeu de société, vous devrez passer du statut de pauvre à celui de personne possédant une richesse fabuleuse. Grâce à lui, vous pourrez acquérir un yacht luxueux, un avion personnel, une collection de voitures coûteuses, une villa ou un manoir. Avec l'aide du jeu, vous pourrez non seulement atteindre une bonne vie, mais aussi ressentir à quoi elle ressemble.",
+    "Vous jouez simplement. Mais avec le dernier lancer de dés, vous pensez déjà comme un millionnaire. Et les pensées - c'est le début des actions."
+  ],
+  "masterAvailable": false
+}

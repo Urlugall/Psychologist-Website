@@ -1,0 +1,15 @@
+{
+    "footerText": "© 2024 Valentyna Artamonova. Tous droits réservés.",
+    "socialText": "Contactez-moi sur...",
+    "links": [
+        { "href": "https://t.me/Valentyna_Art", "title": "Telegram", "icon": "/Extra/Icons/telegram.png" },
+        { "href": "https://www.instagram.com/art.valentina.a?igsh=YXA4NjdrdHNpNnV2", "title": "Instagram", "icon": "/Extra/Icons/instagram.png" },
+        { "href": "https://www.facebook.com/art.valentina.a", "title": "Facebook", "icon": "/Extra/Icons/facebook.png" }
+    ],
+    "joinSocial": [
+        { "href": "https://t.me/Valentyna_Art", "title": "Telegram", "icon": "/Extra/Icons/telegram.png" },
+        { "href": "https://www.instagram.com/art.valentina.a?igsh=YXA4NjdrdHNpNnV2", "title": "Instagram", "icon": "/Extra/Icons/instagram.png" },
+        { "href": "https://www.facebook.com/art.valentina.a", "title": "Facebook", "icon": "/Extra/Icons/facebook.png" },
+        { "href": "https://api.whatsapp.com/send?phone=380504438897", "title": "Whatsapp", "icon": "/Extra/Icons/whatsapp.png" }
+    ]
+}

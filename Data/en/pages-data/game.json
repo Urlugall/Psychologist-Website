@@ -1,0 +1,27 @@
+{
+    "pageName": "Psychological Games",
+    "joinButton": "Sign Up",
+    "detailsButton": "Details...",
+    "sheduleButton": "Game Schedule",
+    "questButton": "Learn More",
+    "price": {
+        "details": "Check Price",
+        "text": "Game Price"
+    },
+    "duration": {
+        "gameText": "Game Duration",
+        "groupText": "Group Game Duration",
+        "individualText": "Individual Game Duration"
+    },
+    "typeText": "Game Type",
+    "players": {
+        "minText": "Minimum Number of Players",
+        "maxText": "Maximum Number of Players"
+    },
+    "masterText": "The game is looking for masters! Could it be YOU?",
+    "questText": "The game is available in 'Quest-Game' format!",
+    "bottom": {
+        "header": "All our life is a game!",
+        "description": "Come and change your life by playing"
+    }
+}

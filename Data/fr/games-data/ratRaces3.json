@@ -1,0 +1,36 @@
+{
+  "name": "Courses de rats 3",
+  "shortDescription": "Ce jeu est conçu pour les hommes d'affaires et les entrepreneurs ayant besoin de recettes claires et vives sur la manière de protéger leur entreprise pendant une période de baisse. Ce jeu montrera quels types d'entreprises prospèrent en période de déclin et lesquels suffoquent, quelles entreprises sont résilientes et lesquelles ne le sont pas, où investir de l'argent et où ne pas le faire. Il montrera également comment organiser votre entreprise pour qu'elle ne soit menacée par aucune impression économique. La crise n'est pas une raison d'abandonner, mais une véritable chance de gagner de l'argent excellent!",
+  "image": "/Extra/Images/Games/RatRaces3.png",
+  "price": {
+    "group": "Jeu en groupe : 40 €",
+    "individual": "Jeu individuel : 80 €"
+  },
+  "duration": {
+    "group": "Groupe : 4-5 heures",
+    "individual": "Individuel : 2-3 heures"
+  },
+  "stats": {
+    "type": "ressource légère",
+    "duration": {
+      "group": "4-5 heures",
+      "individual": "2-3 heures"
+    },
+    "players": {
+      "min": "1 personne",
+      "max": "6 personnes"
+    }
+  },
+  "fullDescription": [
+    "Si vous êtes un entrepreneur actif ou un homme d'affaires établi qui a quelque chose à perdre, ce jeu est pour vous! Juste quelques tours, et vous arrêterez de vous inquiéter et commencerez à agir, en tournant habilement toutes circonstances non standard à votre avantage.",
+    "Ce jeu est conçu pour les hommes d'affaires et les entrepreneurs ayant besoin de recettes claires et vives sur la manière de protéger leur entreprise pendant une période de baisse. Ce jeu montrera quels types d'entreprises prospèrent en période de déclin et lesquels suffoquent, quelles entreprises sont résilientes et lesquelles ne le sont pas, où investir de l'argent et où ne pas le faire. Il montrera également comment organiser votre entreprise pour qu'elle ne soit menacée par aucune impression économique.",
+    "Courses de rats 3 :",
+    "- vous apprend à agir rapidement et astucieusement pendant que les autres paniquent et tombent en dépression;",
+    "- révèle les mécanismes de la crise en action et montre comment les combattre de manière rentable;",
+    "- vous indique comment survivre dans des conditions de concurrence féroce et de pression constante de la part de l'État;",
+    "- donne une immunité psychologique contre la crise et apporte une mer d'émotions positives, des compétences importantes, des connaissances utiles.",
+    "Pendant le jeu, vous rencontrerez de nombreux 'clients riches' et 'inspecteurs cupides'. Vous ferez face à des inspections, à des rapports annuels, à des dépenses imprévues et à d'autres difficultés. Apprenez à faire des affaires en ligne, à investir judicieusement et à combattre la crise avec sagesse!",
+    "Dans la vie, il n'y a pas de place pour les erreurs. Mais dans le jeu, les erreurs sont vos meilleurs enseignants."
+  ],
+  "masterAvailable": false
+}

@@ -1,0 +1,34 @@
+{
+    "pageName": "Game Schedule",
+    "title": "Schedule",
+    "type": {
+        "individual": {
+            "title": "Individual Game",
+            "description": "At your convenience"
+        },
+        "yourGroup": {
+            "title": "Your Group",
+            "description": "Special conditions"
+        }
+    },
+    "weekDays": {
+        "first": "Fri",
+        "second": "Sat",
+        "third": "Sun"
+    },
+    "weeks": {
+        "first": "1st week of the month",
+        "second": "2nd week of the month",
+        "third": "3rd week of the month"
+    },
+    "games": {
+        "g1": "Satori",
+        "g2": "Rat Races 3",
+        "g3": "My Resource",
+        "g4": "My Subpersonalities",
+        "g5": "Rat Races 2",
+        "g6": "Lila Chakra"
+    },
+    "joinButton": "Sign Up",
+    "detailsButton": "Details"
+}

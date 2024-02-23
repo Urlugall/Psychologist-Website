@@ -1,0 +1,63 @@
+{
+  "name": "My Resource",
+  "shortDescription": "A game that helps to find resources in any situation. In every difficult situation, we seek something to help us get out of it faster, easier, and more comfortably. Here, you will be encouraged to find answers in beautiful settings, transporting yourself to inspiring places that will guide you to new stages in resolving your situation. The entire game is built on simplicity, where you examine beautiful pictures and seek your answers. Author - Valentina Artamonova",
+  "image": "/Extra/Images/Games/MyResource.png",
+  "price": {
+    "group": "Group Game: €35",
+    "individual": "Individual Game: €60"
+  },
+  "duration": {
+    "group": "Group: 2-4 hours",
+    "individual": "Individual: 1.5 hours"
+  },
+  "stats": {
+    "type": "easy resourceful",
+    "duration": {
+      "group": "2-4 hours",
+      "individual": "1.5 hours"
+    },
+    "players": {
+      "min": "1 person",
+      "max": "6 people"
+    }
+  },
+  "fullDescription": [
+    "A game that helps to find resources in any situation.",
+    "In every difficult situation, we seek something to help us get out of it faster, easier, and more comfortably. Here, you will be encouraged to find answers in beautiful settings, transporting yourself to inspiring places that will guide you to new stages in resolving your situation.",
+    "In the game, there are places that show where you are stuck, indicating the need for more drastic changes, prompting you to seek alternative solutions.",
+    "The entire process is designed for you to resolve your issue during the game, regardless of which stage you are in within the situation.",
+    "The game's objective is to provide you with what you need to move forward, and it excels in achieving this goal.",
+    "This game can also be played for group goals. If you have a team, a collective, or even a family where things are not going quite well, you can set a common goal and explore ways to address it, along with who can help you navigate the situation. Moreover, in one game, you can simultaneously explore both personal and group situations.",
+    "The game is very light, fairly quick, and fulfilling.",
+    "Play and fill your world with joy, ease, and enjoyment in resolving complex situations."
+  ],
+  "masterAvailable": true,
+  
+  "masterInfo": {
+    "shortDescription" : "A light game for finding solutions and resources in complex situations.",
+    "masterNote" : "If you work with people, this game is for you!",
+    "fullDescription": [
+      "This game is designed so that it can be conducted without psychological education or played among friends. Of course, with the guidance of a psychologist, it will be a more effective game, but even without it, it will partially fulfill its purpose. There is no possibility here to delve deep or get lost in oneself to the extent that professional help is required.",
+      "The entire process is designed for you or your client to resolve the issue during the game, regardless of which stage you are in within the situation.",
+      "The game's objective is to provide you with what you need to move forward, and it succeeds in this.",
+      "This game can also be played for group goals. If you have a team, a collective, or even a family where things are not going quite well, you can set a common goal and explore how to handle it, how to help each other navigate the situation. Moreover, in one game, you can simultaneously explore both personal and group situations.",
+      "The game is very light, fairly quick, and fulfilling.",
+      "Play and fill your world with joy, ease, and solutions to situations."
+    ],
+    "price": "Game cost: €400",
+    "priceInclude": [
+      "Permanent link for access to the game on the Tabletopia platform.",
+      "Game rules.",
+      "Blank sheet.",
+      "Training (3 games: 2 as a participant, 1 as a facilitator, to understand all the nuances).",
+      "10% discount on other games.",
+      "10% discount if your friends purchase the game, with a discount for each of their purchases."
+    ],
+    "demoInfo": [
+      "All discounts are cumulative.",
+      "30% discount for Ukrainians.",
+      "Payment in 3 installments over 3 months is possible."
+    ],
+    "author": "Valentina Artamonova"
+  }
+}

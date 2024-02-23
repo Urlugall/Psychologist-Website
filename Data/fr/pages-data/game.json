@@ -1,0 +1,27 @@
+{
+    "pageName": "Jeux Psychologiques",
+    "joinButton": "Inscrivez-vous",
+    "detailsButton": "Détails...",
+    "sheduleButton": "Planning des jeux",
+    "questButton": "En savoir plus",
+    "price": {
+        "details": "Vérifier le prix",
+        "text": "Prix du jeu"
+    },
+    "duration": {
+        "gameText": "Durée du jeu",
+        "groupText": "Durée du jeu en groupe",
+        "individualText": "Durée du jeu individuel"
+    },
+    "typeText": "Type de jeu",
+    "players": {
+        "minText": "Nombre minimum de joueurs",
+        "maxText": "Nombre maximum de joueurs"
+    },
+    "masterText": "Le jeu recherche des maîtres ! Pourrait-ce être VOUS ?",
+    "questText": "Le jeu est disponible en format 'Jeu-Quête' !",
+    "bottom": {
+        "header": "Toute notre vie est un jeu !",
+        "description": "Venez et changez votre vie en jouant"
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "pageName": "Recherche de Maître de Jeu",
+    "authorText": "Auteur du jeu : ",
+    "findMasterText": "Le jeu recherche des maîtres de jeu ! Pourrait-ce être VOUS ?",
+    "demoJoin": "Inscrivez-vous pour une version de démonstration (30min)",
+    "tabletopiaInfo": "Le jeu est disponible sur la plateforme Tabletopia. Vous pouvez y jouer ou le diriger en ligne.",
+    "additionalInfo": [
+        "La formation se compose de 3 jeux, dont 2 jeux où vous participez en tant que joueur et 1 jeu où vous êtes maître de jeu tandis que Valentina participe en tant que joueur.",
+        "Le kit de jeu comprend des règles et un modèle vierge.",
+        "En option, vous pouvez acheter une version imprimée (physique) du jeu. Le coût du jeu imprimé n'est pas inclus dans le prix total et dépend de votre pays de résidence."
+    ],
+    "infoBold": "Avant de diriger le jeu, il est nécessaire de suivre une formation.",
+    "priceInclude": "Le prix du jeu comprend 👇",
+    "freeDemo": "Démo Gratuite",
+    "joinButton": "S'inscrire"
+}

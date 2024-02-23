@@ -1,0 +1,36 @@
+{
+  "name": "Rat Races 3",
+  "shortDescription": "This game is designed for businessmen and entrepreneurs in need of clear and vivid recipes on how to protect their business during a downturn. This game will show which businesses thrive in times of decline and which ones suffocate, which businesses are resilient and which are not, where to invest money and where not to. It will also show how to organize your business so that it is not threatened by any economic impressions. Crisis is not a reason to give up, but a real chance to earn excellent money!",
+  "image": "/Extra/Images/Games/RatRaces3.png",
+  "price": {
+    "group": "Group game: €40",
+    "individual": "Individual game: €80"
+  },
+  "duration": {
+    "group": "Group: 4-5 hours",
+    "individual": "Individual: 2-3 hours"
+  },
+  "stats": {
+    "type": "light resourceful",
+    "duration": {
+      "group": "4-5 hours",
+      "individual": "2-3 hours"
+    },
+    "players": {
+      "min": "1 person",
+      "max": "6 people"
+    }
+  },
+  "fullDescription": [
+    "If you are an active entrepreneur or an established businessman who has something to lose, this game is for you! Just a few rounds, and you will stop worrying and start acting, skillfully turning any non-standard circumstances to your advantage.",
+    "This game is designed for businessmen and entrepreneurs in need of clear and vivid recipes on how to protect their business during a downturn. This game will show which businesses thrive in times of decline and which ones suffocate, which businesses are resilient and which are not, where to invest money and where not to. It will also show how to organize your business so that it is not threatened by any economic impressions.",
+    "Rat Races 3:",
+    "- teaches you to act quickly and cunningly while others panic and fall into depression;",
+    "- reveals the mechanisms of the crisis in action and shows how to profitably fight them;",
+    "- tells you how to survive in conditions of fierce competition and constant pressure from the state;",
+    "- gives psychological immunity from the crisis and brings a sea of ​​positive emotions, important skills, useful knowledge.",
+    "During the game, you will meet many 'fat clients' and 'greedy inspectors.' You will face inspections, annual reports, unexpected expenses, and other difficulties. Learn to do business online, invest profitably, and fight the crisis wisely!",
+    "In life, there is no room for mistakes. But in the game, mistakes are your best teachers."
+  ],
+  "masterAvailable": false
+}

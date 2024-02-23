@@ -1,0 +1,32 @@
+{
+  "name": "Rat Races 2",
+  "shortDescription": "In this board game, you will have to go from being a poor person to a person with fabulous wealth. You will open businesses, develop them, and even lose them, while building a family and your own life. But most importantly, you will learn how to increase and multiply your capital. You're just playing. But with the last roll of the dice, you're already thinking like a millionaire. And thoughts - that's the beginning of actions. The game is based on the board game 'Cashflow' by Robert Kiyosaki, but uses more complex, interesting, and realistic mechanics.",
+  "image": "/Extra/Images/Games/RatRaces2.png",
+  "price": {
+    "group": "Group game: €40",
+    "individual": "Individual game: €80"
+  },
+  "duration": {
+    "group": "Group: 5-7 hours",
+    "individual": "Individual: 2-3 hours"
+  },
+  "stats": {
+    "type": "light resourceful",
+    "duration": {
+      "group": "5-7 hours",
+      "individual": "2-3 hours"
+    },
+    "players": {
+      "min": "1 person",
+      "max": "6 people"
+    }
+  },
+  "fullDescription": [
+    "The board game Rat Races 2 is a very popular economic game, based on the idea of Robert Kiyosaki, first embodied by him in the board game 'Cashflow,' as in the first version. But since our economy is based on principles very different from the American model, this game is not very suitable for us.",
+    "The board game Rat Races 2 is a financial game completely adapted to our reality.",
+    "In this board game Rat Races 2, different rules apply for men and women, and there are different professions. This makes the Rat Races 2 game truly unique. This means that in order to achieve a certain success in accumulating money, men and women must use completely different recipes and activate different qualities. This significantly increases the educational effectiveness of the game.",
+    "In this board game, you will have to go from being a poor person to a person with fabulous wealth. Thanks to it, you will be able to acquire a luxurious yacht, a personal plane, a collection of expensive cars, a villa, or a mansion. With the help of the game, you will not only be able to achieve a good life but also feel what it tastes like.",
+    "You're just playing. But with the last roll of the dice, you're already thinking like a millionaire. And thoughts - that's the beginning of actions."
+  ],
+  "masterAvailable": false
+}

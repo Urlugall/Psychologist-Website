@@ -1,0 +1,63 @@
+{
+  "name": "Ma Ressource",
+  "shortDescription": "Un jeu qui aide à trouver des ressources dans n'importe quelle situation. Dans chaque situation difficile, nous cherchons quelque chose pour nous aider à en sortir plus rapidement, plus facilement et plus confortablement. Ici, vous serez encouragé à trouver des réponses dans de beaux décors, vous transportant vers des endroits inspirants qui vous guideront vers de nouvelles étapes pour résoudre votre situation. Tout le jeu est basé sur la simplicité, où vous examinez de belles images et recherchez vos réponses. Auteur - Valentina Artamonova",
+  "image": "/Extra/Images/Games/MyResource.png",
+  "price": {
+    "group": "Jeu de groupe: 35 €",
+    "individual": "Jeu individuel: 60 €"
+  },
+  "duration": {
+    "group": "Groupe: 2-4 heures",
+    "individual": "Individuel: 1,5 heures"
+  },
+  "stats": {
+    "type": "ressource facile",
+    "duration": {
+      "group": "2-4 heures",
+      "individual": "1,5 heures"
+    },
+    "players": {
+      "min": "1 personne",
+      "max": "6 personnes"
+    }
+  },
+  "fullDescription": [
+    "Un jeu qui aide à trouver des ressources dans n'importe quelle situation.",
+    "Dans chaque situation difficile, nous cherchons quelque chose pour nous aider à en sortir plus rapidement, plus facilement et plus confortablement. Ici, vous serez encouragé à trouver des réponses dans de beaux décors, vous transportant vers des endroits inspirants qui vous guideront vers de nouvelles étapes pour résoudre votre situation.",
+    "Dans le jeu, il y a des endroits qui montrent où vous êtes bloqué, indiquant la nécessité de changements plus drastiques, vous incitant à chercher des solutions alternatives.",
+    "Tout le processus est conçu pour que vous résolviez votre problème pendant le jeu, quel que soit le stade où vous en êtes dans la situation.",
+    "L'objectif du jeu est de vous fournir ce dont vous avez besoin pour avancer, et il excelle dans cette tâche.",
+    "Ce jeu peut également être joué pour des objectifs de groupe. Si vous avez une équipe, un collectif, voire une famille où les choses ne se passent pas très bien, vous pouvez définir un objectif commun et explorer les moyens de le traiter, ainsi que qui peut vous aider à naviguer dans la situation. De plus, dans un seul jeu, vous pouvez explorer simultanément des situations personnelles et de groupe.",
+    "Le jeu est très léger, assez rapide et gratifiant.",
+    "Jouez et remplissez votre monde de joie, de facilité et de plaisir à résoudre des situations complexes."
+  ],
+  "masterAvailable": true,
+  
+  "masterInfo": {
+    "shortDescription" : "Un jeu léger pour trouver des solutions et des ressources dans des situations complexes.",
+    "masterNote" : "Si vous travaillez avec des personnes, ce jeu est pour vous !",
+    "fullDescription": [
+      "Ce jeu est conçu de manière à pouvoir être mené sans formation psychologique ou à être joué entre amis. Bien sûr, avec l'encadrement d'un psychologue, ce sera un jeu plus efficace, mais même sans lui, il remplira partiellement son objectif. Il n'y a pas de possibilité ici de plonger profondément ou de se perdre à un point tel que l'aide professionnelle est nécessaire.",
+      "Tout le processus est conçu pour que vous ou votre client résolviez le problème pendant le jeu, quel que soit le stade où vous en êtes dans la situation.",
+      "L'objectif du jeu est de vous fournir ce dont vous avez besoin pour avancer, et il réussit dans cette tâche.",
+      "Ce jeu peut également être joué pour des objectifs de groupe. Si vous avez une équipe, un collectif, voire une famille où les choses ne se passent pas très bien, vous pouvez définir un objectif commun et explorer comment le gérer, comment aider les uns les autres à naviguer dans la situation. De plus, dans un seul jeu, vous pouvez explorer simultanément des situations personnelles et de groupe.",
+      "Le jeu est très léger, assez rapide et gratifiant.",
+      "Jouez et remplissez votre monde de joie, de facilité et de solutions aux situations."
+    ],
+    "price": "Coût du jeu : 400 €",
+    "priceInclude": [
+      "Lien permanent pour accéder au jeu sur la plateforme Tabletopia.",
+      "Règles du jeu.",
+      "Feuille vierge.",
+      "Formation (3 jeux : 2 en tant que participant, 1 en tant qu'animateur, pour comprendre tous les nuances).",
+      "10% de réduction sur d'autres jeux.",
+      "10% de réduction si vos amis achètent le jeu, avec une réduction pour chacun de leurs achats."
+    ],
+    "demoInfo": [
+      "Toutes les réductions sont cumulatives.",
+      "30% de réduction pour les Ukrainiens.",
+      "Possibilité de paiement en 3 versements sur 3 mois."
+    ],
+    "author": "Valentina Artamonova"
+  }
+}

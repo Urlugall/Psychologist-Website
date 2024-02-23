@@ -1,0 +1,61 @@
+{
+  "name": "Mes Sous-personnalités",
+  "shortDescription": "Ce jeu concerne votre vie, le moment où votre demande est apparue dans votre vie et quand elle est apparue plus tôt, vous donnant l'opportunité de résoudre votre demande. Ce jeu concerne vos aides qui ont accompagné votre vie, qui l'ont influencée d'une manière ou d'une autre, vous donnant des leçons et de l'aide. Il s'agit d'un jeu profond et transformationnel, après lequel des changements commenceront dans votre vie et dans votre demande. Auteur - Valentina Artamonova.",
+  "image": "/Extra/Images/Games/MySubpersonalities.png",
+  "price": {
+    "group": "Jeu en groupe : 40 €",
+    "individual": "Jeu individuel : 80 €"
+  },
+  "duration": {
+    "group": "Groupe : 4-5 heures",
+    "individual": "Individuel : 2 heures"
+  },
+  "stats": {
+    "type": "transformation profonde",
+    "duration": {
+      "group": "4-5 heures",
+      "individual": "2 heures"
+    },
+    "players": {
+      "min": "1 personne",
+      "max": "6 personnes"
+    }
+  },
+  "fullDescription": [
+    "Diverses personnes sont constamment présentes dans nos vies, et nous jouons certains rôles envers elles. Parfois, elles nous sont agréables, parfois non, mais le choix n'est souvent pas entre nos mains. Si nous nous retrouvons dans une situation de conflit avec notre mère et notre mari, nous jouons immédiatement deux rôles, deux sous-personnalités : 'enfant/fille' et 'épouse'. Et nous devons apprendre à réguler ces sous-personnalités en nous-mêmes pour pouvoir vivre confortablement avec toutes les personnes de notre vie.",
+    "Nous traverserons certains moments de votre vie pour découvrir votre solution. Vous recevrez divers indices, verrez vos attitudes négatives, que vous travaillerez immédiatement et libérerez.",
+    "Chaque étape consiste en une chance de sortir du système dans lequel vous avez déjà grandi et qui continue à vous retenir, vous empêchant de grandir et de vous développer.",
+    "Le jeu vous aidera à résoudre la demande et à obtenir des réponses pendant le jeu lui-même. Vous verrez où et ce qui vous a arrêté et ce qui peut être fait pendant le jeu pour changer la situation. Vous planifierez également des actions à prendre après le jeu pour améliorer encore la situation."
+  ],
+  "masterAvailable": true,
+
+  "masterInfo": {
+    "shortDescription" : "Jeu transformationnel pour résoudre des demandes personnelles et des conflits.",
+    "masterNote" : "Seul un psychologue peut être un animateur !",
+    "fullDescription": [
+      "Le jeu parcourra toute votre vie, en abordant les moments les plus pertinents pour résoudre votre demande. Vous aurez une compréhension claire de la manière de surmonter la situation actuelle et de ce qui vous a donné de la force auparavant et ce qui vous aidera maintenant.",
+      "De quoi parle le jeu ?",
+      "Chaque personne est un univers entier, et dans cet univers, différentes sous-personnalités vivent. À un moment donné, nous pouvons être une fille, une épouse, une mère, une petite-fille, ou pour les hommes un fils, un mari, un père, un petit-fils, etc.",
+      "Il y a autant de ces sous-personnalités que de rôles différents que nous jouons. Et quand ils vivent en harmonie, tout va bien. Mais souvent, ces sous-personnalités entrent en conflit en nous, et parfois l'une d'elles ne nous aide pas du tout dans la vie.",
+      "Dans le jeu, nous verrons qui nous aide et qui nous enseigne dans la vie, comment notre expérience se reflète sur la demande, comment tout cela peut être transformé en positif, ce qui peut être changé pour résoudre la demande.",
+      "Le jeu concerne le passé et le présent, mais parfois il nous propulse même dans le futur, montrant les aspects de la demande qui peuvent être modifiés maintenant."
+    ],
+    "price": "Coût du jeu : 400 €",
+    "priceInclude": [
+      "Lien permanent pour accéder au jeu sur la plateforme Tabletopia.",
+      "Règles du jeu.",
+      "Feuille de calcul.",
+      "Formation (3 jeux : 2 en tant que participant, 1 en tant qu'animateur, pour comprendre tous les nuances).",
+      "10% de réduction sur les autres jeux.",
+      "10% de réduction si vos amis achètent le jeu, avec une réduction pour chacun de leurs achats."
+    ],
+    "demoInfo": [
+      "Seul un psychologue peut être un animateur !",
+      "Le jeu est disponible en ukrainien et en russe.",
+      "Toutes les réductions sont cumulatives.",
+      "30% de réduction pour les Ukrainiens.",
+      "Paiement possible en 3 versements sur 3 mois."
+    ],
+    "author": "Valentina Artamonova"
+  }
+}

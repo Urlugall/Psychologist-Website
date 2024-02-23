@@ -1,0 +1,160 @@
+{
+    "imageBG": "Extra/Images/ValentinaBG.png",
+    "pageName": "Psychologist Valentina Artamonova",
+    "navigation": {
+        "about": "About Me",
+        "services": "Services",
+        "games": "Games",
+        "groups": "Groups"
+    },
+    "name": "Psychologist Valentina Artamonova",
+    "psychologist": "Practicing psychologist since 2013:",
+    "servicesButton": "Go to Services",
+    "biography": [
+        "corporate,",
+        "individual,",
+        "family,",
+        "personal growth trainer,",
+        "business trainer,",
+        "Brainspotting specialist,",
+        "ecranalyst (working with emotions)."
+    ],
+    "aboutPsychologist": [
+        "Division moderator of Cyberpsychology of the National Psychological Association.",
+        "Member of associations: 'Psychologists Without Borders', 'National Psychological Association of Ukraine', 'European Federation of Psychologists Associations', 'International Association of Applied Psychology (IAAP)'.",
+        "Leading psychologist of psychological, financial, and author's games.",
+        "Volunteer in social projects, with seriously ill patients and their families, brainspottinghelp.",
+        "I work with adults. With children only in pair with an adult."
+    ],
+    "shortStats": {
+        "count1": "500+",
+        "header1": "Satisfied Clients",
+        "count2": "1000+",
+        "header2": "Years in Psychology",
+        "count3": "200+",
+        "header3": "Consultations Conducted"
+    },
+    "joinButton": "Sign Up",
+    "priceButton": "Check Price",
+    "scheduleButton": "Game Schedule",
+    "servicesText": "Services",
+    "gamesText": "Games",
+    "groupsText": "Groups",
+    "service1": {
+        "header": "Personal Consultation",
+        "description": "Personalized approach to solving personal and professional problems.",
+        "backHeader": "First consultation — €50",
+        "backText": [
+            "Subsequent ones — €100",
+            "12 consultations (recommended) — €1100"
+        ],
+        "duration": "Duration — 60~80 minutes"
+    },
+    "service2": {
+        "header": "Pair Consultation",
+        "description": "Assistance in strengthening family relationships and resolving family conflicts.",
+        "backHeader": "First consultation — €70",
+        "backText": [
+            "Subsequent ones — €150",
+            "12 consultations (recommended) — €1600"
+        ],
+        "duration": "Duration — 90 minutes"
+    },
+    "service3": {
+        "header": "Business Trainer Consultation",
+        "description": "Assistance in increasing financial status, business development, working with procrastination.",
+        "backHeader": "First consultation — €100",
+        "backText": [
+            "Subsequent ones — by agreement",
+            "Duration — depending on the request"
+        ],
+        "duration": "Duration — 60~80 minutes"
+    },
+    "phrase1": "\"You are here, which means you are ready for changes in your life. And that's already halfway there. Let's walk it together...\"",
+    "phrase2": "\"Every situation shows us something, the main thing is to understand what exactly\"",
+    "phrase3": "\"Every day is a chance to change your life for the better\"",
+    "gamesList": {
+        "mySubpersonalities": {
+            "header": "My Subpersonalities",
+            "description": [
+                "Transformational",
+                "game for solving personal",
+                "requests and conflicts."
+            ],
+            "imageBG": "Extra/Images/GamesMini/MySubpersonalities.png"
+        },
+        "satori": {
+            "header": "Satori",
+            "description": [
+                "Deep transformational game..."
+            ],
+            "imageBG": "Extra/Images/GamesMini/Satori.png"
+        },
+        "myResource": {
+            "header": "My Resource",
+            "description": [
+                "Light game for finding solutions and resources in difficult situations."
+            ],
+            "imageBG": "Extra/Images/GamesMini/MyResource.png"
+        },
+        "lilaChakra": {
+            "header": "Lila Chakra",
+            "description": [
+                "Transformational game",
+                "to remove internal obstacles on the way to the goal."
+            ],
+            "imageBG": "Extra/Images/GamesMini/LilaChakra.png"
+        },
+        "ratRaces2": {
+            "header": "Rat Races 2",
+            "description": [
+                "Business simulator about capital multiplication, realistic analogue of Cash Flow."
+            ],
+            "imageBG": "Extra/Images/GamesMini/RatRaces2.png"
+        },
+        "ratRaces3": {
+            "header": "Rat Races 3",
+            "description": [
+                "Business simulator about",
+                "survival and earning",
+                "business in crisis conditions."
+            ],
+            "imageBG": "Extra/Images/GamesMini/RatRaces3.png"
+        }
+    },
+    "gamesBottom": {
+        "title": "All our life is a game!",
+        "text": "In the game, you can experience what you dare not in real life."
+    },
+    "groupsList": {
+        "twelveWeeks": {
+            "header": "12 Weeks Training",
+            "description": [
+                "Business simulator about capital multiplication, realistic analogue of Cash Flow."
+            ],
+            "imageBG": "Extra/Images/GroupsMini/12weeks.png"
+        },
+        "support": {
+            "header": "Support Group",
+            "description": [
+                "Support and assistance for women living abroad by force"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/Support.png"
+        },
+        "financialMaraphone": {
+            "header": "Financial Marathon",
+            "description": [
+                "Allow yourself to receive more, dream more, and raise the bar of opportunities"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/Financial.png"
+        },
+        "humanUnderstanding": {
+            "header": "Human Understanding Course",
+            "description": [
+                "Learn to better understand yourself and others, as well as to distinguish lies"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/HumanUnderstanding.png"
+        }
+    },
+    "phraseImage": "Extra/Images/review.png"
+}

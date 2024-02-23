@@ -1,0 +1,61 @@
+{
+  "name": "My Subpersonalities",
+  "shortDescription": "This game is about your life, about when your request appeared in your life and when it arose earlier, giving you the opportunity to solve your request. This game is about your helpers who accompanied your life, who in one way or another influenced it, giving you lessons and assistance. This is a deep, transformational game, after which changes will begin in your life and in your request. Author - Valentina Artamonova.",
+  "image": "/Extra/Images/Games/MySubpersonalities.png",
+  "price": {
+    "group": "Group game: €40",
+    "individual": "Individual game: €80"
+  },
+  "duration": {
+    "group": "Group: 4-5 hours",
+    "individual": "Individual: 2 hours"
+  },
+  "stats": {
+    "type": "deep transformational",
+    "duration": {
+      "group": "4-5 hours",
+      "individual": "2 hours"
+    },
+    "players": {
+      "min": "1 person",
+      "max": "6 people"
+    }
+  },
+  "fullDescription": [
+    "Various people are constantly present in our lives, and we play certain roles towards them. Sometimes they are pleasant to us, and sometimes not, but the choice is often not in our power. If we find ourselves in a conflict situation with our mother and husband, we immediately play two roles, two subpersonalities: 'child/daughter' and 'wife'. And we need to learn to regulate these subpersonalities within ourselves so that we can comfortably live with all the people in our lives.",
+    "We will go through some points of your life to uncover your solution. You will receive various hints, see your negative attitudes, which you will immediately work through and release.",
+    "Each step is about the chance to leave the system from which you have already grown and where it continues to hold you back, preventing you from growing and developing.",
+    "The game will help solve the request and get answers during the game itself. You will see where and what has been stopping you and what can be done during the game to change the situation. You will also plan actions that need to be taken after the game to further improve the situation."
+  ],
+  "masterAvailable": true,
+
+  "masterInfo": {
+    "shortDescription" : "Transformational game for solving personal requests and conflicts.",
+    "masterNote" : "Only a psychologist can be a facilitator!",
+    "fullDescription": [
+      "The game will traverse your entire life, bringing up the most relevant moments to solve your request. You will gain a clear understanding of how to overcome the current situation and what gave you strength before and what will help now.",
+      "What is the game about?",
+      "Every person is a whole Universe, and in this Universe, different subpersonalities live. At the same moment, we can be a daughter, a wife, a mother, a granddaughter, or for men a son, a husband, a father, a grandson, etc.",
+      "There are as many of these subpersonalities as there are different roles we play. And when they live in harmony, everything is fine. But often these subpersonalities conflict within us, and sometimes one of them does not help us in life at all.",
+      "In the game, we will see who helps us and who teaches us in life, how our experience reflects on the request, how all this can be transformed into positive, what can be changed to solve the request.",
+      "The game is about the past and the present, but sometimes it even throws us into the future, showing those aspects of the request that can be changed now."
+    ],
+    "price": "Cost of the game: €400",
+    "priceInclude": [
+      "Permanent link to access the game on the Tabletopia platform.",
+      "Game rules.",
+      "Blank.",
+      "Training (3 games: 2 as a participant, 1 as a facilitator, to understand all the nuances).",
+      "10% discount on other games.",
+      "10% discount if your friends buy the game, with a discount for each of their purchases."
+    ],
+    "demoInfo": [
+      "Only a psychologist can be a facilitator!",
+      "The game is available in Ukrainian and Russian.",
+      "All discounts are cumulative.",
+      "30% discount for Ukrainians.",
+      "Possible payment in 3 installments over 3 months."
+    ],
+    "author": "Valentina Artamonova"
+  }
+}

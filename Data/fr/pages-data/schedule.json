@@ -1,0 +1,34 @@
+{
+    "pageName": "Calendrier des jeux",
+    "title": "Calendrier",
+    "type": {
+        "individual": {
+            "title": "Jeu individuel",
+            "description": "À votre convenance"
+        },
+        "yourGroup": {
+            "title": "Votre groupe",
+            "description": "Conditions spéciales"
+        }
+    },
+    "weekDays": {
+        "first": "Ven",
+        "second": "Sam",
+        "third": "Dim"
+    },
+    "weeks": {
+        "first": "1ère semaine du mois",
+        "second": "2ème semaine du mois",
+        "third": "3ème semaine du mois"
+    },
+    "games": {
+        "g1": "Satori",
+        "g2": "Courses de rats 3",
+        "g3": "Mes ressources",
+        "g4": "Mes sous-personnalités",
+        "g5": "Courses de rats 2",
+        "g6": "Lila Chakra"
+    },
+    "joinButton": "S'inscrire",
+    "detailsButton": "Détails"
+}

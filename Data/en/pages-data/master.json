@@ -1,0 +1,16 @@
+{
+    "pageName": "Game Master Search",
+    "authorText": "Game Author: ",
+    "findMasterText": "The game is looking for game masters! Could it be YOU?",
+    "demoJoin": "Sign up for a demo version (30min)",
+    "tabletopiaInfo": "The game is available on the Tabletopia platform. You can play or host it online.",
+    "additionalInfo": [
+        "The training consists of 3 games, in which you participate in 2 games as a player, and in 1 game as a game master while Valentina participates as a player.",
+        "The game kit includes rules and a blank template.",
+        "Optionally, you can purchase a printed (physical) version of the game. The cost of the printed game is not included in the total price and depends on your country of residence."
+    ],
+    "infoBold": "Before hosting the game, it is necessary to undergo training.",
+    "priceInclude": "The price of the game includes 👇",
+    "freeDemo": "Free Demo",
+    "joinButton": "Sign Up"
+}

@@ -1,14 +1,14 @@
 {
-    "footerText": "© 2024 Valentyna Artamonova. All rights reserved.",
-    "socialText": "Свяжитесь со мной в...",
+    "footerText": "© 2024 Валентина Артамонова. Всі права захищені.",
+    "socialText": "Зв'яжіться зі мною в...",
     "links": [
         { "href": "https://t.me/Valentyna_Art", "title": "Телеграм", "icon": "/Extra/Icons/telegram.png" },
-        { "href": "https://www.instagram.com/art.valentina.a?igsh=YXA4NjdrdHNpNnV2", "title": "Инстаграм", "icon": "/Extra/Icons/instagram.png" },
+        { "href": "https://www.instagram.com/art.valentina.a?igsh=YXA4NjdrdHNpNnV2", "title": "Інстаграм", "icon": "/Extra/Icons/instagram.png" },
         { "href": "https://www.facebook.com/art.valentina.a", "title": "Фейсбук", "icon": "/Extra/Icons/facebook.png" }
     ],
     "joinSocial": [
         { "href": "https://t.me/Valentyna_Art", "title": "Телеграм", "icon": "/Extra/Icons/telegram.png" },
-        { "href": "https://www.instagram.com/art.valentina.a?igsh=YXA4NjdrdHNpNnV2", "title": "Инстаграм", "icon": "/Extra/Icons/instagram.png" },
+        { "href": "https://www.instagram.com/art.valentina.a?igsh=YXA4NjdrdHNpNnV2", "title": "Інстаграм", "icon": "/Extra/Icons/instagram.png" },
         { "href": "https://www.facebook.com/art.valentina.a", "title": "Фейсбук", "icon": "/Extra/Icons/facebook.png" },
         { "href": "https://api.whatsapp.com/send?phone=380504438897", "title": "Ватсап", "icon": "/Extra/Icons/whatsapp.png" }
     ]

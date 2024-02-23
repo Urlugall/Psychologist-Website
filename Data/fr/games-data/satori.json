@@ -1,0 +1,37 @@
+{
+  "name": "Satori",
+  "shortDescription": "Ce jeu est basé sur le processus de pardon radical en 5 étapes, à l'issue duquel le joueur pourra avoir une vision claire de la cause de ce qui s'est passé, pardonner vraiment l'« offenseur », libérer la douleur, la colère, le ressentiment et d'autres sentiments qui le tourmentent et lui volent sa joie, ainsi que voir quelles fausses croyances se sont formées dans sa conscience et les laisser partir. Ce jeu vous aidera à décharger le lourd fardeau des émotions négatives de vos épaules et à faire place au bonheur et à la joie.",
+  "image": "/Extra/Images/Games/Satori.png",
+  "price": {
+    "group": "Jeu en groupe : 35 €",
+    "individual": "Jeu individuel : 60 €"
+  },
+  "duration": {
+    "group": "Groupe : 2-4 heures",
+    "individual": "Individuel : 1,5 heures"
+  },
+  "stats": {
+    "type": "transformation profonde",
+    "duration": {
+      "group": "2-4 heures",
+      "individual": "1,5 heures"
+    },
+    "players": {
+      "min": "1 personne",
+      "max": "6 personnes"
+    }
+  },
+  "fullDescription": [
+    "Ce jeu est basé sur le processus de pardon radical en 5 étapes, à l'issue duquel le joueur pourra avoir une vision claire de la cause de ce qui s'est passé, pardonner vraiment l'« offenseur », libérer la douleur, la colère, le ressentiment et d'autres sentiments qui le tourmentent et lui volent sa joie, ainsi que voir quelles fausses croyances se sont formées dans sa conscience et les laisser partir.",
+    "Le jeu commence dans le pays de la Victime, où une situation à traiter est choisie. Le joueur tire une carte qui le dirige vers un sujet lié de quelque manière que ce soit aux événements de sa vie, sur la base duquel son histoire est rappelée et exprimée.",
+    "Au cours du jeu, vous passez par trois portes.",
+    "Première porte : Conscience.",
+    "Le joueur détermine ce qui se cache derrière cet événement : quelles croyances et quels blocages dans le corps il a générés.",
+    "Deuxième porte : Changement.",
+    "Le joueur crée une nouvelle histoire sur l'événement passé, ce qui aide à regarder la situation sous un angle différent.",
+    "Troisième porte : Acceptation totale.",
+    "L'auteur appelle également cette étape 'Abandon', c'est-à-dire la possibilité de se rendre pleinement à ce qui s'est passé et de l'accepter inconditionnellement, se libérant enfin du fardeau de la douleur et du ressentiment. À ce stade, le joueur se libère de ses croyances négatives qui ont donné naissance aux histoires passées et se rend à la puissance de la Puissance Supérieure.",
+    "La fin du jeu est d'atteindre le niveau de Satori ('Éveil'). Ici, le joueur peut regarder son histoire d'un point de vue spirituel, en choisissant une nouvelle réalité heureuse, joyeuse et libre."
+  ],
+  "masterAvailable": false
+}
