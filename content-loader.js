@@ -1,8 +1,3 @@
-function getStorageUrl(url) {
-    let basePath = 'https://storage.googleapis.com/www.illia-bodrov.com';
-    return basePath + url;
-}
-
 function getGameNameFromUrl() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
