@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initJoinButtons();
     console.log('Текущий язык:', getCurrentLanguage());
 
-    if (!window.location.pathname.endsWith('schedule.html')) {
+    if (!window.location.pathname.endsWith('schedule.html' || 'schedule')) {
         initHomeButton();
         initLanguageSelector();
         addSocialSidebar();
