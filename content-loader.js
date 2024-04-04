@@ -5,7 +5,7 @@ function getGameNameFromUrl() {
 }
 
 const getCurrentLanguage = () => {
-    return localStorage.getItem('selectedLanguage') || 'en';
+    return localStorage.getItem('selectedLanguage').toLowerCase() || 'en';
 };
 
 function getGroupFromUrl() {
@@ -80,20 +80,20 @@ async function loadContentData() {
         const filename = isRootPath ? 'index' : pathname.split('/').pop().split('.')[0];
 
         // Загружаем и обновляем данные страницы
-        const pageData = await fetchData(`/Data/${getCurrentLanguage()}/pages-data/${filename}.json`);
+        const pageData = await fetchData(`/Data/${getCurrentLanguage()}/pages-data/${filename.toLowerCase()}.json`);
         updateData(pageData);
 
         // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
         const gameName = getGameNameFromUrl();
         if (gameName) {
-            const gameData = await fetchData(`/Data/${getCurrentLanguage()}/games-data/${gameName}.json`);
+            const gameData = await fetchData(`/Data/${getCurrentLanguage()}/games-data/${gameName.toLowerCase()}.json`);
             updateData(gameData);
         }
 
         // Проверяем наличие параметра группы в URL и загружаем соответствующие данные
         const groupName = getGroupFromUrl();
         if (groupName) {
-            const groupData = await fetchData(`/Data/${getCurrentLanguage()}/groups-data/${groupName}.json`);
+            const groupData = await fetchData(`/Data/${getCurrentLanguage()}/groups-data/${groupName.toLowerCase()}.json`);
             updateData(groupData);
         }
     } catch (error) {
