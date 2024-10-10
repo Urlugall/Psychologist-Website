@@ -58,9 +58,9 @@ function setupNavigationScroll() {
 
 
 const initializeFlip = () => {
-    document.querySelectorAll('.service').forEach(service => {
-        service.querySelector('.info-button').addEventListener('click', () => service.classList.add('flip'));
-        service.addEventListener('mouseleave', () => service.classList.remove('flip'));
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.querySelector('.info-button').addEventListener('click', () => card.classList.add('flip'));
+        card.addEventListener('mouseleave', () => card.classList.remove('flip'));
     });
 };
 

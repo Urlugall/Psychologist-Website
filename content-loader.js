@@ -221,6 +221,15 @@ async function addSocialSidebar() {
         #social-sidebar a img {
             width: 30px;
         }
+
+        @media only screen and (max-width: 600px) {
+            #social-sidebar {
+                padding: 15px;
+            }
+            #social-sidebar a img {
+                width: 25px;
+            }
+        }
         `;
 
         // Добавляем стили на страницу
@@ -236,31 +245,109 @@ async function addSocialSidebar() {
 /* -- Contact Panel -- */
 
 function createContactPanel() {
+    // Добавление адаптивных стилей в <head>
+    const style = document.createElement('style');
+    style.textContent = `
+        /* Основные стили для модального окна */
+        .contact-modal {
+            display: none;
+            position: fixed;
+            z-index: 10;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+        .contact-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 15px;
+            transition: all 0.5s ease-in-out;
+            cursor: default;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .social-icons img {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s;
+        }
+        .social-icons img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Адаптивные стили для экранов до 600px */
+        @media (max-width: 600px) {
+            .contact-modal-content {
+                width: 90%;
+                margin: 30% auto;
+                padding: 15px;
+            }
+            .contact-modal-content h1 {
+                font-size: 1.5em;
+            }
+            .social-icons img {
+                width: 30px;
+                height: 30px;
+                margin: 5px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Создание модального окна
     const modal = document.createElement('div');
-    modal.style.cssText = 'display:none;position:fixed;z-index:10;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.4);cursor:pointer;';
+    modal.className = 'contact-modal';
 
     // Загрузка данных о социальных сетях из внешнего файла
     fetch(`/Data/${getCurrentLanguage()}/assets.json`)
         .then(response => response.json())
         .then(data => {
-            let socialIconsHTML = data.joinSocial.map(social =>
-                `<a href="${social.href}" title="${social.title}" target="_blank" style="margin:0 10px;text-decoration:none;">
-                    <img src="${social.icon}" alt="${social.title}" style="width:50px;height:50px;">
+            const socialIconsHTML = data.joinSocial.map(social =>
+                `<a href="${social.href}" title="${social.title}" target="_blank">
+                    <img src="${social.icon}" alt="${social.title}">
                 </a>`
             ).join('');
 
             modal.innerHTML = `
-              <div style="background-color:#fefefe;margin:15% auto;padding:20px;border:1px solid #888;width:60%;text-align:center;box-shadow:0 4px 8px rgba(0,0,0,0.2);border-radius:15px;transition:all 0.5s ease-in-out;cursor:default;">
-                <h1>${data.socialText}</h1>
-                <div style="cursor:pointer;margin-bottom:20px;">${socialIconsHTML}</div>
-              </div>`;
+                <div class="contact-modal-content">
+                    <h1>${data.socialText}</h1>
+                    <div class="social-icons">${socialIconsHTML}</div>
+                </div>
+            `;
 
             document.body.appendChild(modal);
+        })
+        .catch(error => {
+            console.error('Ошибка загрузки данных:', error);
         });
 
+    // Функция открытия модального окна
     function openModal() {
         modal.style.display = "block";
-        setTimeout(() => modal.style.opacity = "1", 10);
+        // Используем requestAnimationFrame для плавности
+        requestAnimationFrame(() => {
+            modal.style.opacity = "1";
+        });
     }
 
     modal.addEventListener('click', function (event) {
@@ -270,11 +357,9 @@ function createContactPanel() {
         }
     });
 
-    modal.style.transition = "opacity 0.5s ease";
-    modal.style.opacity = "0";
-
     return openModal;
 }
+
 
 
 function initJoinButtons() {
@@ -294,10 +379,41 @@ function initJoinButtons() {
 
 function initHomeButton() {
     const link = document.createElement('a');
-    link.href = `/index.html`;
-    link.innerHTML = '<img src="/favicon.ico" alt="Main Page" style="width:70px; height:auto; border-radius:10px;">';
-    link.style.cssText = 'position:absolute; top:30px; left:30px; z-index:10;';
+    link.href = '/index.html';
+    link.classList.add('home-button');
+
+    const img = document.createElement('img');
+    img.src = '/favicon.ico';
+    img.alt = 'Main Page';
+    img.classList.add('home-button-img');
+
+    link.appendChild(img);
     document.body.appendChild(link);
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .home-button {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 10;
+        }
+        .home-button-img {
+            width: 70px;
+            height: auto;
+            border-radius: 10px;
+        }
+        @media only screen and (max-width: 768px) {
+            .home-button {
+                top: 10px;
+                left: 10px;
+            }
+            .home-button-img {
+                width: 50px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 }
 
 
@@ -307,35 +423,94 @@ function initHomeButton() {
 const initLanguageSelector = () => {
     const languages = { en: 'English', ru: 'Русский', uk: 'Українська', fr: 'Français' };
     const defaultLang = 'en';
-    const browserLang = navigator.language.slice(0, 2); // Получаем двухбуквенный код языка браузера
+    const browserLang = navigator.language.slice(0, 2);
     const langCode = languages.hasOwnProperty(browserLang) ? browserLang : defaultLang;
     const selectedLangCode = localStorage.getItem('selectedLanguage') || langCode;
 
     createLanguageSelector(languages, selectedLangCode);
 };
 
-// Создание селектора языков
 const createLanguageSelector = (languages, currentLangCode) => {
-    const selectorHTML = `<div id="language-selector" style="position: absolute; top: 30px; right: 30px; background-color: #ffffff; padding: 10px; cursor: pointer; z-index: 5; border-radius: 9px; text-align: center;">${languages[currentLangCode]}</div>`;
+    const selectorHTML = `
+        <div id="language-selector" class="language-selector">
+            ${languages[currentLangCode]}
+            <ul id="language-list" class="language-list">
+                ${Object.entries(languages).filter(([code]) => code !== currentLangCode).map(([code, name]) => `
+                    <li class="language-item" data-lang="${code}">${name}</li>
+                `).join('')}
+            </ul>
+        </div>
+    `;
     document.body.insertAdjacentHTML('beforeend', selectorHTML);
 
     const langSelector = document.getElementById('language-selector');
-    const langList = document.createElement('ul');
-    langList.id = 'language-list';
-    langList.style.cssText = 'list-style-type: none; padding: 0; margin: 0; display: none;';
-    langSelector.appendChild(langList);
-
-    // Заполнение списка доступными языками
-    Object.entries(languages).forEach(([code, name]) => {
-        if (code !== currentLangCode) {
-            langList.insertAdjacentHTML('beforeend', `<li data-lang="${code}" style="padding: 2px 5px; cursor: pointer; border-radius: 5px; text-align: center;">${name}</li>`);
-        }
-    });
+    const langList = document.getElementById('language-list');
 
     setupEventListeners(langSelector, langList);
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+        .language-selector {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background-color: #ffffff;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 5;
+            border-radius: 9px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: padding 0.3s ease, top 0.3s ease, right 0.3s ease;
+        }
+
+        .language-list {
+            list-style-type: none;
+            padding: 5px 0;
+            margin: 5px 0 0 0;
+            display: none;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-item {
+            padding: 8px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .language-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .language-selector.active .language-list {
+            display: block;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .language-selector {
+                top: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .language-list {
+                padding: 4px 0;
+            }
+
+            .language-item {
+                padding: 6px 8px;
+                font-size: 14px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 };
 
-// Настройка обработчиков событий
 const setupEventListeners = (langSelector, langList) => {
     document.head.insertAdjacentHTML('beforeend', `<style>#language-list li:hover { background-color: #46992d; color: #ffffff; }</style>`);
 
@@ -366,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadContentData();
     addFooterFromJSON();
     initJoinButtons();
-    console.log('Текущий язык:', getCurrentLanguage());
+    console.log('Current Language:', getCurrentLanguage());
 
     if (!window.location.pathname.endsWith('schedule.html') && !window.location.pathname.toLowerCase().endsWith('schedule')) {
         initHomeButton();

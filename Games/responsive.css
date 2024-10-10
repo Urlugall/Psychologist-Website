@@ -1,0 +1,95 @@
+@media (max-width: 768px) {
+    main {
+      padding: 0;
+    }
+
+    .game-header {
+        background-size: 150%;
+    }
+  
+    .text-box {
+      margin-top: 70px;
+      margin-right: 0;
+      margin-left: 0;
+      padding: 1px 5vh;
+    }
+  
+    .text-box h1 {
+      font-size: x-large;
+      margin-top: 2vh;
+    }
+
+    .button-container {
+      grid-template-columns: 1fr;
+      padding: 10px;
+    }
+  
+    button {
+      height: 40px;
+      padding: 10px 0;
+    }
+  
+    .green-button, .white-button {
+      grid-column: 1;
+    }
+  
+    .details {
+      padding: 10px 3ch;
+    }
+  
+    .info-block {
+      padding: 0 10px;
+    }
+  
+    .grid-container {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      padding: 10px;
+    }
+  
+    .grid-item img {
+      max-width: 6em;
+    }
+  
+    .row-container {
+      flex-direction: column;
+    }
+  
+    .quest-block, .alert-box {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .quest-block button, .details-button {
+      padding: 8px 16px;
+    }
+  
+    .quest-text {
+      font-size: large;
+    }
+  
+    .full-description {
+      padding: 0 10vh;
+    }
+  
+    #centred-container {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .text-section, .buttons-section {
+      max-width: 100%;
+      margin-right: 0;
+    }
+  
+    .buttons-section .green-button {
+      padding: 10px 25px;
+    }
+  
+    .title-icon {
+      display: none;
+    }
+  
+    .title-text {
+      font-size:medium;
+    }
+  }
