@@ -14,13 +14,15 @@
         <div class="game-header" id="image-img">
             <div class="text-box">
                 <div class="title-text">
-                    <img src="/Extra/Icons/vine-l.png" class="title-icon"><h1 id="name"></h1><img src="/Extra/Icons/vine-r.png" class="title-icon">
+                    <img src="/Extra/Icons/vine-l.png" class="title-icon">
+                    <h1 id="name"></h1>
+                    <img src="/Extra/Icons/vine-r.png" class="title-icon">
                 </div>
                 <p id="shortDescription"></p>
                 <div class="button-container">
                     <button class="green-button" id="joinButton"></button>
                     <button class="white-button" id="price-details"></button>
-                    <button class="white-button" id="sheduleButton" onclick=openSchedule()></button>
+                    <button class="white-button" id="sheduleButton" onclick="openSchedule()"></button>
                 </div>
 
                 <div id="details" class="details">
@@ -65,14 +67,16 @@
                 </div>
             </div>
 
+            <div class="carousel-indicators" id="carouselIndicators"></div>
+
             <div class="row-container">
                 <div class="alert-box" id="master-alert">
                     <h2 id="masterText"></h2>
-                    <button class="details-button" id="detailsButton" onclick=openMasterPage()></button>
+                    <button class="details-button" id="detailsButton" onclick="openMasterPage()"></button>
                 </div>
                 <div class="quest-block">
                     <span class="quest-text" id="questText"></span>
-                    <button class="white-button" id="questButton" onclick=openQuestPage()></button>
+                    <button class="white-button" id="questButton" onclick="openQuestPage()"></button>
                 </div>
             </div>
 
@@ -85,7 +89,7 @@
                 </div>
                 <div class="buttons-section">
                     <button class="green-button" id="joinButton"></button>
-                    <button class="white-button" id="sheduleButton" onclick=openSchedule()></button>
+                    <button class="white-button" id="sheduleButton" onclick="openSchedule()"></button>
                 </div>
             </section>
         </div>

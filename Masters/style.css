@@ -108,7 +108,7 @@ button {
   background-color: var(--button-bg-color);
   color: white;
   text-align: center;
-  padding: 15px 20vh; /* Вертикальный отступ для кнопок */
+  padding: 15px 20vh;
 }
 
 .button-container {
@@ -143,13 +143,13 @@ button {
 }
 
 .price-content ul {
-  list-style: none; /* Убираем стандартные маркеры списка */
-  padding-left: 0; /* Убираем отступ слева */
+  list-style: none;
+  padding-left: 0;
 }
 
 .price-content li {
-  padding-left: 10px; /* Добавляем отступ слева, чтобы текст не налегал на маркер */
-  margin-bottom: 10px; /* Отступ между элементами списка */
+  padding-left: 10px;
+  margin-bottom: 10px;
 }
 
 .price-content li::before {
@@ -162,8 +162,8 @@ button {
 
 .join-container {
   display: flex;
-  align-items: center; /* Центрирование содержимого по вертикали */
-  justify-content: space-between; /* Размещение элементов на противоположных концах контейнера */
+  align-items: center;
+  justify-content: space-between;
   gap: 15px;
   margin: 5vh 0;
 }
@@ -175,8 +175,8 @@ button {
 
 .join-button-side {
   display: flex;
-  justify-content: center; /* Центрирование кнопки по горизонтали */
-  align-items: center; /* Центрирование кнопки по вертикали */
+  justify-content: center;
+  align-items: center;
 }
 
 /* Tabletopia информация */
@@ -205,131 +205,4 @@ button {
 
 .price-content button {
   padding: 15px 10vh;
-}
-
-
-/* Медиа запросы для мобильных устройств */
-@media (max-width: 768px) {
-  /* Сокращаем отступы и размеры текста */
-  .text-box {
-    margin-top: 20px;
-    margin-right: 10px;
-    margin-left: 10px;
-    padding: 1px 10px;
-  }
-
-  .text-box h1 {
-    font-size: 4ch;
-  }
-
-  .title-text {
-    font-size: medium;
-  }
-
-  /* Меняем расположение кнопок и уменьшаем их размер */
-  .green-button {
-    padding: 15px 30px; /* Уменьшенный отступ для мобильных */
-  }
-
-  .button-container {
-    grid-template-columns: 1fr; /* Столбец занимает всю ширину */
-    padding: 20px;
-  }
-
-  /* Адаптация полного описания */
-  .full-description {
-    padding: 0 20px;
-  }
-
-  /* Адаптация дополнительной информации */
-  .price-content {
-    margin: 20px;
-    padding: 10px;
-  }
-
-  .price-content ul {
-    padding-left: 20px;
-  }
-
-  .price-content li::before {
-    padding-right: 5px;
-  }
-
-  /* Адаптация контейнера "Записаться" */
-  .join-container {
-    flex-direction: column;
-    align-items: stretch; /* Элементы растягиваются на всю ширину */
-  }
-
-  .join-button-side {
-    justify-content: center;
-  }
-
-  /* Адаптация информации Tabletopia */
-  .tabletopia-container {
-    font-size: medium;
-  }
-
-  /* Адаптация дополнительной информации */
-  .additional-info {
-    padding: 20px;
-  }
-
-  .additional-info p {
-    font-size: medium;
-  }
-
-  .price-content button {
-    padding: 15px;
-  }
-
-  .title-icon {
-    height: .5em;
-  }
-}
-
-/* Медиа запросы для очень маленьких экранов, например, для телефонов в портретной ориентации */
-@media (max-width: 480px) {
-  .text-box {
-    margin-top: 10px;
-    margin-right: 5px;
-    margin-left: 5px;
-    padding: 1px 5px;
-  }
-
-  .text-box h1 {
-    font-size: 3.5ch;
-  }
-
-  .title-text {
-    font-size: small;
-  }
-
-  /* При необходимости уменьшаем размер кнопок ещё больше */
-  .green-button {
-    padding: 10px 20px;
-  }
-
-  /* Уменьшаем отступы вокруг дополнительной информации */
-  .price-content {
-    margin: 10px;
-    padding: 10px;
-  }
-
-  .price-content ul {
-    padding-left: 15px;
-  }
-
-  .price-content li::before {
-    padding-right: 3px;
-  }
-
-  /* Уменьшаем размеры текста для элементов с дополнительной информацией */
-  .additional-info p, .tabletopia-container {
-    font-size: small;
-  }
-
-  .price-content button {
-    padding: 10px;
-  }
 }

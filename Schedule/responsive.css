@@ -1,0 +1,129 @@
+.mobile-version {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    .main-block {
+        opacity: 1;
+    }
+
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        overflow: auto;
+        padding: 20px 0;
+      }
+    
+    .desktop-version {
+        display: none;
+    }
+
+    .mobile-version {
+        display: block;
+        padding: 10px;
+        background-color: var(--main-bg-color);
+    }
+
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .mobile-back-button {
+        background: none;
+        border: none;
+        font-size: 1.5em;
+        cursor: pointer;
+        color: var(--button-bg-color);
+        margin-right: 10px;
+    }
+
+    .mobile-title {
+        font-size: 1.8em;
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    .mobile-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .info-card {
+        background-color: var(--transparent-white);
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: var(--light-shadow);
+        flex: 1 1 calc(50% - 10px);
+        margin: 5px;
+        text-align: center;
+    }
+
+    .info-card h3 {
+        margin-bottom: 5px;
+        font-size: 1.2em;
+        color: var(--button-bg-color);
+    }
+
+    .info-card p {
+        margin: 0;
+        font-size: 1em;
+        color: var(--text-color);
+    }
+
+    .mobile-schedule {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .schedule-section {
+        background-color: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: var(--light-shadow);
+    }
+
+    .schedule-header {
+        margin-bottom: 15px;
+        font-size: 1.3em;
+        color: var(--button-bg-color);
+        text-align: center;
+    }
+
+    .schedule-item {
+        margin-bottom: 15px;
+    }
+
+    .schedule-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .schedule-item p {
+        margin: 0 0 10px 0;
+        font-size: 1em;
+        color: var(--text-color);
+        display: inline;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .button-group button {
+        flex: 1;
+        padding: 10px;
+        font-size: 1em;
+    }
+
+    .grid-item-m {
+        display: inline;
+        font-weight: bold;
+    }
+}

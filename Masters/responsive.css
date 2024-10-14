@@ -1,0 +1,87 @@
+@media (max-width: 768px) {
+    main {
+        padding: 0;
+    }
+
+    .text-box {
+        padding: 0 30px;
+        margin: 70px 0 0 0;
+    }
+
+    .text-box h1 {
+        font-size: x-large;
+    }
+
+    .title-text {
+        font-size: medium;
+    }
+
+    .green-button {
+        padding: 15px;
+        width: 100%;
+    }
+
+    .button-container {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+
+    .full-description {
+        padding: 0 30px;
+    }
+
+    .price-content {
+        margin: 0;
+        padding: 0 30px;
+        box-shadow: none;
+    }
+
+    .price-content ul {
+        padding-left: 0;
+    }
+    .price-content ul li {
+        padding-left: 0;
+    }
+
+    .price-content li::before {
+        padding-right: 5px;
+    }
+
+    .join-container {
+        margin-top: 0;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .join-button-side {
+        justify-content: center;
+    }
+
+    .tabletopia-container {
+        font-size: medium;
+    }
+
+    .additional-info {
+        padding: 30px;
+    }
+
+    .additional-info p {
+        font-size: medium;
+    }
+
+    .price-content button {
+        padding: 15px;
+    }
+
+    .title-icon {
+        display: none;
+    }
+
+    .hoverable {
+        transition: none;
+    }
+
+    .hoverable:hover {
+        transform: none;
+    }
+}

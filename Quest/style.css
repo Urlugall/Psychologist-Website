@@ -108,7 +108,7 @@ button {
   background-color: var(--button-bg-color);
   color: white;
   text-align: center;
-  padding: 15px 20vh; /* Вертикальный отступ для кнопок */
+  padding: 15px 20vh;
 }
 
 .button-container {
@@ -143,13 +143,13 @@ button {
 }
 
 .price-content ul {
-  list-style: none; /* Убираем стандартные маркеры списка */
-  padding-left: 0; /* Убираем отступ слева */
+  list-style: none;
+  padding-left: 0;
 }
 
 .price-content li {
-  padding-left: 10px; /* Добавляем отступ слева, чтобы текст не налегал на маркер */
-  margin-bottom: 10px; /* Отступ между элементами списка */
+  padding-left: 10px;
+  margin-bottom: 10px;
 }
 
 .price-content li::before {
@@ -162,8 +162,8 @@ button {
 
 .join-container {
   display: flex;
-  align-items: center; /* Центрирование содержимого по вертикали */
-  justify-content: space-between; /* Размещение элементов на противоположных концах контейнера */
+  align-items: center;
+  justify-content: space-between;
   gap: 15px;
   margin: 5vh 0;
 }
@@ -175,8 +175,8 @@ button {
 
 .join-button-side {
   display: flex;
-  justify-content: center; /* Центрирование кнопки по горизонтали */
-  align-items: center; /* Центрирование кнопки по вертикали */
+  justify-content: center;
+  align-items: center;
 }
 
 /* Tabletopia информация */
@@ -240,95 +240,4 @@ button {
 
 .game h2 {
   margin-bottom: 5px;
-}
-
-@media (max-width: 768px) {
-  /* Сокращаем отступы для основного содержимого */
-  main {
-    padding: 10px;
-  }
-
-  /* Адаптируем размеры и отступы для блоков текста */
-  .text-box, .full-description, .price-content, .additional-info {
-    margin-right: 5%;
-    margin-left: 5%;
-    padding: 1px 5%;
-  }
-
-  .text-box h1, .title-text h1, .title-text h2 {
-    font-size: 4ch; /* Уменьшаем размер шрифта заголовка */
-  }
-
-  /* Адаптируем кнопки */
-  .green-button {
-    padding: 10px; /* Уменьшаем вертикальный отступ для кнопок */
-  }
-
-  .button-container {
-    padding: 10px;
-  }
-
-  /* Список цен */
-  .price-content li::before {
-    /* Уменьшаем размер маркеров списка */
-    font-size: 0.8em;
-  }
-
-  /* Адаптируем расположение элементов контейнера "Записаться" */
-  .join-container {
-    flex-direction: column;
-  }
-
-  /* Игры */
-  #gamesBlock {
-    grid-template-columns: 1fr; /* Становится одноколоночным */
-    padding: 0 10px;
-  }
-
-  .game {
-    margin-right: 0; /* Убираем маржин справа */
-    padding-right: 5%; /* Уменьшаем отступ справа */
-    padding-left: 5%; /* Увеличиваем отступ слева */
-  }
-
-  .title-icon {
-    height: .5em;
-  }
-
-  .title-text {
-    font-size: small;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Уменьшаем размер шрифта для текста и заголовков */
-  .text-box h1, .title-text h1, .title-text h2 {
-    font-size: 3.5ch;
-  }
-
-  /* Уменьшаем вертикальные отступы для кнопок еще больше */
-  .green-button {
-    padding: 8px; /* Еще меньше отступ для кнопок */
-  }
-
-  /* Меняем стиль отображения списка цен */
-  .price-content {
-    margin: 20px 10px;
-    padding: 10px;
-  }
-
-  .price-content li::before {
-    /* Уменьшаем размер маркеров списка еще больше */
-    font-size: 0.7em;
-  }
-
-  /* Уменьшаем отступы для дополнительной информации */
-  .additional-info {
-    padding: 10px;
-  }
-
-  /* Адаптируем размер кнопок */
-  .price-content button {
-    padding: 10px;
-  }
 }

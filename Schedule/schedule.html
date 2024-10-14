@@ -4,18 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageName"></title>
+    <title id="pageName">Schedule</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
 </head>
 
 <body>
     <main>
-        <div class="main-block">
+        <!-- Десктопная версия -->
+        <div class="main-block desktop-version">
             <div class="back-button hoverable">&#8592;</div>
             <div class="title-text">
-                <img src="/Extra/Icons/vine-l.png" class="title-icon">
-                <h1 id="title"></h1>
-                <img src="/Extra/Icons/vine-r.png" class="title-icon">
+                <img src="/Extra/Icons/vine-l.png" class="title-icon" alt="Left Icon">
+                <h1 id="title">Schedule</h1>
+                <img src="/Extra/Icons/vine-r.png" class="title-icon" alt="Right Icon">
             </div>
             <div class="center-block">
                 <div class="left-item">
@@ -83,7 +85,87 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Мобильная версия -->
+        <div class="main-block mobile-version">
+            <div class="mobile-header">
+                <button class="mobile-back-button">&#8592;</button>
+                <h1 id="title">Schedule</h1>
+            </div>
+
+            <div class="mobile-info">
+                <div class="info-card">
+                    <h3 id="type-individual-title"></h3>
+                    <p id="type-individual-description"></p>
+                </div>
+                <div class="info-card">
+                    <h3 id="type-yourGroup-title"></h3>
+                    <p id="type-yourGroup-description"></p>
+                </div>
+            </div>
+
+            <div class="mobile-schedule">
+                <div class="schedule-section">
+                    <h3 class="schedule-header" id="weeks-first"></h3>
+                    <div class="schedule-item">
+                        <div class="grid-item-m" id="weekDays-first"></div>
+                        <p id="games-g1"></p>
+                        <div class="button-group">
+                            <button class="green-button" id="joinButton"></button>
+                            <button class="white-button" id="detailsButton" onclick="openGameInfo('satori')"></button>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="grid-item-m" id="weekDays-third"></div>
+                        <p id="games-g2"></p>
+                        <div class="button-group">
+                            <button class="green-button" id="joinButton"></button>
+                            <button class="white-button" id="detailsButton" onclick="openGameInfo('ratRaces3')"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-section">
+                    <h3 class="schedule-header" id="weeks-second"></h3>
+                    <div class="schedule-item">
+                        <div class="grid-item-m" id="weekDays-first"></div>
+                        <p id="games-g3"></p>
+                        <div class="button-group">
+                            <button class="green-button" id="joinButton"></button>
+                            <button class="white-button" id="detailsButton" onclick="openGameInfo('myResource')"></button>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="grid-item-m" id="weekDays-third"></div>
+                        <p id="games-g4"></p>
+                        <div class="button-group">
+                            <button class="green-button" id="joinButton"></button>
+                            <button class="white-button" id="detailsButton" onclick="openGameInfo('mySubpersonalities')"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="schedule-section">
+                    <h3 class="schedule-header" id="weeks-third"></h3>
+                    <div class="schedule-item">
+                        <div class="grid-item-m" id="weekDays-first"></div>
+                        <p id="games-g5"></p>
+                        <div class="button-group">
+                            <button class="green-button" id="joinButton"></button>
+                            <button class="white-button" id="detailsButton" onclick="openGameInfo('ratRaces2')"></button>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="grid-item-m" id="weekDays-third"></div>
+                        <p id="games-g6"></p>
+                        <div class="button-group">
+                            <button class="green-button" id="joinButton"></button>
+                            <button class="white-button" id="detailsButton" onclick="openGameInfo('lilaChakra')"></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

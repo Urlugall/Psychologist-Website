@@ -1,0 +1,64 @@
+@media (max-width: 768px) {
+    main {
+        padding: 0;
+    }
+
+    .full-description,
+    .price-content,
+    .additional-info {
+        margin-right: 5%;
+        margin-left: 5%;
+        padding: 1px 5%;
+    }
+
+    .text-box {
+        margin: 70px 0 0 0;
+        padding: 30px;
+    }
+
+    .text-box h1,
+    .title-text h1,
+    .title-text h2 {
+        font-size: 4ch;
+        margin-top: 20px;
+        padding: 0 10px;
+    }
+
+    .green-button {
+        padding: 10px;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .button-container {
+        padding: 10px;
+    }
+
+    .price-content li::before {
+        font-size: 0.8em;
+    }
+
+    .join-container {
+        flex-direction: column;
+    }
+
+    #gamesBlock {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+
+    .game {
+        margin-right: 0;
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
+    .title-icon {
+        display: none;
+    }
+
+    .title-text {
+        font-size: small;
+        margin-top: 0;
+    }
+}
