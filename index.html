@@ -17,6 +17,7 @@
                     <ul>
                         <li><a id="navigation-about"></a></li>
                         <li><a id="navigation-services"></a></li>
+                        <li><a id="navigation-products"></a></li>
                         <li><a id="navigation-games"></a></li>
                         <li><a id="navigation-groups"></a></li>
                     </ul>
@@ -28,6 +29,7 @@
                         <ul id="biography-array-li"></ul>
                         <div class="button-container">
                             <button id="servicesButton" class="services-button"></button>
+                            <button id="blogButton" class="services-button"></button>
                         </div>
                         <div id="aboutPsychologist-array-p"></div>
                     </div>
@@ -153,11 +155,30 @@
                 </div>
             </div>
 
+            <div class="title-text" id="section-products" fade="data-fade">
+                <img src="Extra/Icons/vine-l.png" class="title-icon">
+                <h2 id="productsText"></h2>
+                <img src="Extra/Icons/vine-r.png" class="title-icon">
+            </div>
+            <section id="games" fade="data-fade">
+                <a onclick="openGameInfo('kapi')" class="game" id="productsList-kapi-imageBG-img">
+                    <h2 id="productsList-kapi-header"></h2>
+                    <p id="productsList-kapi-description-array-div"></p>
+                </a>
+                <a onclick="openGameInfo('cards')" class="game" id="productsList-cards-imageBG-img">
+                    <h2 id="productsList-cards-header"></h2>
+                    <p id="productsList-cards-description-array-div"></p>
+                </a>
+                <a onclick="openGameInfo('games')" class="game" id="productsList-games-imageBG-img">
+                    <h2 id="productsList-games-header"></h2>
+                    <p id="productsList-games-description-array-div"></p>
+                </a>
+            </section>
+
             <div class="title-text" id="section-games" fade="data-fade">
                 <img src="Extra/Icons/vine-l.png" class="title-icon">
                 <h2 id="gamesText"></h2>
-                <img src="Extra/Icons/vine-r.png"
-                        class="title-icon">
+                <img src="Extra/Icons/vine-r.png" class="title-icon">
             </div>
             <section id="games" fade="data-fade">
                 <a onclick="openGameInfo('mySubpersonalities')" class="game" id="gamesList-mySubpersonalities-imageBG-img">

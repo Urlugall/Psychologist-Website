@@ -13,6 +13,59 @@ function getGroupFromUrl() {
     return urlParams.get('group');
 }
 
+/* -- Meta Tags Handling -- */
+
+function updateMetaTags(metaData) {
+    const head = document.head;
+
+    const metaTags = {
+        title: metaData.title,
+        description: metaData.description,
+        keywords: metaData.keywords,
+        "og:title": metaData["og:title"],
+        "og:description": metaData["og:description"],
+        "og:image": metaData["og:image"],
+        "og:url": metaData["og:url"],
+        "twitter:card": metaData["twitter:card"],
+        "twitter:title": metaData["twitter:title"],
+        "twitter:description": metaData["twitter:description"],
+        "twitter:image": metaData["twitter:image"]
+    };
+
+    if (metaTags.title) {
+        document.title = metaTags.title;
+    }
+
+    const setMetaTag = (name, content) => {
+        if (name === 'title') return;
+
+        let selector;
+        if (name.startsWith('og:') || name.startsWith('twitter:')) {
+            selector = `meta[property="${name}"]`;
+        } else {
+            selector = `meta[name="${name}"]`;
+        }
+
+        let element = head.querySelector(selector);
+        if (!element) {
+            element = document.createElement('meta');
+            if (name.startsWith('og:') || name.startsWith('twitter:')) {
+                element.setAttribute('property', name);
+            } else {
+                element.setAttribute('name', name);
+            }
+            head.appendChild(element);
+        }
+        element.setAttribute('content', content);
+    };
+
+    for (const [key, value] of Object.entries(metaTags)) {
+        if (value) {
+            setMetaTag(key, value);
+        }
+    }
+}
+
 /* -- Page Section -- */
 
 const dataCache = {
@@ -134,6 +187,11 @@ function updateImage(element, value) {
 }
 
 function updateData(data) {
+    // Обработка метаданных
+    if (data.meta) {
+        updateMetaTags(data.meta);
+    }
+    
     document.querySelectorAll('[id]').forEach(element => {
         // Проверяем, обработан ли элемент ранее
         if (element.getAttribute('data-processed') === 'true') {
@@ -378,38 +436,73 @@ function initJoinButtons() {
 /* -- Home Return -- */
 
 function initHomeButton() {
-    const link = document.createElement('a');
-    link.href = '/index.html';
-    link.classList.add('home-button');
+    const container = document.createElement('div');
+    container.className = 'home-button-container';
 
-    const img = document.createElement('img');
-    img.src = '/favicon.ico';
-    img.alt = 'Main Page';
-    img.classList.add('home-button-img');
+    const homeLink = document.createElement('a');
+    homeLink.href = '/index.html';
+    homeLink.className = 'home-button-link';
 
-    link.appendChild(img);
-    document.body.appendChild(link);
+    const homeImg = document.createElement('img');
+    homeImg.src = '/favicon.ico';
+    homeImg.alt = 'Main Page';
+    homeImg.className = 'home-button-img';
+
+    homeLink.appendChild(homeImg);
+    container.appendChild(homeLink);
+
+    const blogLink = document.createElement('a');
+    blogLink.href = '/blog.html';
+    blogLink.className = 'blog-panel';
+    blogLink.textContent = 'Блог';
+
+    container.appendChild(blogLink);
+    document.body.appendChild(container);
 
     const style = document.createElement('style');
-    style.innerHTML = `
-        .home-button {
+    style.textContent = `
+        .home-button-container {
             position: absolute;
             top: 30px;
             left: 30px;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .home-button-link {
+            display: block;
         }
         .home-button-img {
             width: 70px;
-            height: auto;
             border-radius: 10px;
+            transition: transform 0.3s;
         }
-        @media only screen and (max-width: 768px) {
-            .home-button {
+        .blog-panel {
+            margin-top: 8px;
+            padding: 5px 0;
+            background: white;
+            color: black;
+            border-radius: 5px;
+            text-align: center;
+            width: 70px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 16px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .home-button-container {
                 top: 10px;
                 left: 10px;
             }
             .home-button-img {
                 width: 50px;
+            }
+            .blog-panel {
+                width: 50px;
+                font-size: 14px;
+                padding: 4px 0;
             }
         }
     `;

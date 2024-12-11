@@ -1,4 +1,17 @@
 {
+    "meta": {
+        "title": "About Me",
+        "description": "Welcome to my site.",
+        "keywords": "psychology, services, games",
+        "og:title": "Главная страница",
+        "og:description": "Добро пожаловать на наш сайт.",
+        "og:image": "https://example.com/images/og-image.jpg",
+        "og:url": "https://example.com",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Главная страница",
+        "twitter:description": "Добро пожаловать на наш сайт.",
+        "twitter:image": "https://example.com/images/twitter-image.jpg"
+    },
     "imageBG": "Extra/Images/ValentinaBG.png",
     "pageName": "Psychologist Valentina Artamonova",
     "navigation": {
