@@ -366,7 +366,7 @@ function initJoinButtons() {
     const openModal = createContactPanel();
 
     document.querySelectorAll('[id]').forEach(element => {
-        if (element.id.includes('joinButton')) {
+        if (element.id.includes('joinButton') || element.id.includes('demoJoin')) {
             element.addEventListener('click', function () {
                 openModal();
             });

@@ -28,6 +28,7 @@
     "The game will help solve the request and get answers during the game itself. You will see where and what has been stopping you and what can be done during the game to change the situation. You will also plan actions that need to be taken after the game to further improve the situation."
   ],
   "masterAvailable": true,
+  "questAvailable": true,
 
   "masterInfo": {
     "shortDescription" : "Transformational game for solving personal requests and conflicts.",

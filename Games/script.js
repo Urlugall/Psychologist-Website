@@ -9,6 +9,17 @@ async function checkAndShowMasterAlert() {
     }
 }
 
+async function checkAndShowQuestAlert() {
+    try {
+        const data = await fetchData(`/Data/${getCurrentLanguage()}/games-data/${getGameNameFromUrl()}.json`);
+        document.getElementById('quest-alert').style.display = data.questAvailable ? 'block' : 'none';
+
+    } catch (error) {
+        console.error('Error while loading quest data:', error);
+        document.getElementById('quest-alert').style.display = 'none';
+    }
+}
+
 
 function openMasterPage() {
     location.href = `/Masters/Master.html?game=${getGameNameFromUrl()}`;
@@ -122,4 +133,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupPricePanel();
     setupCarousel();
     checkAndShowMasterAlert();
+    checkAndShowQuestAlert();
 });

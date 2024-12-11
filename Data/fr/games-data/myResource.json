@@ -32,6 +32,7 @@
     "Jouez et remplissez votre monde de joie, de facilité et de plaisir à résoudre des situations complexes."
   ],
   "masterAvailable": true,
+  "questAvailable": true,
   
   "masterInfo": {
     "shortDescription" : "Un jeu léger pour trouver des solutions et des ressources dans des situations complexes.",

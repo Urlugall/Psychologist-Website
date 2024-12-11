@@ -32,6 +32,7 @@
     "Play and fill your world with joy, ease, and enjoyment in resolving complex situations."
   ],
   "masterAvailable": true,
+  "questAvailable": true,
   
   "masterInfo": {
     "shortDescription" : "A light game for finding solutions and resources in complex situations.",

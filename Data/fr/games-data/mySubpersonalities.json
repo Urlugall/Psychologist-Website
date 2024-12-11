@@ -28,6 +28,7 @@
     "Le jeu vous aidera à résoudre la demande et à obtenir des réponses pendant le jeu lui-même. Vous verrez où et ce qui vous a arrêté et ce qui peut être fait pendant le jeu pour changer la situation. Vous planifierez également des actions à prendre après le jeu pour améliorer encore la situation."
   ],
   "masterAvailable": true,
+  "questAvailable": false,
 
   "masterInfo": {
     "shortDescription" : "Jeu transformationnel pour résoudre des demandes personnelles et des conflits.",

@@ -28,5 +28,6 @@
     "Dans ce jeu de société, vous devrez passer du statut de pauvre à celui de personne possédant une richesse fabuleuse. Grâce à lui, vous pourrez acquérir un yacht luxueux, un avion personnel, une collection de voitures coûteuses, une villa ou un manoir. Avec l'aide du jeu, vous pourrez non seulement atteindre une bonne vie, mais aussi ressentir à quoi elle ressemble.",
     "Vous jouez simplement. Mais avec le dernier lancer de dés, vous pensez déjà comme un millionnaire. Et les pensées - c'est le début des actions."
   ],
-  "masterAvailable": false
+  "masterAvailable": false,
+  "questAvailable": false
 }
