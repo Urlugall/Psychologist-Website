@@ -1,3 +1,5 @@
+// href-manager.js
+
 function openHomePage() {
     location.href=`/index.html`;
 }

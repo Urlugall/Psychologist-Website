@@ -1,0 +1,132 @@
+/* Blog/Post/style.css */
+
+:root {
+  --primary-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --main-bg-color: #f0f8ff;
+  --text-color: #333;
+  --footer-bg-color: #6a8faf;
+  --button-bg-color: #46992d;
+  --transparent-white: rgba(255, 255, 255, 0.8);
+  --light-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: var(--primary-font);
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--main-bg-color);
+}
+
+main {
+  padding: 20px;
+}
+
+/* Подвал */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: var(--main-bg-color);
+  color: var(--footer-bg-color);
+}
+
+/* Анимация кнопок */
+
+a, button, .grid-item {
+  transition: transform 0.3s ease;
+}
+
+a:hover, button:hover, .grid-item:hover {
+  transform: scale(1.05);
+}
+
+.post-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: var(--light-shadow);
+}
+
+.post-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.post-title {
+  font-size: 2.5em;
+  color: var(--button-bg-color);
+  margin-bottom: 10px;
+}
+
+.post-date {
+  font-size: 1em;
+  color: #777;
+}
+
+.post-main-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.post-content {
+  font-size: 1.1em;
+  line-height: 1.8;
+  color: var(--text-color);
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  color: var(--button-bg-color);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.post-content p {
+  margin-bottom: 15px;
+}
+
+.post-content ul,
+.post-content ol {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.post-content a {
+  color: var(--button-bg-color);
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+.post-footer {
+  margin-top: 30px;
+  text-align: right;
+}
+
+.post-tags {
+  font-size: 1em;
+  color: var(--button-bg-color);
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-size: 1.2em;
+}

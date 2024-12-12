@@ -1,16 +1,16 @@
 {
     "meta": {
-        "title": "About Me",
+        "title": "Psychologist Valentina Artamonova",
         "description": "Welcome to my site.",
         "keywords": "psychology, services, games",
-        "og:title": "Главная страница",
-        "og:description": "Добро пожаловать на наш сайт.",
-        "og:image": "https://example.com/images/og-image.jpg",
-        "og:url": "https://example.com",
+        "og:title": "Psychologist Valentina Artamonova",
+        "og:description": "Welcome to my site.",
+        "og:image": "https://art-valentina.com/favicon.ico",
+        "og:url": "https://art-valentina.com",
         "twitter:card": "summary_large_image",
-        "twitter:title": "Главная страница",
-        "twitter:description": "Добро пожаловать на наш сайт.",
-        "twitter:image": "https://example.com/images/twitter-image.jpg"
+        "twitter:title": "Psychologist Valentina Artamonova",
+        "twitter:description": "Welcome to my site.",
+        "twitter:image": "https://art-valentina.com/favicon.ico"
     },
     "imageBG": "Extra/Images/ValentinaBG.png",
     "pageName": "Psychologist Valentina Artamonova",

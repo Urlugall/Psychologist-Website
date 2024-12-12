@@ -1,0 +1,43 @@
+<!-- Blog/blog.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <main>
+        <div class="blog-header">
+            <div class="blog-title-box">
+                <h1>Блог</h1>
+                <p class="blog-subtitle">Последние материалы, новости и интересные статьи</p>
+            </div>
+            <div class="blog-filters">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Поиск по заголовку или описанию...">
+                    <!-- <button class="green-button" id="search-button">Найти</button> -->
+                </div>
+                <div class="tags-container">
+                    <div class="selected-tags" id="selected-tags"></div>
+                    <div class="custom-dropdown">
+                        <button class="green-button" id="dropdown-toggle">Выбрать теги</button>
+                        <div class="dropdown-content" id="dropdown-content">
+                           <!-- Теги будут загружены динамически -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="posts-container" id="posts-container">
+            <!-- Динамически загружаемые посты будут добавлены сюда -->
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script src="/content-loader.js"></script>
+</body>
+</html>

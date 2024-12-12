@@ -1,4 +1,17 @@
 {
+    "meta": {
+        "title": "Психолог Валентина Артамонова",
+        "description": "Ведущая психологических, финансовой, а также авторских игр.",
+        "keywords": "psychology, services, games",
+        "og:title": "Психолог Валентина Артамонова",
+        "og:description": "Ведущая психологических, финансовой, а также авторских игр.",
+        "og:image": "https://art-valentina.com/favicon.ico",
+        "og:url": "https://art-valentina.com",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Психолог Валентина Артамонова",
+        "twitter:description": "Ведущая психологических, финансовой, а также авторских игр.",
+        "twitter:image": "https://art-valentina.com/favicon.ico"
+    },
     "imageBG": "Extra/Images/ValentinaBG.png",
     "pageName": "Психолог Валентина Артамонова",
     "navigation": {

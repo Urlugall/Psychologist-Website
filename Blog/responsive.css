@@ -1,0 +1,48 @@
+/* Blog/responsive.css */
+
+@media (max-width: 1200px) {
+  .post-item {
+    width: calc((100% - 40px)/3);
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 10px;
+  }
+
+  .blog-title-box h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+  }
+
+  .blog-subtitle {
+    font-size: 1em;
+  }
+
+  .search-box input {
+    width: 100%; /* Полная ширина на мобильных устройствах */
+  }
+
+  .blog-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tags-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .posts-container {
+    justify-content: center;
+  }
+
+  .post-item {
+    width: calc(100% - 40px);
+  }
+
+  .post-image {
+    height: 200px;
+  }
+}

@@ -1,3 +1,5 @@
+// content-loader.js
+
 function getGameNameFromUrl() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -63,6 +65,127 @@ function updateMetaTags(metaData) {
         if (value) {
             setMetaTag(key, value);
         }
+    }
+}
+
+/* -- Blog Posts Handling -- */
+
+// Функция для создания элемента поста
+function createPostElement(post) {
+    const postItem = document.createElement('div');
+    postItem.classList.add('post-item');
+    postItem.setAttribute('data-tags', post.tags.join(' '));
+    postItem.setAttribute('data-id', post.id);
+
+    postItem.addEventListener('click', () => {
+        window.location.href = `/Blog/post.html?id=${encodeURIComponent(post.id)}`;
+    });
+
+    // Создание изображения поста с ленивой загрузкой
+    const img = document.createElement('img');
+    img.src = post.image;
+    img.alt = 'Превью статьи';
+    img.classList.add('post-image');
+    img.loading = 'lazy';
+    postItem.appendChild(img);
+
+    // Создание контента поста
+    const postContent = document.createElement('div');
+    postContent.classList.add('post-content');
+
+    // Заголовок
+    const title = document.createElement('h2');
+    title.classList.add('post-title');
+    title.textContent = post.title;
+    postContent.appendChild(title);
+
+    // Краткое описание
+    const shortDesc = document.createElement('p');
+    shortDesc.classList.add('post-short');
+    shortDesc.textContent = post.description;
+    postContent.appendChild(shortDesc);
+
+    // Футер поста
+    const postFooter = document.createElement('div');
+    postFooter.classList.add('post-footer');
+
+    const postDate = document.createElement('span');
+    postDate.classList.add('post-date');
+    postDate.textContent = post.date;
+    postFooter.appendChild(postDate);
+
+    const postTags = document.createElement('span');
+    postTags.classList.add('post-tags');
+    postTags.textContent = '#' + post.tags.join(' #');
+    postFooter.appendChild(postTags);
+
+    postContent.appendChild(postFooter);
+    postItem.appendChild(postContent);
+
+    // Добавление класса visible после добавления в DOM
+    setTimeout(() => {
+        postItem.classList.add('visible');
+    }, 100); // Задержка для анимации
+
+    return postItem;
+}
+
+// Функция для получения уникальных тегов из постов
+function getUniqueTags(posts) {
+    const tagsSet = new Set();
+    posts.forEach(post => {
+        if (Array.isArray(post.tags)) {
+            post.tags.forEach(tag => tagsSet.add(tag.toLowerCase()));
+        }
+    });
+    return Array.from(tagsSet).sort(); // Сортировка для удобства
+}
+
+// Функция для капитализации первого символа тега (для отображения)
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+// Функция для заполнения фильтров тегов
+function populateTagFilters(uniqueTags) {
+    const dropdownContent = document.getElementById('dropdown-content');
+    dropdownContent.innerHTML = ''; // Очистка существующих тегов
+
+    uniqueTags.forEach(tag => {
+        const label = document.createElement('label');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.classList.add('tag-checkbox');
+        checkbox.value = tag;
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(' ' + capitalize(tag)));
+        dropdownContent.appendChild(label);
+    });
+}
+
+// Обновляем функцию loadBlogPosts для динамической загрузки тегов
+async function loadBlogPosts() {
+    try {
+        const language = getCurrentLanguage();
+        const postsData = await fetchData(`/Data/${language}/blog-posts/posts.json`);
+        const postsContainer = document.getElementById('posts-container');
+
+        // Очищаем контейнер перед загрузкой новых постов
+        postsContainer.innerHTML = '';
+
+        postsData.posts.forEach(post => {
+            const postElement = createPostElement(post);
+            postsContainer.appendChild(postElement);
+        });
+
+        // Получаем уникальные теги и заполняем фильтры
+        const uniqueTags = getUniqueTags(postsData.posts);
+        populateTagFilters(uniqueTags);
+
+        // Применяем фильтрацию после загрузки постов и тегов
+        filterPosts();
+    } catch (error) {
+        console.error('Ошибка загрузки постов блога:', error);
     }
 }
 
@@ -148,6 +271,11 @@ async function loadContentData() {
         if (groupName) {
             const groupData = await fetchData(`/Data/${getCurrentLanguage()}/groups-data/${groupName}.json`);
             updateData(groupData);
+        }
+
+        // Если это страница блога, загружаем посты
+        if (filename === 'blog') {
+            await loadBlogPosts();
         }
     } catch (error) {
         console.error('Error during data loading:', error);
@@ -452,7 +580,7 @@ function initHomeButton() {
     container.appendChild(homeLink);
 
     const blogLink = document.createElement('a');
-    blogLink.href = '/blog.html';
+    blogLink.href = '/Blog/blog.html';
     blogLink.className = 'blog-panel';
     blogLink.textContent = 'Блог';
 
@@ -479,7 +607,7 @@ function initHomeButton() {
             transition: transform 0.3s;
         }
         .blog-panel {
-            margin-top: 8px;
+            margin-top: 4px;
             padding: 5px 0;
             background: white;
             color: black;
