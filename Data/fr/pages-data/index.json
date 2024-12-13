@@ -1,15 +1,30 @@
 {
+    "meta": {
+        "title": "Psychologique Valentina Artamonova",
+        "description": "Aide psychologique professionnelle en ligne : consultations, soutien dans les situations de vie difficiles, gestion du stress et de l'anxiété.",
+        "keywords": "psychologique, services, jeux",
+        "og:title": "Psychologique Valentina Artamonova",
+        "og:description": "Aide psychologique professionnelle en ligne : consultations, soutien dans les situations de vie difficiles, gestion du stress et de l'anxiété.",
+        "og:image": "https://art-valentina.com/favicon.ico",
+        "og:url": "https://art-valentina.com",
+        "twitter:card": "summary_large_image",
+        "twitter:title": "Psychologique Valentina Artamonova",
+        "twitter:description": "Aide psychologique professionnelle en ligne : consultations, soutien dans les situations de vie difficiles, gestion du stress et de l'anxiété.",
+        "twitter:image": "https://art-valentina.com/favicon.ico"
+    },
     "imageBG": "Extra/Images/ValentinaBG.png",
     "pageName": "Psychologue Valentina Artamonova",
     "navigation": {
         "about": "À propos de moi",
         "services": "Services",
+        "products": "Produits",
         "games": "Jeux",
         "groups": "Groupes"
     },
     "name": "Psychologue Valentina Artamonova",
     "psychologist": "Psychologue praticien depuis 2013 :",
     "servicesButton": "Aller aux services",
+    "blogButton": "Blog",
     "biography": [
         "d'entreprise,",
         "individuel,",
@@ -38,6 +53,7 @@
     "priceButton": "Vérifier le prix",
     "scheduleButton": "Planning des jeux",
     "servicesText": "Services",
+    "productsText": "Produits",
     "gamesText": "Jeux",
     "groupsText": "Groupes",
     "service1": {
@@ -73,6 +89,29 @@
     "phrase1": "\"Vous êtes ici, ce qui signifie que vous êtes prêt pour des changements dans votre vie. Et c'est déjà la moitié du chemin. Marchons-le ensemble...\"",
     "phrase2": "\"Chaque situation nous montre quelque chose, le principal est de comprendre quoi exactement\"",
     "phrase3": "\"Chaque jour est une chance de changer sa vie pour le mieux\"",
+    "productsList": {
+        "kapi": {
+            "header": "La série de livres sur le chat Kapi",
+            "description": [
+                "Les livres de Kapi rendent la lecture et l'apprentissage des langues faciles et amusants!"
+            ],
+            "imageBG": "Extra/Images/GamesMini/Kapi.png"
+        },
+        "cards": {
+            "header": "Cartes Métaphoriques",
+            "description": [
+                "Les cartes révèlent le subconscient, stimulant la connaissance de soi et la pensée créative."
+            ],
+            "imageBG": "Extra/Images/GamesMini/Cards.png"
+        },
+        "games": {
+            "header": "Jeux Psychologiques",
+            "description": [
+                "Les jeux d'introspection aident à développer la personnalité et à renforcer la confiance en soi."
+            ],
+            "imageBG": "Extra/Images/GamesMini/Games.png"
+        }
+    },
     "gamesList": {
         "mySubpersonalities": {
             "header": "Mes Sous-personnalités",

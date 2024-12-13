@@ -1,15 +1,15 @@
 {
     "meta": {
         "title": "Psychologist Valentina Artamonova",
-        "description": "Welcome to my site.",
+        "description": "Professional online psychological help: consultations, support in difficult life situations, stress and anxiety management.",
         "keywords": "psychology, services, games",
         "og:title": "Psychologist Valentina Artamonova",
-        "og:description": "Welcome to my site.",
+        "og:description": "Professional online psychological help: consultations, support in difficult life situations, stress and anxiety management.",
         "og:image": "https://art-valentina.com/favicon.ico",
         "og:url": "https://art-valentina.com",
         "twitter:card": "summary_large_image",
         "twitter:title": "Psychologist Valentina Artamonova",
-        "twitter:description": "Welcome to my site.",
+        "twitter:description": "Professional online psychological help: consultations, support in difficult life situations, stress and anxiety management.",
         "twitter:image": "https://art-valentina.com/favicon.ico"
     },
     "imageBG": "Extra/Images/ValentinaBG.png",
@@ -17,12 +17,14 @@
     "navigation": {
         "about": "About Me",
         "services": "Services",
+        "products": "Products",
         "games": "Games",
         "groups": "Groups"
     },
     "name": "Psychologist Valentina Artamonova",
     "psychologist": "Practicing psychologist since 2013:",
     "servicesButton": "Go to Services",
+    "blogButton": "Blog",
     "biography": [
         "corporate,",
         "individual,",
@@ -51,6 +53,7 @@
     "priceButton": "Check Price",
     "scheduleButton": "Game Schedule",
     "servicesText": "Services",
+    "productsText": "Products",
     "gamesText": "Games",
     "groupsText": "Groups",
     "service1": {
@@ -86,6 +89,29 @@
     "phrase1": "\"You are here, which means you are ready for changes in your life. And that's already halfway there. Let's walk it together...\"",
     "phrase2": "\"Every situation shows us something, the main thing is to understand what exactly\"",
     "phrase3": "\"Every day is a chance to change your life for the better\"",
+    "productsList": {
+        "kapi": {
+            "header": "The Kapi Cat Book Series",
+            "description": [
+                "The Kapi books make reading and language learning easy and fun!"
+            ],
+            "imageBG": "Extra/Images/GamesMini/Kapi.png"
+        },
+        "cards": {
+            "header": "Metaphorical Cards",
+            "description": [
+                "Cards reveal the subconscious, stimulating self-awareness and creative thinking."
+            ],
+            "imageBG": "Extra/Images/GamesMini/Cards.png"
+        },
+        "games": {
+            "header": "Psychological Games",
+            "description": [
+                "Self-discovery games help develop personality and boost confidence."
+            ],
+            "imageBG": "Extra/Images/GamesMini/Games.png"
+        }
+    },
     "gamesList": {
         "mySubpersonalities": {
             "header": "My Subpersonalities",

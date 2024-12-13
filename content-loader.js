@@ -1,5 +1,11 @@
 // content-loader.js
 
+function getPrpductNameFromUrl() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    return urlParams.get('product');
+}
+
 function getGameNameFromUrl() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -260,6 +266,13 @@ async function loadContentData() {
         updateData(pageData);
 
         // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
+        const productName = getPrpductNameFromUrl();
+        if (productName) {
+            const productName = await fetchData(`/Data/${getCurrentLanguage()}/products-data/${productName}.json`);
+            updateData(productName);
+        }
+
+        // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
         const gameName = getGameNameFromUrl();
         if (gameName) {
             const gameData = await fetchData(`/Data/${getCurrentLanguage()}/games-data/${gameName}.json`);
@@ -337,6 +350,8 @@ function updateData(data) {
                 updateArray(element, value, matchArray[1]);
             } else if (matchImg) {
                 updateImage(element, value);
+            } else if (element.tagName.toLowerCase() === 'input') {
+                element.setAttribute('placeholder', value);
             } else {
                 updateText(element, value);
             }
@@ -563,7 +578,11 @@ function initJoinButtons() {
 
 /* -- Home Return -- */
 
-function initHomeButton() {
+async function initHomeButton() {
+    // Загружаем данные из JSON файла
+    const response = await fetch(`/Data/${getCurrentLanguage()}/assets.json`);
+    const { blogButton } = await response.json();
+
     const container = document.createElement('div');
     container.className = 'home-button-container';
 
@@ -582,7 +601,7 @@ function initHomeButton() {
     const blogLink = document.createElement('a');
     blogLink.href = '/Blog/blog.html';
     blogLink.className = 'blog-panel';
-    blogLink.textContent = 'Блог';
+    blogLink.textContent = blogButton;
 
     container.appendChild(blogLink);
     document.body.appendChild(container);
@@ -764,7 +783,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initJoinButtons();
     console.log('Current Language:', getCurrentLanguage());
 
-    if (!window.location.pathname.endsWith('schedule.html') && !window.location.pathname.toLowerCase().endsWith('schedule')) {
+    if (!window.location.pathname.includes('schedule')) {
         initHomeButton();
         initLanguageSelector();
         addSocialSidebar();

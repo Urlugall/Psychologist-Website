@@ -11,5 +11,6 @@
         { "href": "https://www.instagram.com/art.valentina.a?igsh=YXA4NjdrdHNpNnV2", "title": "Инстаграм", "icon": "/Extra/Icons/instagram.png" },
         { "href": "https://www.facebook.com/art.valentina.a", "title": "Фейсбук", "icon": "/Extra/Icons/facebook.png" },
         { "href": "https://api.whatsapp.com/send?phone=380504438897", "title": "Ватсап", "icon": "/Extra/Icons/whatsapp.png" }
-    ]
+    ],
+    "blogButton": "Блог"
 }

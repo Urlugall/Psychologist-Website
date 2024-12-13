@@ -72,14 +72,7 @@ async function loadPost() {
         postContainer.appendChild(postFooter);
     } catch (error) {
         console.error('Ошибка загрузки поста:', error);
-        displayError('Произошла ошибка при загрузке поста.');
     }
-}
-
-// Функция для отображения сообщения об ошибке
-function displayError(message) {
-    const postContainer = document.getElementById('post-container');
-    postContainer.innerHTML = `<p class="error-message">${message}</p>`;
 }
 
 // Инициализация загрузки поста при загрузке страницы

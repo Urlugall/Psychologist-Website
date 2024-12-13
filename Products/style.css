@@ -1,0 +1,273 @@
+/* Основные стили */
+:root {
+  --primary-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --main-bg-color: #f0f8ff;
+  --text-color: #333;
+  --link-color: #d6d6d6;
+  --footer-bg-color: #6a8faf;
+  --button-bg-color: #46992d;
+  --transparent-white: rgba(255, 255, 255, 0.8);
+  --light-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body {
+  font-family: var(--primary-font);
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--main-bg-color);
+}
+
+/* Основное содержимое */
+main {
+  padding: 20px;
+}
+
+/* Подвал */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: var(--main-bg-color);
+  color: var(--footer-bg-color);
+}
+
+/* Анимация кнопок */
+
+a, button, .grid-item {
+  transition: transform 0.3s ease;
+}
+
+a:hover, button:hover, .grid-item:hover {
+  transform: scale(1.05);
+}
+
+/* Изобржение и заголовок */
+
+.game-header {
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-color: white;
+  border-radius: 15px;
+  height: 200%;
+  padding: 1px 1px;
+}
+
+.text-box {
+  background-color: white;
+  border-radius: 15px;
+  margin-top: 10vh;
+  margin-right: 5vw;
+  margin-left: 5vw;
+  padding: 1px 5vw;
+}
+
+.text-box h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 3em;
+  margin-top: 5vh;
+}
+
+.title-icon {
+  height: 1em;
+  vertical-align: middle;
+  margin: 0 0.5em;
+  display: inline-block;
+}
+
+.title-text {
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+  margin-top: 35px;
+  margin-bottom: 15px;
+}
+
+.title-text h1 {
+  display: inline-block;
+}
+
+/* Основные кнопки */
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Две колонки с одинаковой шириной */
+  grid-gap: 10px; /* Отступ между элементами сетки */
+  padding: 20px 25%;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 15px 0; /* Вертикальный отступ для кнопок */
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.green-button {
+  grid-column: 1 / -1; /* Растягиваем зелёную кнопку на всю ширину сетки */
+  background-color: var(--button-bg-color);
+  color: white;
+}
+
+.white-button {
+  background-color: white;
+  color: var(--button-bg-color);
+  border: 2px solid var(--button-bg-color); /* Зеленая рамка */
+}
+
+/*Информация про цену*/
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15ch;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.5s, transform 0.5s, max-height 0.5s, visibility 0s 0.5s;
+  max-height: 0; /* Начальное максимальное значение высоты */
+  overflow: hidden;
+  pointer-events: none; /* Блокируем клики, когда блок свернут */
+  padding: 10px 5ch;
+}
+
+.details.expanded {
+  max-height: 500px; /* Примерная максимальная высота контента */
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s, transform 0.5s, max-height 0.5s;
+  pointer-events: all; /* Включаем клики, когда блок развернут */
+  visibility: visible;
+}
+
+.info-block {
+  border: 2px solid var(--button-bg-color);
+  border-radius: 15px;
+  padding: 0 20px;
+}
+
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  padding: 10px 100px;
+}
+
+.grid-item {
+  border-radius: 10px;
+  text-align: center;
+}
+
+.grid-item img {
+  max-width: 8em; 
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Ведущие и квес игра*/
+
+.row-container {
+  display: flex;
+  justify-content: center; /* Распределяет пространство между элементами */
+}
+
+.alert-box, .quest-block {
+  margin: 10px 0; /* Добавляет немного пространства вокруг блоков */
+}
+
+/* квест игра */
+
+.quest-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  margin: 10px; /* Отступы вокруг блока */
+}
+
+.quest-block button {
+  padding: 10px 20px;
+}
+
+.quest-text {
+  color: var(--button-bg-color); /* Цвет текста */
+  font-size: x-large; /* Размер шрифта текста */
+}
+
+/* ведущие */
+
+.alert-box {
+  padding: 15px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  color: white;
+  background-image: url('/Extra/Images/AlertBG.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  height: auto; /* Автоматическая высота */
+}
+
+
+.alert-box h2 {
+  display: inline-block;
+  margin: 0;
+  padding-right: 15px;
+}
+
+.details-button {
+  background-color: #00000000;
+  color: rgba(255, 255, 255, 0.716);
+  border: none;
+  padding: 12px 25px;
+  cursor: pointer;
+  border-radius: 50px;
+  font-size: 1em;
+  display: inline-block;
+}
+
+/* Полное описание */
+
+.full-description {
+  padding: 0 30vh;
+}
+
+/* Приглашение */
+
+#centred-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  margin-bottom: 30px;
+}
+
+.text-section {
+  max-width: 40%;
+  margin-right: 20px;
+}
+
+.buttons-section {
+  max-width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.buttons-section .green-button {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-right: 50px;
+  padding-left: 50px;
+}

@@ -1,15 +1,15 @@
 {
     "meta": {
         "title": "Психолог Валентина Артамонова",
-        "description": "Ведущая психологических, финансовой, а также авторских игр.",
-        "keywords": "psychology, services, games",
+        "description": "Профессиональная помощь психолога онлайн: консультации, поддержка в трудных жизненных ситуациях, проработка стресса и тревожности.",
+        "keywords": "психология, помошь, сервисы, саморазваитие, игры",
         "og:title": "Психолог Валентина Артамонова",
-        "og:description": "Ведущая психологических, финансовой, а также авторских игр.",
+        "og:description": "Профессиональная помощь психолога онлайн: консультации, поддержка в трудных жизненных ситуациях, проработка стресса и тревожности.",
         "og:image": "https://art-valentina.com/favicon.ico",
         "og:url": "https://art-valentina.com",
         "twitter:card": "summary_large_image",
         "twitter:title": "Психолог Валентина Артамонова",
-        "twitter:description": "Ведущая психологических, финансовой, а также авторских игр.",
+        "twitter:description": "Профессиональная помощь психолога онлайн: консультации, поддержка в трудных жизненных ситуациях, проработка стресса и тревожности.",
         "twitter:image": "https://art-valentina.com/favicon.ico"
     },
     "imageBG": "Extra/Images/ValentinaBG.png",
@@ -17,7 +17,7 @@
     "navigation": {
         "about": "Обо мне",
         "services": "Услуги",
-        "products": "Продукты",
+        "products": "Продукция",
         "games": "Игры",
         "groups": "Группы"
     },
@@ -53,7 +53,7 @@
     "priceButton": "Узнать цену",
     "scheduleButton": "Расписание игр",
     "servicesText": "Услуги",
-    "productsText": "Продукты",
+    "productsText": "Продукция",
     "gamesText": "Игры",
     "groupsText": "Группы",
     "service1": {
@@ -91,25 +91,25 @@
     "phrase3": "\"Каждый день - это шанс изменить свою жизнь к лучшему\"",
     "productsList": {
         "kapi": {
-            "header": "Капи",
+            "header": "Серия книжек о кошке Капи ",
             "description": [
-                "Книга для обучения детей языку."
+                "Книжки с Капи делают чтение и изучение языков лёгким и увлекательным!"
             ],
             "imageBG": "Extra/Images/GamesMini/Kapi.png"
         },
         "cards": {
-            "header": "Карты",
+            "header": "Метафорические карты",
             "description": [
-                "Карты для расскладов."
+                "Карты раскрывают подсознание, стимулируя самопознание и креативное мышление."
             ],
-            "imageBG": "Extra/Images/GamesMini/Kapi.png"
+            "imageBG": "Extra/Images/GamesMini/Cards.png"
         },
         "games": {
-            "header": "Игры",
+            "header": "Психологические игры",
             "description": [
-                "Простые игры для понимания себя."
+                "Игры для самопознания помогают развивать личность и укреплять уверенность."
             ],
-            "imageBG": "Extra/Images/GamesMini/Kapi.png"
+            "imageBG": "Extra/Images/GamesMini/Games.png"
         }
     },
     "gamesList": {

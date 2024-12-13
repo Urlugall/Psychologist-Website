@@ -1,0 +1,170 @@
+@media (max-width: 768px) {
+  main {
+    padding: 0;
+  }
+
+  .game-header {
+    background-size: 150%;
+  }
+
+  .text-box {
+    margin-top: 70px;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 1px 5vh;
+  }
+
+  .text-box h1 {
+    font-size: x-large;
+    margin-top: 2vh;
+  }
+
+  .button-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  button {
+    height: 40px;
+    padding: 10px 0;
+  }
+
+  .green-button,
+  .white-button {
+    grid-column: 1;
+  }
+
+  .details {
+    grid-template-columns: 1fr;
+    margin: 20px 10px;
+    grid-gap: 8ch;
+    padding: 0;
+    gap: 10px;
+  }
+
+  .details h2 {
+    font-size: large;
+  }
+
+  .info-block {
+    padding: 0 10px;
+  }
+
+  .grid-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  .grid-item {
+    flex: 0 0 100vw;
+    scroll-snap-align: center;
+    margin: 0;
+  }
+
+  .grid-item img {
+    max-width: 40%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    padding-bottom: 20px;
+  }
+
+  .grid-item p {
+    margin: 0;
+  }
+
+  .grid-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .grid-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.carousel-indicators .dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.carousel-indicators .dot.active {
+    background-color: var(--button-bg-color);
+}
+
+  .row-container {
+    flex-direction: column;
+  }
+
+  .quest-block,
+  .alert-box {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .alert-box {
+    background-color: #46992d;
+    text-align: center;
+  }
+
+  .quest-block button,
+  .details-button {
+    padding: 8px 16px;
+  }
+
+  .quest-text {
+    font-size: large;
+    text-align: center;
+  }
+
+  .full-description {
+    padding: 0 5vh;
+  }
+
+  #centred-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .text-section,
+  .buttons-section {
+    max-width: 100%;
+    margin-right: 0;
+  }
+
+  .buttons-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .buttons-section .green-button,
+  .buttons-section .white-button {
+    padding: 10px 25px;
+    margin: 0;
+  }
+
+  .title-icon {
+    display: none;
+  }
+
+  .title-text {
+    font-size: medium;
+  }
+}

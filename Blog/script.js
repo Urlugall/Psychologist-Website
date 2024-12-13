@@ -1,8 +1,8 @@
 // Blog/scripts.js
 
-const searchInput = document.getElementById('search-input');
+const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('search-button');
-const dropdownToggle = document.getElementById('dropdown-toggle');
+const dropdownToggle = document.getElementById('dropdownToggle');
 const dropdownContent = document.getElementById('dropdown-content');
 const selectedTagsContainer = document.getElementById('selected-tags');
 
@@ -15,7 +15,7 @@ dropdownToggle.addEventListener('click', () => {
 
 // Клик вне меню для его закрытия
 window.addEventListener('click', (e) => {
-    if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.custom-dropdown')) {
+    if (!e.target.matches('.dropdownToggle') && !e.target.closest('.custom-dropdown')) {
         dropdownContent.classList.remove('show');
     }
 });

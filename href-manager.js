@@ -8,6 +8,10 @@ function openMasterPage() {
     location.href=`/Masters/master.html?game=${getGameNameFromUrl()}`;
 }
 
+function openProductInfo(productName) {
+    location.href=`/Products/product.html?product=${productName}`;
+}
+
 function openGameInfo(gameName) {
     location.href=`/Games/game.html?game=${gameName}`;
 }

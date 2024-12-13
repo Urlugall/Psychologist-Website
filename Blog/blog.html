@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Блог</title>
+    <title id="pageName"></title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
 </head>
@@ -12,18 +12,18 @@
     <main>
         <div class="blog-header">
             <div class="blog-title-box">
-                <h1>Блог</h1>
-                <p class="blog-subtitle">Последние материалы, новости и интересные статьи</p>
+                <h1 id="title"></h1>
+                <p id="blogDescription" class="blog-subtitle"></p>
             </div>
             <div class="blog-filters">
                 <div class="search-box">
-                    <input type="text" id="search-input" placeholder="Поиск по заголовку или описанию...">
+                    <input type="text" id="searchInput">
                     <!-- <button class="green-button" id="search-button">Найти</button> -->
                 </div>
                 <div class="tags-container">
                     <div class="selected-tags" id="selected-tags"></div>
                     <div class="custom-dropdown">
-                        <button class="green-button" id="dropdown-toggle">Выбрать теги</button>
+                        <button class="green-button" id="dropdownToggle"></button>
                         <div class="dropdown-content" id="dropdown-content">
                            <!-- Теги будут загружены динамически -->
                         </div>
