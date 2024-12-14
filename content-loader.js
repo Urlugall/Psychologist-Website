@@ -1,6 +1,6 @@
 // content-loader.js
 
-function getPrpductNameFromUrl() {
+function getProductNameFromUrl() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     return urlParams.get('product');
@@ -266,10 +266,10 @@ async function loadContentData() {
         updateData(pageData);
 
         // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
-        const productName = getPrpductNameFromUrl();
+        const productName = getProductNameFromUrl();
         if (productName) {
-            const productName = await fetchData(`/Data/${getCurrentLanguage()}/products-data/${productName}.json`);
-            updateData(productName);
+            const productData = await fetchData(`/Data/${getCurrentLanguage()}/products-data/${productName}.json`);
+            updateData(productData);
         }
 
         // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
@@ -567,7 +567,7 @@ function initJoinButtons() {
     const openModal = createContactPanel();
 
     document.querySelectorAll('[id]').forEach(element => {
-        if (element.id.includes('joinButton') || element.id.includes('demoJoin')) {
+        if (element.id.includes('joinButton') || element.id.includes('demoJoin') || element.id.includes('buyButton')) {
             element.addEventListener('click', function () {
                 openModal();
             });

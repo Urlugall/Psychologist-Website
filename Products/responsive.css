@@ -1,170 +1,144 @@
+@media (max-width: 1024px) {
+  .text-box {
+    margin-right: 10vh;
+    margin-left: 10vh;
+    padding: 1px 10vh;
+  }
+
+  .button-container {
+    padding: 20px 15%;
+  }
+
+  .full-description {
+    grid-template-columns: 1fr;
+  }
+
+  .price-content {
+    margin: 20px 20vh;
+    padding: 10px 5vh;
+  }
+
+  .carousel-items p {
+    padding: 0 20vh;
+  }
+}
+
 @media (max-width: 768px) {
   main {
-    padding: 0;
+      padding: 0;
+  }
+
+  .hoverable {
+      transition: none;
+  }
+
+  .hoverable:hover {
+      transform: none;
   }
 
   .game-header {
-    background-size: 150%;
+    height: auto;
+    padding: 1px;
   }
 
   .text-box {
+    margin: 0;
     margin-top: 70px;
-    margin-right: 0;
-    margin-left: 0;
     padding: 1px 5vh;
   }
 
+  .title-icon {
+      display: none;
+  }
+
   .text-box h1 {
-    font-size: x-large;
-    margin-top: 2vh;
+    font-size: 3ch;
+    margin-top: 3vh;
   }
 
   .button-container {
     grid-template-columns: 1fr;
-    padding: 10px;
+    padding: 20px 5%;
   }
 
-  button {
-    height: 40px;
-    padding: 10px 0;
-  }
-
-  .green-button,
-  .white-button {
-    grid-column: 1;
-  }
-
-  .details {
-    grid-template-columns: 1fr;
-    margin: 20px 10px;
-    grid-gap: 8ch;
-    padding: 0;
-    gap: 10px;
-  }
-
-  .details h2 {
-    font-size: large;
-  }
-
-  .info-block {
-    padding: 0 10px;
-  }
-
-  .grid-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-  }
-
-  .grid-item {
-    flex: 0 0 100vw;
-    scroll-snap-align: center;
-    margin: 0;
-  }
-
-  .grid-item img {
-    max-width: 40%;
-    height: auto;
-    margin: 0 auto;
-    display: block;
-    padding-bottom: 20px;
-  }
-
-  .grid-item p {
-    margin: 0;
-  }
-
-  .grid-container {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .grid-container::-webkit-scrollbar {
-    display: none;
-  }
-
-  .carousel-indicators {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.carousel-indicators .dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.3s;
-    cursor: pointer;
-}
-
-.carousel-indicators .dot.active {
-    background-color: var(--button-bg-color);
-}
-
-  .row-container {
-    flex-direction: column;
-  }
-
-  .quest-block,
-  .alert-box {
-    flex-direction: column;
-    padding: 10px;
-  }
-
-  .alert-box {
-    background-color: #46992d;
-    text-align: center;
-  }
-
-  .quest-block button,
-  .details-button {
-    padding: 8px 16px;
-  }
-
-  .quest-text {
-    font-size: large;
-    text-align: center;
+  .button-container h2 {
+    font-size: 1.2em;
   }
 
   .full-description {
-    padding: 0 5vh;
+    grid-template-columns: 1fr;
+    padding: 0;
   }
 
-  #centred-container {
-    flex-direction: column;
-    padding: 10px;
+  .full-description img {
+    width: 100%;
+    max-width: 300px;
   }
 
-  .text-section,
-  .buttons-section {
-    max-width: 100%;
-    margin-right: 0;
-  }
-
-  .buttons-section {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .buttons-section .green-button,
-  .buttons-section .white-button {
-    padding: 10px 25px;
+  .price-content {
     margin: 0;
+    padding: 1px 5vh;
+    box-shadow: none;
   }
 
-  .title-icon {
-    display: none;
+  .join-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .carousel {
+      margin-top: 20px;
+  }
+
+  .carousel-items p {
+    padding: 0 5vh;
+    width: 100%;
+  }
+
+  .carousel-items p img {
+      display: none;
+  }
+
+  .carousel-items p h3 {
+      text-align: left;
+  }
+
+  .carousel-control {
+    padding: 5px 10px;
+    font-size: 0.8em;
   }
 
   .title-text {
     font-size: medium;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 10px 0;
+    font-size: 0.9em;
+  }
+
+  .full-description .item {
+    padding: 15px;
+  }
+
+  .price-content li {
+    padding-left: 5px;
+    margin-bottom: 5px;
+  }
+
+  .carousel-items p img {
+    width: 50px;
+    margin-right: 15px;
+  }
+
+  .carousel-items p h3 {
+    font-size: 1em;
+    margin: 5px 0;
+  }
+
+  .green-button {
+      height: 40px;
   }
 }
