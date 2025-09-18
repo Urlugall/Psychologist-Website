@@ -46,48 +46,43 @@ function updateMetaTags(metaData) {
 
     const setMetaTag = (name, content) => {
         if (name === 'title') return;
-
-        let selector;
-        if (name.startsWith('og:') || name.startsWith('twitter:')) {
-            selector = `meta[property="${name}"]`;
-        } else {
-            selector = `meta[name="${name}"]`;
-        }
-
+        let selector = name.includes(':') ? `meta[property="${name}"]` : `meta[name="${name}"]`;
         let element = head.querySelector(selector);
         if (!element) {
             element = document.createElement('meta');
-            if (name.startsWith('og:') || name.startsWith('twitter:')) {
-                element.setAttribute('property', name);
-            } else {
-                element.setAttribute('name', name);
-            }
+            if (name.includes(':')) element.setAttribute('property', name);
+            else element.setAttribute('name', name);
             head.appendChild(element);
         }
         element.setAttribute('content', content);
     };
 
-    for (const [key, value] of Object.entries(metaTags)) {
-        if (value) {
-            setMetaTag(key, value);
-        }
-    }
+    Object.entries(metaTags).forEach(([key, value]) => {
+        if (value) setMetaTag(key, value);
+    });
 }
 
 /* -- Blog Posts Handling -- */
 
 // Функция для создания элемента поста
 function createPostElement(post) {
+    // Если tags почему-то не массив — приводим
+    const tags = Array.isArray(post.tags)
+        ? post.tags
+        : (typeof post.tags === 'string'
+            ? post.tags.split(',').map(t => t.trim()).filter(Boolean)
+            : []);
+
     const postItem = document.createElement('div');
     postItem.classList.add('post-item');
-    postItem.setAttribute('data-tags', post.tags.join(' '));
+    postItem.setAttribute('data-tags', tags.join(' '));
     postItem.setAttribute('data-id', post.id);
 
     postItem.addEventListener('click', () => {
-        window.location.href = `/Blog/post.html?id=${encodeURIComponent(post.id)}`;
+        window.location.href = `/Blog/post.html?post_key=${encodeURIComponent(post.post_key)}`;
     });
 
-    // Создание изображения поста с ленивой загрузкой
+    // Изображение
     const img = document.createElement('img');
     img.src = post.image;
     img.alt = 'Превью статьи';
@@ -95,43 +90,61 @@ function createPostElement(post) {
     img.loading = 'lazy';
     postItem.appendChild(img);
 
-    // Создание контента поста
+    // Контент
     const postContent = document.createElement('div');
     postContent.classList.add('post-content');
 
-    // Заголовок
     const title = document.createElement('h2');
+    title.id = `blog_posts-${post.id}-title`;
     title.classList.add('post-title');
     title.textContent = post.title;
+    title.setAttribute('data-editable', 'true');
+    title.dataset.folder = 'blog_posts';
+    title.dataset.fileName = post.post_key || post.id;
+    title.dataset.field = 'title';
     postContent.appendChild(title);
 
-    // Краткое описание
     const shortDesc = document.createElement('p');
+    shortDesc.id = `blog_posts-${post.id}-description`;
     shortDesc.classList.add('post-short');
     shortDesc.textContent = post.description;
+    shortDesc.setAttribute('data-editable', 'true');
+    shortDesc.dataset.folder = 'blog_posts';
+    shortDesc.dataset.fileName = post.post_key || post.id;
+    shortDesc.dataset.field = 'description';
     postContent.appendChild(shortDesc);
 
-    // Футер поста
+    // Футер
     const postFooter = document.createElement('div');
     postFooter.classList.add('post-footer');
 
     const postDate = document.createElement('span');
+    postDate.id = `blog_posts-${post.id}-date`;
     postDate.classList.add('post-date');
     postDate.textContent = post.date;
+    postDate.setAttribute('data-editable', 'true');
+    postDate.dataset.folder = 'blog_posts';
+    postDate.dataset.fileName = post.post_key || post.id;
+    postDate.dataset.field = 'date';
     postFooter.appendChild(postDate);
 
     const postTags = document.createElement('span');
+    postTags.id = `blog_posts-${post.id}-tags`;
     postTags.classList.add('post-tags');
-    postTags.textContent = '#' + post.tags.join(' #');
+    postTags.textContent = tags.length ? '#' + tags.join(' #') : '';
+    postTags.setAttribute('data-editable', 'true');
+    postTags.dataset.folder = 'blog_posts';
+    postTags.dataset.fileName = post.post_key || post.id;
+    postTags.dataset.field = 'tags';
     postFooter.appendChild(postTags);
 
     postContent.appendChild(postFooter);
     postItem.appendChild(postContent);
 
-    // Добавление класса visible после добавления в DOM
+    // Анимация появления
     setTimeout(() => {
         postItem.classList.add('visible');
-    }, 100); // Задержка для анимации
+    }, 100);
 
     return postItem;
 }
@@ -173,25 +186,127 @@ function populateTagFilters(uniqueTags) {
 async function loadBlogPosts() {
     try {
         const language = getCurrentLanguage();
-        const postsData = await fetchData(`/Data/${language}/blog-posts/posts.json`);
+        // Загрузка с API
+        const posts = await fetchData(`/api/blog_posts?lang=${language}`);
         const postsContainer = document.getElementById('posts-container');
 
         // Очищаем контейнер перед загрузкой новых постов
         postsContainer.innerHTML = '';
 
-        postsData.posts.forEach(post => {
+        posts.forEach(post => {
             const postElement = createPostElement(post);
             postsContainer.appendChild(postElement);
         });
 
         // Получаем уникальные теги и заполняем фильтры
-        const uniqueTags = getUniqueTags(postsData.posts);
+        const uniqueTags = getUniqueTags(posts);
         populateTagFilters(uniqueTags);
 
         // Применяем фильтрацию после загрузки постов и тегов
         filterPosts();
     } catch (error) {
         console.error('Ошибка загрузки постов блога:', error);
+    }
+}
+
+/* -- Events Handling -- */
+
+// Функция для создания элемента события
+function createEventElement(evt) {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('event-item');
+    wrapper.setAttribute('data-id', evt.id);
+
+    const title = document.createElement('h3');
+    title.id = `events-${evt.id}-title`;
+    title.classList.add('event-title');
+    title.textContent = evt.title;
+    title.setAttribute('data-editable', 'true');
+    title.dataset.folder = 'events';
+    title.dataset.fileName = evt.id;
+    title.dataset.field = 'title';
+    wrapper.appendChild(title);
+
+    const desc = document.createElement('p');
+    desc.id = `events-${evt.id}-description`;
+    desc.classList.add('event-description');
+    desc.textContent = evt.description;
+    desc.setAttribute('data-editable', 'true');
+    desc.dataset.folder = 'events';
+    desc.dataset.fileName = evt.id;
+    desc.dataset.field = 'description';
+    wrapper.appendChild(desc);
+
+    const date = document.createElement('time');
+    date.id = `events-${evt.id}-start_date`;
+    date.classList.add('event-date');
+    date.textContent = evt.start_date;
+    date.setAttribute('data-editable', 'true');
+    date.dataset.folder = 'events';
+    date.dataset.fileName = evt.id;
+    date.dataset.field = 'start_date';
+    wrapper.appendChild(date);
+
+    // Добавляем местоположение, если есть
+    if (evt.location) {
+        const location = document.createElement('span');
+        location.id = `events-${evt.id}-location`;
+        location.classList.add('event-location');
+        location.textContent = evt.location;
+        location.setAttribute('data-editable', 'true');
+        location.dataset.folder = 'events';
+        location.dataset.fileName = evt.id;
+        location.dataset.field = 'location';
+        wrapper.appendChild(location);
+    }
+
+    // Добавляем цену, если есть
+    if (evt.price !== undefined) {
+        const price = document.createElement('span');
+        price.id = `events-${evt.id}-price`;
+        price.classList.add('event-price');
+        price.textContent = evt.price;
+        price.setAttribute('data-editable', 'true');
+        price.dataset.folder = 'events';
+        price.dataset.fileName = evt.id;
+        price.dataset.field = 'price';
+        wrapper.appendChild(price);
+    }
+
+    // Добавляем максимальное количество участников, если есть
+    if (evt.max_participants !== undefined) {
+        const maxParticipants = document.createElement('span');
+        maxParticipants.id = `events-${evt.id}-max_participants`;
+        maxParticipants.classList.add('event-max-participants');
+        maxParticipants.textContent = evt.max_participants;
+        maxParticipants.setAttribute('data-editable', 'true');
+        maxParticipants.dataset.folder = 'events';
+        maxParticipants.dataset.fileName = evt.id;
+        maxParticipants.dataset.field = 'max_participants';
+        wrapper.appendChild(maxParticipants);
+    }
+
+    // Анимация появления
+    setTimeout(() => {
+        wrapper.classList.add('visible');
+    }, 100);
+
+    return wrapper;
+}
+
+// Функция загрузки и рендеринга событий
+async function loadEvents() {
+    try {
+        const lang = getCurrentLanguage();
+        const events = await fetchData(`/api/events?lang=${lang}`);
+        const container = document.getElementById('events-container');
+
+        if (!container) return; // Если нет контейнера на странице, выходим
+
+        container.innerHTML = '';
+        events.forEach(evt => container.appendChild(createEventElement(evt)));
+    } catch (e) {
+        console.error('Ошибка загрузки событий:', e);
     }
 }
 
@@ -212,9 +327,13 @@ const dataCache = {
 };
 
 async function fetchData(url) {
-    //url = getStorageUrl(url);
-    
-    const cacheKey = `data_${url}`;
+    // Все относительные пути `/...` отправляем на воркер
+    const base = 'https://psychologist-server.art-valentina-a.workers.dev';
+    const apiUrl = url.match(/^https?:\/\//)
+        ? url                    // уже абсолютный – оставляем как есть
+        : `${base}${url}`;       // любой `/…` – префиксим воркером
+
+    const cacheKey = `data_${apiUrl}`;
     const cached = dataCache.get(cacheKey);
 
     try {
@@ -224,7 +343,8 @@ async function fetchData(url) {
             headers.append('If-Modified-Since', cached.lastModified);
         }
 
-        const response = await fetch(url, { headers });
+        const response = await fetch(apiUrl, { headers });
+        console.log(`← ${apiUrl} status: ${response.status}`);
 
         // Если данные не изменились с момента последнего кеширования
         if (response.status === 304) {
@@ -262,28 +382,28 @@ async function loadContentData() {
         const filename = isRootPath ? 'index' : pathname.split('/').pop().split('.')[0];
 
         // Загружаем и обновляем данные страницы
-        const pageData = await fetchData(`/Data/${getCurrentLanguage()}/pages-data/${filename}.json`);
-        updateData(pageData);
+        const pageData = await fetchData(`/${getCurrentLanguage()}/pages-data/${filename}.json`);
+        updateData(pageData, 'pages-data', filename);
 
         // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
         const productName = getProductNameFromUrl();
         if (productName) {
-            const productData = await fetchData(`/Data/${getCurrentLanguage()}/products-data/${productName}.json`);
-            updateData(productData);
+            const productData = await fetchData(`/${getCurrentLanguage()}/products-data/${productName}.json`);
+            updateData(productData, 'products-data', productName);
         }
 
         // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
         const gameName = getGameNameFromUrl();
         if (gameName) {
-            const gameData = await fetchData(`/Data/${getCurrentLanguage()}/games-data/${gameName}.json`);
-            updateData(gameData);
+            const gameData = await fetchData(`/${getCurrentLanguage()}/games-data/${gameName}.json`);
+            updateData(gameData, 'games-data', gameName);
         }
 
         // Проверяем наличие параметра группы в URL и загружаем соответствующие данные
         const groupName = getGroupFromUrl();
         if (groupName) {
-            const groupData = await fetchData(`/Data/${getCurrentLanguage()}/groups-data/${groupName}.json`);
-            updateData(groupData);
+            const groupData = await fetchData(`/${getCurrentLanguage()}/groups-data/${groupName}.json`);
+            updateData(groupData, 'groups-data', groupName);
         }
 
         // Если это страница блога, загружаем посты
@@ -318,6 +438,7 @@ function updateArray(element, value, elementType) {
     Object.entries(value).forEach(([key, itemValue]) => {
         const childElement = document.createElement(elementType);
         setTextContent(childElement, itemValue);
+        childElement.setAttribute('data-editable', 'true');
         fragment.appendChild(childElement);
     });
     element.appendChild(fragment);
@@ -327,12 +448,12 @@ function updateImage(element, value) {
     element.style.backgroundImage = `url(${value})`;
 }
 
-function updateData(data) {
+function updateData(data, folder, fileName) {
     // Обработка метаданных
     if (data.meta) {
         updateMetaTags(data.meta);
     }
-    
+
     document.querySelectorAll('[id]').forEach(element => {
         // Проверяем, обработан ли элемент ранее
         if (element.getAttribute('data-processed') === 'true') {
@@ -346,14 +467,21 @@ function updateData(data) {
             const matchArray = element.id.match(/-array-(\w+)$/);
             const matchImg = element.id.match(/-img$/);
 
+            // Прописываем откуда этот элемент
+            element.dataset.folder = folder;
+            element.dataset.fileName = fileName;
+            element.dataset.field = baseId;
+
             if (matchArray) {
                 updateArray(element, value, matchArray[1]);
             } else if (matchImg) {
                 updateImage(element, value);
             } else if (element.tagName.toLowerCase() === 'input') {
                 element.setAttribute('placeholder', value);
+                element.setAttribute('data-editable', 'true');
             } else {
                 updateText(element, value);
+                element.setAttribute('data-editable', 'true');
             }
 
             // Маркируем элемент как обработанный
@@ -367,8 +495,7 @@ function updateData(data) {
 
 async function addFooterFromJSON() {
     try {
-        const response = await fetch(`/Data/${getCurrentLanguage()}/assets.json`);
-        const data = await response.json();
+        const data = await fetchData(`/${getCurrentLanguage()}/assets.json`);
 
         const footer = document.createElement('footer');
         const p = document.createElement('p');
@@ -385,21 +512,20 @@ async function addFooterFromJSON() {
 
 async function addSocialSidebar() {
     try {
-        // Загружаем данные из JSON файла
-        const response = await fetch(`/Data/${getCurrentLanguage()}/assets.json`);
-        const { links } = await response.json();
+        // Загружаем данные из API
+        const links = await fetchData(`/api/social_links`);
 
         const socialSidebar = document.createElement('section');
         socialSidebar.id = 'social-sidebar';
         document.body.appendChild(socialSidebar);
 
-        links.forEach(({ href, title, icon }) => {
+        links.forEach(({ url, network, icon_path }) => {
             const link = document.createElement('a');
-            link.href = href;
-            link.title = title;
+            link.href = url;
+            link.title = network;
             link.target = "_blank";
             const img = document.createElement('img');
-            img.src = icon;
+            img.src = icon_path;
             link.appendChild(img);
             socialSidebar.appendChild(link);
         });
@@ -519,19 +645,21 @@ function createContactPanel() {
     const modal = document.createElement('div');
     modal.className = 'contact-modal';
 
-    // Загрузка данных о социальных сетях из внешнего файла
-    fetch(`/Data/${getCurrentLanguage()}/assets.json`)
-        .then(response => response.json())
-        .then(data => {
-            const socialIconsHTML = data.joinSocial.map(social =>
-                `<a href="${social.href}" title="${social.title}" target="_blank">
-                    <img src="${social.icon}" alt="${social.title}">
+    // Загрузка данных о социальных сетях из API и текста из локального файла
+    Promise.all([
+        fetchData(`/api/social_links`),
+        fetchData(`/${getCurrentLanguage()}/assets.json`)
+    ])
+        .then(([socialLinks, assetsData]) => {
+            const socialIconsHTML = socialLinks.map(social =>
+                `<a href="${social.url}" title="${social.network}" target="_blank">
+                    <img src="${social.icon_path}" alt="${social.network}">
                 </a>`
             ).join('');
 
             modal.innerHTML = `
                 <div class="contact-modal-content">
-                    <h1>${data.socialText}</h1>
+                    <h1>${assetsData.socialText}</h1>
                     <div class="social-icons">${socialIconsHTML}</div>
                 </div>
             `;
@@ -580,8 +708,7 @@ function initJoinButtons() {
 
 async function initHomeButton() {
     // Загружаем данные из JSON файла
-    const response = await fetch(`/Data/${getCurrentLanguage()}/assets.json`);
-    const { blogButton } = await response.json();
+    const { blogButton } = await fetchData(`/${getCurrentLanguage()}/assets.json`);
 
     const container = document.createElement('div');
     container.className = 'home-button-container';
@@ -782,6 +909,11 @@ document.addEventListener('DOMContentLoaded', () => {
     addFooterFromJSON();
     initJoinButtons();
     console.log('Current Language:', getCurrentLanguage());
+
+    // Загружаем события, если есть контейнер для них
+    if (document.getElementById('events-container')) {
+        loadEvents();
+    }
 
     if (!window.location.pathname.includes('schedule')) {
         initHomeButton();

@@ -35,7 +35,6 @@
         "екрананалітик (робота з емоціями)."
     ],
     "aboutPsychologist": [
-        "Модератор дивізіону Кіберпсихології Національної Психологічної Асоціації.",
         "Член асоціацій: «Психологи без кордонів», «Національна Психологічна Асоціація України», «European Federation of Psychologists Associations», 'International Association of Applied Psychology (IAAP)'.",
         "Ведуча психологічних, фінансової, а також авторських ігор.",
         "Волонтер в соціальних проектах, з важкохворими пацієнтами та членами їх сімей, brainspottinghelp.",
@@ -195,5 +194,5 @@
             "imageBG": "Extra/Images/GroupsMini/HumanUnderstanding.png"
         }
     },
-    "phraseImage": "Extra/Images/review.png"
+    "phraseImage": "Extra/Images/reviewUk.png"
 }

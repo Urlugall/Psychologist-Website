@@ -35,7 +35,6 @@
         "ecranalyst (working with emotions)."
     ],
     "aboutPsychologist": [
-        "Division moderator of Cyberpsychology of the National Psychological Association.",
         "Member of associations: 'Psychologists Without Borders', 'National Psychological Association of Ukraine', 'European Federation of Psychologists Associations', 'International Association of Applied Psychology (IAAP)'.",
         "Leading psychologist of psychological, financial, and author's games.",
         "Volunteer in social projects, with seriously ill patients and their families, brainspottinghelp.",
@@ -195,5 +194,5 @@
             "imageBG": "Extra/Images/GroupsMini/HumanUnderstanding.png"
         }
     },
-    "phraseImage": "Extra/Images/review.png"
+    "phraseImage": "Extra/Images/reviewEn.png"
 }

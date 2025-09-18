@@ -1,79 +1,76 @@
 // Blog/Post/post-script.js
 
-// Функция для получения параметра id из URL
-function getPostIdFromUrl() {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('id');
-}
-
-// Функция для загрузки и отображения поста
-async function loadPost() {
-    const postId = getPostIdFromUrl();
-    if (!postId) {
-        console.error('ID поста не указан в URL.');
-        displayError('Пост не найден.');
-        return;
+(() => {
+    // Получаем параметр post_key из URL
+    function getPostKeyFromUrl() {
+        const params = new URLSearchParams(window.location.search);
+        return params.get('post_key');
     }
 
-    try {
-        const language = getCurrentLanguage();
-        const postsData = await fetchData(`/Data/${language}/blog-posts/posts.json`);
-        const post = postsData.posts.find(p => p.id === postId);
+    // Показ ошибки в контейнере
+    function displayError(message) {
+        const container = document.getElementById('post-container') || document.body;
+        container.innerHTML = '';
+        const err = document.createElement('div');
+        err.className = 'post-error';
+        err.textContent = message;
+        container.appendChild(err);
+    }
 
-        if (!post) {
-            console.error('Пост с таким ID не найден.');
+    // Основная функция загрузки
+    async function loadPost() {
+        const postKey = getPostKeyFromUrl();
+        if (!postKey) {
+            console.error('Ключ поста не указан в URL.');
             displayError('Пост не найден.');
             return;
         }
 
-        const postContainer = document.getElementById('post-container');
+        try {
+            // Используем глобальные функции из content-loader.js
+            const language = getCurrentLanguage();
+            const posts = await fetchData(`/api/blog_posts?lang=${language}`);
 
-        // Создание элементов для отображения поста
-        const postHeader = document.createElement('div');
-        postHeader.classList.add('post-header');
+            // Ищем по полю post_key вместо id
+            const post = posts.find(p => String(p.post_key) === String(postKey));
+            if (!post) {
+                console.error(`Пост с post_key=${postKey} не найден.`);
+                displayError('Пост не найден.');
+                return;
+            }
 
-        const postTitle = document.createElement('h1');
-        postTitle.classList.add('post-title');
-        postTitle.textContent = post.title;
+            // Нормализуем tags
+            const tags = Array.isArray(post.tags)
+                ? post.tags
+                : (typeof post.tags === 'string'
+                    ? post.tags.split(',').map(t => t.trim()).filter(Boolean)
+                    : []);
 
-        const postDate = document.createElement('p');
-        postDate.classList.add('post-date');
-        postDate.textContent = `Дата публикации: ${post.date}`;
-
-        postHeader.appendChild(postTitle);
-        postHeader.appendChild(postDate);
-
-        const postImage = document.createElement('img');
-        postImage.src = post.image;
-        postImage.alt = 'Изображение поста';
-        postImage.classList.add('post-main-image');
-        postImage.loading = 'lazy';
-
-        const postContent = document.createElement('div');
-        postContent.classList.add('post-content');
-
-        // Парсинг Markdown в HTML
-        postContent.innerHTML = marked.parse(post.content);
-
-        // Создание футера поста с тегами
-        const postFooter = document.createElement('div');
-        postFooter.classList.add('post-footer');
-
-        const postTags = document.createElement('span');
-        postTags.classList.add('post-tags');
-        postTags.textContent = '#' + post.tags.join(' #');
-
-        postFooter.appendChild(postTags);
-
-        // Добавление всех элементов в контейнер поста
-        postContainer.appendChild(postHeader);
-        postContainer.appendChild(postImage);
-        postContainer.appendChild(postContent);
-        postContainer.appendChild(postFooter);
-    } catch (error) {
-        console.error('Ошибка загрузки поста:', error);
+            // Рендерим контент
+            const container = document.getElementById('post-container');
+            container.innerHTML = `
+          <div class="post-header">
+            <h1 class="post-title">${post.title}</h1>
+            <p class="post-date">Дата публикации: ${post.date}</p>
+          </div>
+          <img 
+            class="post-main-image" 
+            src="${post.image}" 
+            alt="Изображение поста" 
+            loading="lazy"
+          />
+          <div class="post-content">${marked.parse(post.content)}</div>
+          <div class="post-footer">
+            <span class="post-tags">
+              ${tags.length ? '#' + tags.join(' #') : ''}
+            </span>
+          </div>
+        `;
+        } catch (err) {
+            console.error('Ошибка загрузки поста:', err);
+            displayError('Не удалось загрузить пост. Попробуйте позже.');
+        }
     }
-}
 
-// Инициализация загрузки поста при загрузке страницы
-document.addEventListener('DOMContentLoaded', loadPost);
+    document.addEventListener('DOMContentLoaded', loadPost);
+})();

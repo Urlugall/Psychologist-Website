@@ -35,7 +35,6 @@
         "écranalyste (travail avec les émotions)."
     ],
     "aboutPsychologist": [
-        "Modérateur de la division Cyberpsychologie de l'Association Psychologique Nationale.",
         "Membre des associations : 'Psychologues Sans Frontières', 'Association Psychologique Nationale d'Ukraine', 'Fédération Européenne des Associations de Psychologues', 'Association Internationale de Psychologie Appliquée (IAAP)'.",
         "Psychologue principal de jeux psychologiques, financiers et d'auteur.",
         "Bénévole dans des projets sociaux, auprès de patients gravement malades et de leurs familles, brainspottinghelp.",
@@ -194,5 +193,5 @@
             "imageBG": "Extra/Images/GroupsMini/HumanUnderstanding.png"
         }
     },
-    "phraseImage": "Extra/Images/review.png"
+    "phraseImage": "Extra/Images/reviewFr.png"
 }

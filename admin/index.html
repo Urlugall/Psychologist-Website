@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <nav class="tabs">
+            <button data-tab="posts" class="active">Posts</button>
+            <button data-tab="events">Events</button>
+            <button data-tab="links">Social Links</button>
+            <button data-tab="translations">Translations</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- POSTS -->
+        <section id="posts" class="active">
+            <h2>Blog Posts (Grouped by Post Key)</h2>
+            <button id="add-post-btn" class="add-btn">Add Post</button>
+            <div id="posts-container"></div>
+        </section>
+        <!-- EVENTS -->
+        <section id="events">
+            <h2>Events (Grouped by Event Key)</h2>
+            <div id="events-container"></div>
+        </section>
+        <!-- SOCIAL LINKS -->
+        <section id="links">
+            <h2>Social Links</h2>
+            <table id="links-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Network</th>
+                        <th>URL</th>
+                        <th>Icon Path</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+        <!-- TRANSLATIONS -->
+        <section id="translations">
+            <h2>Translations</h2>
+            <label>
+                Язык:
+                <select id="lang-select">
+                    <option value="en">English</option>
+                    <option value="ru">Русский</option>
+                    <option value="uk">Українська</option>
+                    <option value="fr">Français</option>
+                </select>
+            </label>
+            <ul class="translations-list" id="translations-list"></ul>
+            <div class="translations-editor" id="translations-editor">
+                <h3 id="trans-file-name"></h3>
+                <textarea id="trans-content"></textarea><br />
+                <button id="save-translation" class="save-btn">Save File</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модальное окно для полного редактирования поста -->
+    <div id="post-modal" class="modal-overlay">
+        <div class="modal">
+            <header>
+                <h2>Post Details</h2>
+                <button id="modal-close">&times;</button>
+            </header>
+            <form id="modal-form">
+                <input type="hidden" id="modal-post-id" />
+                <div class="modal-body">
+                    <!-- Левая колонка: все поля кроме Content -->
+                    <div class="modal-left">
+                        <div class="field">
+                            <label>Post Key:</label>
+                            <input type="text" id="modal-post-key" />
+                        </div>
+                        <div class="field">
+                            <label>Language:</label>
+                            <select id="modal-language-code">
+                                <option value="en">English</option>
+                                <option value="ru">Русский</option>
+                                <option value="uk">Українська</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+                        <div class="field"><label>Title:</label><input type="text" id="modal-title" /></div>
+                        <div class="field"><label>Description:</label><textarea id="modal-description"></textarea></div>
+                        <div class="field"><label>Image URL:</label><input type="text" id="modal-image" /></div>
+                        <div class="field"><label>Date:</label><input type="date" id="modal-date" /></div>
+                        <div class="field"><label>Tags (comma-separated):</label><input type="text" id="modal-tags" /></div>
+                    </div>
+                    <!-- Правая колонка: только Content с собственным скроллом -->
+                    <div class="modal-right">
+                        <div class="field full-height">
+                            <label>Content:</label>
+                            <textarea id="modal-content"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button type="button" id="modal-save">Save All</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@
     --primary-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --main-bg-color: #f0f8ff;
     --text-color: #333;
-    --link-color: #d6d6d6;
+    --link-special-color: #d6d6d6;
     --footer-bg-color: #6a8faf;
     --button-bg-color: #46992d;
     --white: #fff;
@@ -47,7 +47,7 @@ nav ul li {
 }
 
 nav a {
-    color: var(--link-color);
+    color: var(--link-special-color);
     text-decoration: none;
     font-weight: bold;
     font-size: x-large;

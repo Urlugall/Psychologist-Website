@@ -1,114 +1,129 @@
-/*
- * edit-mode.js
- * Включает режим редактирования: при двойном клике на любом текстовом элементе
- * на домене edit.art-valentina.com появляется модальное окно для правки текста и
- * отправки изменений на сервер в JSON-файл для текущего языка.
- */
+// inline-editor.js
+// Встраиваемый мощный inline-редактор локализации
+// Работает только если в localStorage есть apiKey
+
 (function () {
-    // Активировать только на режиме редактирования
-    if (!window.location.host.startsWith('edit.art-valentina.com')) {
-        return;
+    const apiKey = localStorage.getItem('apiKey');
+    if (!apiKey) return;
+
+    const lang = localStorage.getItem('selectedLanguage') || 'en';
+    const apiBase = 'https://psychologist-server.art-valentina-a.workers.dev';
+
+    let enabled = false;
+
+    function createToggleButton() {
+        const btn = document.createElement('button');
+        btn.id = 'inline-editor-toggle';
+        btn.textContent = '🖉 Редактировать';
+        Object.assign(btn.style, {
+            position: 'fixed',
+            top: '10px',
+            right: '10px',
+            zIndex: '10000',
+            padding: '8px 12px',
+            background: '#46992d',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            fontSize: '14px'
+        });
+        document.body.appendChild(btn);
+        return btn;
     }
 
-    // Создание модального окна
-    const modal = document.createElement('div');
-    modal.id = 'inline-edit-modal';
-    Object.assign(modal.style, {
-        position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
-        backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex',
-        justifyContent: 'center', alignItems: 'center', zIndex: 9999,
-        visibility: 'hidden'
-    });
-
-    const editor = document.createElement('div');
-    Object.assign(editor.style, {
-        backgroundColor: '#fff', padding: '20px', borderRadius: '8px',
-        width: '80%', maxWidth: '500px', boxShadow: '0 2px 10px rgba(0,0,0,0.3)'
-    });
-
-    const textarea = document.createElement('textarea');
-    textarea.style.width = '100%';
-    textarea.style.height = '150px';
-
-    const btnSave = document.createElement('button');
-    btnSave.textContent = 'Сохранить';
-    btnSave.style.marginRight = '10px';
-
-    const btnCancel = document.createElement('button');
-    btnCancel.textContent = 'Отмена';
-
-    editor.appendChild(textarea);
-    editor.appendChild(document.createElement('br'));
-    editor.appendChild(btnSave);
-    editor.appendChild(btnCancel);
-    modal.appendChild(editor);
-    document.body.appendChild(modal);
-
-    let currentElem = null;
-    let jsonKey = null;
-
-    // Определение ключа JSON по id элемента (замена '-' на '.')
-    function getJsonKey(el) {
-        if (el.id) {
-            return el.id.replace(/-/g, '.');
-        }
-        return null;
-    }
-
-    // Показать модал
-    function showModal(el) {
-        currentElem = el;
-        jsonKey = getJsonKey(el);
-        textarea.value = el.innerText;
-        modal.style.visibility = 'visible';
-        textarea.focus();
-    }
-
-    // Скрыть модал
-    function hideModal() {
-        modal.style.visibility = 'hidden';
-        currentElem = null;
-        jsonKey = null;
-    }
-
-    // Отправка изменений на сервер
     async function saveChange(key, value) {
-        const lang = localStorage.getItem('selectedLanguage') || 'en';
         try {
-            const res = await fetch(`/api/save-content`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+            const resp = await fetch(`${apiBase}/api/save-content`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
                 body: JSON.stringify({ key, lang, value })
             });
-            if (!res.ok) throw new Error('Ошибка сохранения: ' + res.status);
+            if (!resp.ok) throw new Error(await resp.text());
+            console.log(`Saved ${key}`);
+            return true;
         } catch (err) {
-            console.error(err);
-            alert('Не удалось сохранить изменения.');
+            console.error('Save error:', err);
+            return false;
         }
     }
 
-    // Обработчики кнопок
-    btnSave.addEventListener('click', () => {
-        if (!currentElem || !jsonKey) { hideModal(); return; }
-        const newValue = textarea.value;
-        currentElem.innerText = newValue;
-        saveChange(jsonKey, newValue);
-        hideModal();
-    });
-    btnCancel.addEventListener('click', hideModal);
+    function startEditing(el) {
+        if (el.isContentEditable) return;
+        el.dataset.orig = el.innerHTML;
+        el.contentEditable = true;
+        el.style.outline = '2px dashed #46992d';
+        createEditorToolbar(el);
+    }
 
-    // Скрыть при клике вне editor
-    modal.addEventListener('click', e => {
-        if (e.target === modal) hideModal();
-    });
+    function createEditorToolbar(el) {
+        const rect = el.getBoundingClientRect();
+        const toolbar = document.createElement('div');
+        toolbar.className = 'inline-editor-toolbar';
+        Object.assign(toolbar.style, {
+            position: 'fixed',
+            top: `${rect.top - 40}px`,
+            left: `${rect.left}px`,
+            background: '#fff',
+            border: '1px solid #ccc',
+            borderRadius: '4px',
+            zIndex: '10001',
+            boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
+            padding: '4px'
+        });
 
-    // Двойной клик по тексту
-    document.addEventListener('dblclick', e => {
-        const target = e.target;
-        // игнорировать интерактивные элементы
-        if (['BUTTON', 'INPUT', 'TEXTAREA', 'A', 'IMG'].includes(target.tagName)) return;
-        if (target.innerText && target.innerText.trim().length > 0) {
-            showModal(target);
+        const saveBtn = document.createElement('button');
+        saveBtn.textContent = '💾';
+        saveBtn.title = 'Сохранить';
+        const cancelBtn = document.createElement('button');
+        cancelBtn.textContent = '✖';
+        cancelBtn.title = 'Отменить';
+
+        [saveBtn, cancelBtn].forEach(b => {
+            Object.assign(b.style, {
+                margin: '0 4px',
+                cursor: 'pointer',
+                background: 'none',
+                border: 'none',
+                fontSize: '16px'
+            });
+            toolbar.appendChild(b);
+        });
+        document.body.appendChild(toolbar);
+
+        saveBtn.addEventListener('click', async () => {
+            let key = el.id.replace(/-/g, '.');
+            // Убираем префикс R2‑папки, если он присутствует
+            key = key.replace(/^(pages-data|products-data|games-data|groups-data)\./, '');
+            const value = el.innerHTML.trim();
+            const success = await saveChange(key, value);
+            teardown(false);
+        });
+
+        cancelBtn.addEventListener('click', () => teardown(true));
+
+        function teardown(isCancel) {
+            el.contentEditable = false;
+            el.style.outline = 'none';
+            toolbar.remove();
+            if (isCancel) el.innerHTML = el.dataset.orig;
         }
+    }
+
+    document.addEventListener('click', e => {
+        if (!enabled) return;
+        const el = e.target.closest('[data-editable]');
+        if (!el) return;
+        e.preventDefault();
+        startEditing(el);
+    }, true);
+
+    const toggle = createToggleButton();
+    toggle.addEventListener('click', () => {
+        enabled = !enabled;
+        toggle.textContent = enabled ? '🔒 Готово' : '🖉 Редактировать';
     });
 })();
