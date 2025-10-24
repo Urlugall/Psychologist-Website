@@ -64,7 +64,7 @@
                     <h1 style="margin-top:0; font-size:1.1rem; color:#c00;">Unauthorized</h1>
                     <p style="font-size:0.9rem; line-height:1.4;">
                         <code style="display:inline-block;margin-top:.5rem;background:#f0f0f0;padding:.25rem .5rem;border-radius:4px;">
-                            ?apikey=ВАШ_КЛЮЧ
+                            ?apikey=API_KEY_HERE
                         </code>
                     </p>
                 </div>
