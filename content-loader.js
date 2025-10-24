@@ -376,40 +376,70 @@ async function fetchData(url) {
 // Инициализация и обработка загрузки данных страницы и игры
 async function loadContentData() {
     try {
-        // Используем тернарный оператор для определения имени файла
         const pathname = window.location.pathname;
-        const isRootPath = pathname === '/' || pathname.endsWith('/');
-        const filename = isRootPath ? 'index' : pathname.split('/').pop().split('.')[0];
+        const filename = pathname.substring(pathname.lastIndexOf('/') + 1).split('.')[0] || 'index';
+        const currentLang = getCurrentLanguage();
 
-        // Загружаем и обновляем данные страницы
-        const pageData = await fetchData(`/${getCurrentLanguage()}/pages-data/${filename}.json`);
-        updateData(pageData, 'pages-data', filename);
+        const pageDataUrl = `/${currentLang}/pages-data/${filename}.json`;
+        if (filename !== 'post') {
+             const pageData = await fetchData(pageDataUrl);
+             if (pageData && pageData.meta) {
+                 updateMetaTags(pageData.meta);
+             }
+              if (pageData) {
+                  updateData(pageData, 'pages-data', filename);
+              }
+        }
 
-        // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
         const productName = getProductNameFromUrl();
         if (productName) {
-            const productData = await fetchData(`/${getCurrentLanguage()}/products-data/${productName}.json`);
-            updateData(productData, 'products-data', productName);
+            const productDataUrl = `/${currentLang}/products-data/${productName}.json`;
+            const productData = await fetchData(productDataUrl);
+            if (productData && productData.meta) {
+                 updateMetaTags(productData.meta);
+            }
+             if (productData) {
+                 updateData(productData, 'products-data', productName);
+             }
         }
 
-        // Проверяем наличие параметра игры в URL и загружаем соответствующие данные
         const gameName = getGameNameFromUrl();
         if (gameName) {
-            const gameData = await fetchData(`/${getCurrentLanguage()}/games-data/${gameName}.json`);
-            updateData(gameData, 'games-data', gameName);
+            const gameDataUrl = `/${currentLang}/games-data/${gameName}.json`;
+            const gameData = await fetchData(gameDataUrl);
+            if (filename === 'game' && gameData && gameData.meta_game) { // На game.html -> meta_game
+                 updateMetaTags(gameData.meta_game);
+            } else if (filename === 'master' && gameData && gameData.meta_master) { // На master.html -> meta_master
+                 updateMetaTags(gameData.meta_master);
+            } else if (gameData && gameData.meta) {
+                  updateMetaTags(gameData.meta);
+            }
+             if (gameData) {
+                 updateData(gameData, 'games-data', gameName);
+             }
         }
 
-        // Проверяем наличие параметра группы в URL и загружаем соответствующие данные
         const groupName = getGroupFromUrl();
         if (groupName) {
-            const groupData = await fetchData(`/${getCurrentLanguage()}/groups-data/${groupName}.json`);
-            updateData(groupData, 'groups-data', groupName);
+            const groupDataUrl = `/${currentLang}/groups-data/${groupName}.json`;
+            const groupData = await fetchData(groupDataUrl);
+            if (groupData && groupData.meta) {
+                 updateMetaTags(groupData.meta);
+            }
+             if (groupData) {
+                 updateData(groupData, 'groups-data', groupName);
+             }
         }
 
-        // Если это страница блога, загружаем посты
         if (filename === 'blog') {
             await loadBlogPosts();
+             const blogPageDataUrl = `/${currentLang}/pages-data/blog.json`;
+             const blogPageData = await fetchData(blogPageDataUrl);
+             if (blogPageData && blogPageData.meta) {
+                 updateMetaTags(blogPageData.meta);
+             }
         }
+
     } catch (error) {
         console.error('Error during data loading:', error);
     }
