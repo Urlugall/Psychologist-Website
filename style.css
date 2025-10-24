@@ -11,7 +11,9 @@
     --light-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
@@ -200,6 +202,16 @@ footer {
     flex-direction: column;
 }
 
+.info-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.column ul {
+    margin-top: 5px;
+}
+
 /* --- Services Section --- */
 #services {
     display: flex;
@@ -291,6 +303,56 @@ footer {
     background-color: transparent;
     color: var(--button-bg-color);
     border: 2px solid var(--button-bg-color);
+}
+
+/* --- Секция "Чем могу помочь" и "Мои направления" --- */
+.help-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 20px;
+    background-color: var(--white);
+    border-radius: 15px;
+    gap: 30px;
+}
+
+.help-column {
+    flex: 1 1 45%;
+    padding: 0 20px;
+}
+
+.help-column h2 {
+    text-align: center;
+    color: var(--button-bg-color);
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.help-column ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.help-column ul li {
+    padding: 10px 0 10px 30px;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+.help-column ul li:last-child {
+    border-bottom: none;
+}
+
+.help-column ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: var(--button-bg-color);
+    font-weight: bold;
+    font-size: 1.2em;
 }
 
 /* Статистика */

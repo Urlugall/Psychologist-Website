@@ -66,17 +66,20 @@
         padding: 20px 10px;
         margin: 0px;
     }
+
     .stat h2 p {
         font-size: large;
     }
-    .stat p, .stat h2 {
+
+    .stat p,
+    .stat h2 {
         margin: 0;
     }
 
     .alert-box {
         flex-direction: column;
     }
-    
+
     #services {
         flex-direction: column;
         align-items: center;
@@ -96,6 +99,38 @@
         display: flex;
         flex-direction: column;
         position: relative;
+    }
+
+    .help-section {
+        flex-direction: column;
+        /* Колонки одна под другой */
+        padding: 20px 15px;
+        margin: 20px 0;
+        gap: 0;
+    }
+
+    .help-column {
+        padding: 0 10px;
+        margin-bottom: 30px;
+    }
+
+    .help-column:last-child {
+        margin-bottom: 0;
+    }
+
+    .help-column h2 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .help-column ul li {
+        font-size: 1em;
+        padding-left: 25px;
+    }
+
+    .help-column ul li::before {
+        top: 8px;
+        font-size: 1.1em;
     }
 
     .card-front,
@@ -165,7 +200,7 @@
         align-items: center;
         gap: 10px;
     }
-    
+
     #centred-container .buttons-section button {
         height: 40px;
         flex: 0 0 auto;
@@ -173,5 +208,5 @@
         padding: 0 15px;
         margin: 0;
     }
-  
+
 }
