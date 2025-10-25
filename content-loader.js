@@ -298,13 +298,30 @@ function createEventElement(evt) {
 async function loadEvents() {
     try {
         const lang = getCurrentLanguage();
-        const events = await fetchData(`/api/events?lang=${lang}`);
-        const container = document.getElementById('events-container');
+        // [FIX] Используем /api/file и получаем events.json
+        const response = await fetchData(`/api/file?lang=${lang}&file=events.json`);
 
-        if (!container) return; // Если нет контейнера на странице, выходим
+        // [FIX] /api/file возвращает { data: [...] }, извлекаем .data
+        const events = (response && Array.isArray(response.data)) ? response.data : [];
+
+        const container = document.getElementById('events-container');
+        if (!container) return;
 
         container.innerHTML = '';
-        events.forEach(evt => container.appendChild(createEventElement(evt)));
+
+        events.forEach((evt, index) => {
+            const mappedEvt = {
+                id: index,
+                title: evt.title,
+                description: evt.description || '',
+                start_date: evt.startDate,
+                location: evt.location || '',
+                price: evt.price || '',
+                max_participants: evt.max_participants || ''
+            };
+            container.appendChild(createEventElement(mappedEvt));
+        });
+
     } catch (e) {
         console.error('Ошибка загрузки событий:', e);
     }
@@ -314,7 +331,7 @@ async function loadEvents() {
 
 const dataCache = {
     get(cacheKey) {
-        const item = localStorage.getItem(cacheKey);
+        const item = sessionStorage.getItem(cacheKey);
         return item ? JSON.parse(item) : undefined;
     },
     set(cacheKey, data, lastModified) {
@@ -322,7 +339,7 @@ const dataCache = {
             data: data,
             lastModified: lastModified
         };
-        localStorage.setItem(cacheKey, JSON.stringify(cachedItem));
+        sessionStorage.setItem(cacheKey, JSON.stringify(cachedItem));
     }
 };
 
@@ -373,6 +390,74 @@ async function fetchData(url) {
     }
 }
 
+// Загружает и рендерит один пост (для post.html)
+async function loadSinglePost() {
+    try {
+        // 1. Проверяем, что библиотека Marked.js загружена
+        if (typeof marked === 'undefined') {
+            console.error('Marked.js library is not loaded. Cannot render post.');
+            return;
+        }
+
+        // 2. Получаем post_key из URL
+        const currentLang = getCurrentLanguage();
+        const postKey = new URLSearchParams(window.location.search).get('post_key');
+        if (!postKey) {
+            throw new Error('No post_key in URL');
+        }
+
+        // 3. Загружаем все посты и находим нужный
+        const posts = await fetchData(`/api/blog_posts?lang=${currentLang}`);
+        if (!posts || !posts.length) {
+            throw new Error('No posts found for this language.');
+        }
+
+        const post = posts.find(p => p.post_key === postKey);
+        if (!post) {
+            throw new Error(`Post with key "${postKey}" not found.`);
+        }
+
+        // 4. Находим плейсхолдеры на странице (из post.html)
+        const titleEl = document.getElementById('post-title-placeholder');
+        const dateEl = document.getElementById('post-date-placeholder');
+        const imageEl = document.getElementById('post-image-placeholder');
+        const contentEl = document.getElementById('post-full-content');
+
+        // 5. Заполняем плейсхолдеры
+        if (titleEl) {
+            document.title = post.title; // Обновляем <title> страницы
+            titleEl.textContent = post.title;
+        }
+        if (dateEl) dateEl.textContent = post.date;
+        if (imageEl && post.image) {
+            imageEl.src = post.image;
+            imageEl.alt = post.title;
+            imageEl.style.display = 'block';
+        }
+
+        // 6. Конвертируем Markdown в HTML и вставляем
+        if (contentEl) {
+            contentEl.innerHTML = marked.parse(post.content);
+        }
+
+        // 7. Обновляем мета-теги для SEO
+        updateMetaTags({
+            title: post.title,
+            description: post.description,
+            "og:title": post.title,
+            "og:description": post.description,
+            "og:image": post.image,
+            "og:url": window.location.href,
+            "twitter:card": "summary_large_image"
+        });
+
+    } catch (error) {
+        console.error('Error loading single post:', error);
+        const contentEl = document.getElementById('post-full-content');
+        if (contentEl) contentEl.innerHTML = `<p style="color:red;">Error loading post: ${error.message}</p>`;
+    }
+}
+
 // Инициализация и обработка загрузки данных страницы и игры
 async function loadContentData() {
     try {
@@ -380,64 +465,81 @@ async function loadContentData() {
         const filename = pathname.substring(pathname.lastIndexOf('/') + 1).split('.')[0] || 'index';
         const currentLang = getCurrentLanguage();
 
-        const pageDataUrl = `/${currentLang}/pages-data/${filename}.json`;
+        const isSinglePostPage = (filename === 'post') || (pathname.startsWith('/Blog/post'));
+
+        if (isSinglePostPage) {
+            await loadSinglePost();
+            return;
+        }
+
+        const pageDataUrl = `/api/file?lang=${currentLang}&file=pages-data/${filename}.json`;
         if (filename !== 'post') {
-             const pageData = await fetchData(pageDataUrl);
-             if (pageData && pageData.meta) {
-                 updateMetaTags(pageData.meta);
-             }
-              if (pageData) {
-                  updateData(pageData, 'pages-data', filename);
-              }
+            const pageDataResponse = await fetchData(pageDataUrl);
+            const pageData = pageDataResponse ? pageDataResponse.data : null;
+
+            if (pageData && pageData.meta) {
+                updateMetaTags(pageData.meta);
+            }
+            if (pageData) {
+                updateData(pageData, 'pages-data', filename);
+            }
         }
 
         const productName = getProductNameFromUrl();
         if (productName) {
-            const productDataUrl = `/${currentLang}/products-data/${productName}.json`;
-            const productData = await fetchData(productDataUrl);
+            const productDataUrl = `/api/file?lang=${currentLang}&file=products-data/${productName}.json`;
+            const productDataResponse = await fetchData(productDataUrl);
+            const productData = productDataResponse ? productDataResponse.data : null;
+
             if (productData && productData.meta) {
-                 updateMetaTags(productData.meta);
+                updateMetaTags(productData.meta);
             }
-             if (productData) {
-                 updateData(productData, 'products-data', productName);
-             }
+            if (productData) {
+                updateData(productData, 'products-data', productName);
+            }
         }
 
         const gameName = getGameNameFromUrl();
         if (gameName) {
-            const gameDataUrl = `/${currentLang}/games-data/${gameName}.json`;
-            const gameData = await fetchData(gameDataUrl);
-            if (filename === 'game' && gameData && gameData.meta_game) { // На game.html -> meta_game
-                 updateMetaTags(gameData.meta_game);
-            } else if (filename === 'master' && gameData && gameData.meta_master) { // На master.html -> meta_master
-                 updateMetaTags(gameData.meta_master);
+            const gameDataUrl = `/api/file?lang=${currentLang}&file=games-data/${gameName}.json`;
+            const gameDataResponse = await fetchData(gameDataUrl);
+            const gameData = gameDataResponse ? gameDataResponse.data : null;
+
+            if (filename === 'game' && gameData && gameData.meta_game) {
+                updateMetaTags(gameData.meta_game);
+            } else if (filename === 'master' && gameData && gameData.meta_master) {
+                updateMetaTags(gameData.meta_master);
             } else if (gameData && gameData.meta) {
-                  updateMetaTags(gameData.meta);
+                updateMetaTags(gameData.meta);
             }
-             if (gameData) {
-                 updateData(gameData, 'games-data', gameName);
-             }
+            if (gameData) {
+                updateData(gameData, 'games-data', gameName);
+            }
         }
 
         const groupName = getGroupFromUrl();
         if (groupName) {
-            const groupDataUrl = `/${currentLang}/groups-data/${groupName}.json`;
-            const groupData = await fetchData(groupDataUrl);
+            const groupDataUrl = `/api/file?lang=${currentLang}&file=groups-data/${groupName}.json`;
+            const groupDataResponse = await fetchData(groupDataUrl);
+            const groupData = groupDataResponse ? groupDataResponse.data : null;
+
             if (groupData && groupData.meta) {
-                 updateMetaTags(groupData.meta);
+                updateMetaTags(groupData.meta);
             }
-             if (groupData) {
-                 updateData(groupData, 'groups-data', groupName);
-             }
+            if (groupData) {
+                updateData(groupData, 'groups-data', groupName);
+            }
         }
 
         if (filename === 'blog') {
             await loadBlogPosts();
-             const blogPageDataUrl = `/${currentLang}/pages-data/blog.json`;
-             const blogPageData = await fetchData(blogPageDataUrl);
-             if (blogPageData && blogPageData.meta) {
-                 updateMetaTags(blogPageData.meta);
-             }
+            const blogPageDataUrl = `/api/file?lang=${currentLang}&file=pages-data/blog.json`;
+            const blogPageDataResponse = await fetchData(blogPageDataUrl);
+            const blogPageData = blogPageDataResponse ? blogPageDataResponse.data : null;
+
+            if (blogPageData && blogPageData.meta) {
+                updateMetaTags(blogPageData.meta);
+            }
         }
 
     } catch (error) {
@@ -525,7 +627,8 @@ function updateData(data, folder, fileName) {
 
 async function addFooterFromJSON() {
     try {
-        const data = await fetchData(`/${getCurrentLanguage()}/assets.json`);
+        const response = await fetchData(`/api/file?lang=${getCurrentLanguage()}&file=assets.json`);
+        const data = response ? response.data : {};
 
         const footer = document.createElement('footer');
         const p = document.createElement('p');
@@ -675,13 +778,16 @@ function createContactPanel() {
     const modal = document.createElement('div');
     modal.className = 'contact-modal';
 
-    // Загрузка данных о социальных сетях из API и текста из локального файла
+    // Загрузка данных о социальных сетях из API и текста
     Promise.all([
         fetchData(`/api/social_links`),
-        fetchData(`/${getCurrentLanguage()}/assets.json`)
+        fetchData(`/api/file?lang=${getCurrentLanguage()}&file=assets.json`)
     ])
-        .then(([socialLinks, assetsData]) => {
-            const socialIconsHTML = socialLinks.map(social =>
+        .then(([socialLinks, assetsResponse]) => {
+            const assetsData = assetsResponse ? assetsResponse.data : {};
+            const safeSocialLinks = Array.isArray(socialLinks) ? socialLinks : [];
+
+            const socialIconsHTML = safeSocialLinks.map(social =>
                 `<a href="${social.url}" title="${social.network}" target="_blank">
                     <img src="${social.icon_path}" alt="${social.network}">
                 </a>`
@@ -689,7 +795,7 @@ function createContactPanel() {
 
             modal.innerHTML = `
                 <div class="contact-modal-content">
-                    <h1>${assetsData.socialText}</h1>
+                    <h1>${assetsData.socialText || 'Contact Me'}</h1>
                     <div class="social-icons">${socialIconsHTML}</div>
                 </div>
             `;
@@ -738,7 +844,8 @@ function initJoinButtons() {
 
 async function initHomeButton() {
     // Загружаем данные из JSON файла
-    const { blogButton } = await fetchData(`/${getCurrentLanguage()}/assets.json`);
+    const response = await fetchData(`/api/file?lang=${getCurrentLanguage()}&file=assets.json`);
+    const { blogButton } = response ? response.data : { blogButton: "Blog" };
 
     const container = document.createElement('div');
     container.className = 'home-button-container';

@@ -1,33 +1,42 @@
-/* Blog/Post/responsive.css */
+/* Blog/Post/responsive.css - Адаптивность Одного Поста */
 
 @media (max-width: 768px) {
-  .post-container {
-      padding: 15px;
-  }
+    main {
+        padding: 10px;
+    }
 
-  .post-title {
-      font-size: 2em;
-  }
+    #post-container {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
 
-  .post-content {
-      font-size: 1em;
-  }
+    .post-title {
+        font-size: 2em;
+    }
 
-  .post-footer {
-      font-size: 0.9em;
-  }
+    .post-content {
+        font-size: 1em;
+    }
+
+    .post-footer {
+        font-size: 0.9em;
+    }
 }
 
 @media (max-width: 480px) {
-  .post-title {
-      font-size: 1.8em;
-  }
+    #post-container {
+        padding: 1rem;
+    }
 
-  .post-content {
-      font-size: 0.95em;
-  }
+    .post-title {
+        font-size: 1.8em;
+    }
 
-  .post-footer {
-      font-size: 0.85em;
-  }
+    .post-content {
+        font-size: 0.95em;
+    }
+
+    .post-footer {
+        font-size: 0.85em;
+    }
 }

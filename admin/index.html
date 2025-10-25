@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Admin Panel</title>
     <link rel="stylesheet" href="styles.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
 </head>
 
 <body>
@@ -28,7 +31,18 @@
         </section>
         <!-- EVENTS -->
         <section id="events">
-            <h2>Events (Grouped by Event Key)</h2>
+            <h2>Events</h2>
+
+            <label>
+                Язык:
+                <select id="events-lang-select">
+                    <option value="en">English</option>
+                    <option value="ru" selected>Русский</option>
+                    <option value="uk">Українська</option>
+                    <option value="fr">Français</option>
+                </select>
+            </label>
+
             <div id="events-container"></div>
         </section>
         <!-- SOCIAL LINKS -->
@@ -97,7 +111,8 @@
                         <div class="field"><label>Description:</label><textarea id="modal-description"></textarea></div>
                         <div class="field"><label>Image URL:</label><input type="text" id="modal-image" /></div>
                         <div class="field"><label>Date:</label><input type="date" id="modal-date" /></div>
-                        <div class="field"><label>Tags (comma-separated):</label><input type="text" id="modal-tags" /></div>
+                        <div class="field"><label>Tags (comma-separated):</label><input type="text" id="modal-tags" />
+                        </div>
                     </div>
                     <!-- Правая колонка: только Content с собственным скроллом -->
                     <div class="modal-right">

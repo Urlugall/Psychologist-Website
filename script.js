@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+
     loadAndDisplayEvents();
     setupNavigationScroll();
     setupServicesNavigation();
@@ -9,19 +10,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function loadAndDisplayEvents() {
-    let url = `/Data/${getCurrentLanguage()}/events.json`; // Захардкодили URL
-    const containerId = 'events'; // Захардкодили идентификатор контейнера
-    //url = getStorageUrl(url);
+    // 1. Получаем язык
+    const lang = getCurrentLanguage();
+
+    // 2. Формируем URL к API
+    const url = `https://psychologist-server.art-valentina-a.workers.dev/api/file?lang=${lang}&file=events.json`;
+    const containerId = 'events';
 
     fetch(url)
         .then(response => response.json())
-        .then(events => {
+        .then(result => {
+
+            const events = (result && Array.isArray(result.data)) ? result.data : [];
+
             const container = document.getElementById(containerId);
             if (!container) {
                 console.error(`The ${containerId} container does not exist!`);
                 return;
             }
-            container.innerHTML = ''; // Очистка текущего содержимого контейнера
+            container.innerHTML = '';
+
             events.forEach(event => {
                 const eventElement = document.createElement('div');
                 eventElement.classList.add('carousel-item');
@@ -40,7 +48,7 @@ function loadAndDisplayEvents() {
 
 function setupNavigationScroll() {
     document.querySelectorAll('a[id^="navigation-"]').forEach(navElement => {
-        navElement.addEventListener('click', function(event) {
+        navElement.addEventListener('click', function (event) {
             event.preventDefault(); // Предотвращаем стандартное действие ссылки
 
             const sectionId = navElement.id.replace('navigation', 'section');

@@ -1,33 +1,14 @@
 (() => {
     const BASE = 'https://psychologist-server.art-valentina-a.workers.dev';
-    const apiKey = localStorage.getItem('apiKey');
-    const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + apiKey
-    };
-
-    // 1. Таб-меню
-    document.querySelectorAll('nav.tabs button').forEach(btn => {
-        btn.addEventListener('click', e => {
-            document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
-            document.getElementById(e.target.dataset.tab).classList.add('active');
-        });
-    });
 
     function resolveApiKey() {
         const url = new URL(window.location.href);
         const fromQuery = url.searchParams.get('apikey');
 
         if (fromQuery && fromQuery.trim()) {
-            // сохраним ключ из URL для следующих заходов
             localStorage.setItem('apiKey', fromQuery.trim());
-
-            // опционально можно подчистить URL от apikey чтобы не торчал в истории/адресной строке
             url.searchParams.delete('apikey');
             window.history.replaceState({}, '', url.toString());
-
             return fromQuery.trim();
         }
 
@@ -36,7 +17,7 @@
             return fromStorage.trim();
         }
 
-        return ''; // нет ключа
+        return '';
     }
 
     function blockUnauthorized() {
@@ -72,15 +53,38 @@
         `;
     }
 
+    function formatDateForInput(dateStr) {
+        if (!dateStr) return '';
+        // Если уже YYYY-MM-DD (или полный ISO)
+        if (/^\d{4}-\d{2}-\d{2}/.test(dateStr)) {
+            return dateStr.slice(0, 10);
+        }
+        // Если DD.MM.YYYY
+        if (/^\d{2}\.\d{2}\.\d{4}$/.test(dateStr)) {
+            return dateStr.split('.').reverse().join('-');
+        }
+        // Неизвестный формат, пробуем парсить
+        try {
+            return new Date(dateStr).toISOString().slice(0, 10);
+        } catch (e) {
+            return '';
+        }
+    }
+
+    function formatDateForDB(dateStr) {
+        if (!dateStr || !/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+            return dateStr; // Возвращаем как есть, если формат не YYYY-MM-DD
+        }
+        return dateStr.split('-').reverse().join('.');
+    }
+
     function initApp(apiKey) {
         const headers = {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + apiKey
         };
 
-        // ------------------------
-        // 1. Таб-меню
-        // ------------------------
+        // ---------- TAB SWITCH ----------
         document.querySelectorAll('nav.tabs button').forEach(btn => {
             btn.addEventListener('click', e => {
                 document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
@@ -91,14 +95,22 @@
             });
         });
 
-        // ------------------------
-        // 2. Трекер изменений .dirty + Save/Disable + View
-        // ------------------------
-        function attachRowBehavior(tr, namespace, p) {
+        // ---------- STATE ----------
+        let currentLang = 'ru';                  // для translations / default
+        let currentEventsLang = 'ru';            // для events
+        let eventsData = [];                     // массив из events.json
+        let allTrans = {};                       // карта filename -> json
+        let simpleMde = null;                    // Переменная для хранения экземпляра редактора
+
+        const langSelect = document.getElementById('lang-select');
+        const eventsLangSelect = document.getElementById('events-lang-select');
+
+        // ---------- HELPERS ----------
+        // attachRowBehavior for D1 rows (posts/social_links)
+        function attachRowBehavior(tr, namespace, objForViewModal) {
             const saveBtn = tr.querySelector('.save-btn');
             const viewBtn = tr.querySelector('.view-btn');
 
-            // Любое изменение ячейки делает её "грязной"
             tr.querySelectorAll('[contenteditable]').forEach(td => {
                 td.addEventListener('input', () => {
                     td.classList.add('dirty');
@@ -106,18 +118,14 @@
                 });
             });
 
-            // Сохранение строки
-            saveBtn.addEventListener('click', () => saveRow(namespace, p.id, tr));
+            saveBtn.addEventListener('click', () => saveRow(namespace, objForViewModal.id, tr));
 
-            // Открыть модалку со всем постом
             if (viewBtn) {
-                viewBtn.addEventListener('click', () => openPostModal(p));
+                viewBtn.addEventListener('click', () => openPostModal(objForViewModal));
             }
         }
 
-        // ------------------------
-        // 3. Сохранение dirty полей через /api/save-content
-        // ------------------------
+        // saveRow -> PUT /api/save-content (for blog_posts / social_links)
         async function saveRow(namespace, id, tr) {
             const dirty = Array.from(tr.querySelectorAll('[contenteditable].dirty'));
             if (!dirty.length) {
@@ -135,11 +143,9 @@
                         headers,
                         body: JSON.stringify({
                             key: `${namespace}.${id}.${field}`,
-                            lang: null,
                             value
                         })
                     });
-
                     if (!res.ok) {
                         throw new Error((await res.json()).error || res.statusText);
                     }
@@ -154,9 +160,7 @@
             }
         }
 
-        // ------------------------
-        // 4. Загрузка POSTS
-        // ------------------------
+        // ---------- POSTS (blog_posts из D1) ----------
         async function loadPosts() {
             const res = await fetch(`${BASE}/api/blog_posts`, { headers });
             if (!res.ok) {
@@ -198,10 +202,10 @@
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td>${p.id}</td>
-                        <td>${p.language_code}</td>
-                        <td contenteditable data-field="title">${p.title}</td>
-                        <td contenteditable data-field="description">${p.description}</td>
-                        <td contenteditable data-field="image">${p.image}</td>
+                        <td>${p.language_code || ''}</td>
+                        <td contenteditable data-field="title">${p.title || ''}</td>
+                        <td contenteditable data-field="description">${p.description || ''}</td>
+                        <td contenteditable data-field="image">${p.image || ''}</td>
                         <td>
                             <button class="view-btn">View</button>
                             <button class="save-btn" disabled>Save</button>
@@ -215,69 +219,97 @@
             });
         }
 
-        // ------------------------
-        // 5. Загрузка EVENTS
-        // ------------------------
-        async function loadEvents() {
-            const res = await fetch(`${BASE}/api/events`, { headers });
+        // ---------- EVENTS (R2: <lang>/events.json) ----------
+        async function loadEventsFile() {
+            const res = await fetch(`${BASE}/api/file?lang=${currentEventsLang}&file=events.json`, { headers });
             if (!res.ok) {
-                console.error('loadEvents error', res.status);
-                return;
+                console.error('loadEventsFile error', res.status);
+                eventsData = [];
+            } else {
+                const { data } = await res.json();
+                eventsData = Array.isArray(data) ? data : [];
             }
+            renderEventsTable();
+        }
 
-            const evs = await res.json();
-            const groups = {};
-            evs.forEach(e => {
-                (groups[e.event_key] = groups[e.event_key] || []).push(e);
-            });
-
+        function renderEventsTable() {
             const container = document.getElementById('events-container');
             container.innerHTML = '';
 
-            Object.entries(groups).forEach(([key, arr]) => {
-                const div = document.createElement('div');
-                div.classList.add('group');
-                div.innerHTML = `<h3>Event Key: ${key}</h3>`;
-                const table = document.createElement('table');
-                table.innerHTML = `
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Lang</th>
-                            <th>Title</th>
-                            <th>Start Date</th>
-                            <th>Href</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                `;
-                const tbody = table.querySelector('tbody');
+            const table = document.createElement('table');
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>Href</th>
+                        <th>Save</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            `;
+            const tbody = table.querySelector('tbody');
 
-                arr.forEach(e => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td>${e.id}</td>
-                        <td>${e.language_code}</td>
-                        <td contenteditable data-field="title">${e.title}</td>
-                        <td contenteditable data-field="start_date">${e.start_date}</td>
-                        <td contenteditable data-field="href">${e.href}</td>
-                        <td>
-                            <button class="save-btn" disabled>Save</button>
-                        </td>
-                    `;
-                    attachRowBehavior(tr, 'events', e);
-                    tbody.appendChild(tr);
+            eventsData.forEach((ev, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${idx}</td>
+                    <td contenteditable data-field="title">${ev.title || ''}</td>
+                    <td contenteditable data-field="startDate">${ev.startDate || ''}</td>
+                    <td contenteditable data-field="href">${ev.href || ''}</td>
+                    <td><button class="save-btn" disabled>Save</button></td>
+                `;
+
+                const saveBtn = tr.querySelector('.save-btn');
+
+                tr.querySelectorAll('[contenteditable]').forEach(td => {
+                    td.addEventListener('input', () => {
+                        td.classList.add('dirty');
+                        saveBtn.disabled = false;
+                    });
                 });
 
-                div.appendChild(table);
-                container.appendChild(div);
+                saveBtn.addEventListener('click', async () => {
+                    const dirtyCells = tr.querySelectorAll('[contenteditable].dirty');
+                    try {
+                        for (const cell of dirtyCells) {
+                            const field = cell.dataset.field; // "title" | "startDate" | "href"
+                            const value = cell.innerText.trim();
+
+                            const body = {
+                                key: `events.${currentEventsLang}.${idx}.${field}`,
+                                value
+                            };
+
+                            const r = await fetch(`${BASE}/api/save-content`, {
+                                method: 'PUT',
+                                headers,
+                                body: JSON.stringify(body)
+                            });
+
+                            if (!r.ok) {
+                                throw new Error((await r.json()).error || r.statusText);
+                            }
+
+                            eventsData[idx][field] = value;
+                            cell.classList.remove('dirty');
+                        }
+
+                        saveBtn.disabled = true;
+                        alert('Сохранено!');
+                    } catch (err) {
+                        alert('Ошибка: ' + err.message);
+                    }
+                });
+
+                tbody.appendChild(tr);
             });
+
+            container.appendChild(table);
         }
 
-        // ------------------------
-        // 6. Загрузка SOCIAL LINKS
-        // ------------------------
+        // ---------- SOCIAL LINKS (D1: social_links) ----------
         async function loadLinks() {
             const res = await fetch(`${BASE}/api/social_links`, { headers });
             if (!res.ok) {
@@ -293,9 +325,9 @@
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${l.id}</td>
-                    <td contenteditable data-field="network">${l.network}</td>
-                    <td contenteditable data-field="url">${l.url}</td>
-                    <td contenteditable data-field="icon_path">${l.icon_path}</td>
+                    <td contenteditable data-field="network">${l.network || ''}</td>
+                    <td contenteditable data-field="url">${l.url || ''}</td>
+                    <td contenteditable data-field="icon_path">${l.icon_path || ''}</td>
                     <td>
                         <button class="save-btn" disabled>Save</button>
                     </td>
@@ -305,9 +337,7 @@
             });
         }
 
-        // ------------------------
-        // 7. Модалка поста (create/edit)
-        // ------------------------
+        // ---------- MODAL (create/edit blog_post) ----------
         const modal = document.getElementById('post-modal');
         const modalHeader = modal.querySelector('header h2') || modal.querySelector('h2');
         const idInput = document.getElementById('modal-post-id');
@@ -322,10 +352,59 @@
         const saveModalBtn = document.getElementById('modal-save');
 
         document.getElementById('modal-close').onclick = () => {
+            if (simpleMde) {
+                simpleMde.toTextArea();
+                simpleMde = null;
+            }
             modal.style.display = 'none';
         };
 
-        // Открыть пустую модалку для создания нового поста
+        function initEditor(initialValue = '') {
+            // Если редактор уже есть, сначала уничтожаем его
+            if (simpleMde) {
+                simpleMde.toTextArea();
+                simpleMde = null;
+            }
+
+            simpleMde = new EasyMDE({
+                element: contEl,
+                initialValue: initialValue,
+                spellChecker: false,
+                status: false,
+                forceSync: true,
+                toolbar: [
+                    "bold", "italic", "heading", "|",
+                    "quote", "unordered-list", "ordered-list", "|",
+                    "link", "image", "|",
+                    "preview", "side-by-side", "fullscreen", "|",
+                    "guide"
+                ]
+            });
+        }
+
+        function initEditor(initialValue = '') {
+            // Если редактор уже есть, сначала уничтожаем его
+            if (simpleMde) {
+                simpleMde.toTextArea();
+                simpleMde = null;
+            }
+
+            simpleMde = new EasyMDE({
+                element: contEl,
+                initialValue: initialValue,
+                spellChecker: false,
+                status: false,
+                forceSync: true,
+                toolbar: [
+                    "bold", "italic", "heading", "|",
+                    "quote", "unordered-list", "ordered-list", "|",
+                    "link", "image", "|",
+                    "preview", "side-by-side", "fullscreen", "|",
+                    "guide"
+                ]
+            });
+        }
+
         function openCreateModal() {
             if (modalHeader) modalHeader.innerText = 'New Post';
             idInput.value = '';
@@ -336,31 +415,32 @@
             imgEl.value = '';
             dateEl.value = '';
             tagsEl.value = '';
-            contEl.value = '';
             saveModalBtn.dataset.mode = 'create';
             modal.style.display = 'flex';
+
+            initEditor('');
         }
 
-        // Открыть модалку для редактирования существующего поста
         function openPostModal(p) {
             if (modalHeader) modalHeader.innerText = 'Edit Post';
             idInput.value = p.id;
-            postKeyEl.value = p.post_key;
-            langCodeEl.value = p.language_code;
-            titleEl.value = p.title;
-            descEl.value = p.description;
-            imgEl.value = p.image;
-            dateEl.value = p.date?.slice(0, 10) || '';
+            postKeyEl.value = p.post_key || '';
+            langCodeEl.value = p.language_code || 'en';
+            titleEl.value = p.title || '';
+            descEl.value = p.description || '';
+            imgEl.value = p.image || '';
+            dateEl.value = formatDateForInput(p.date);
             tagsEl.value =
                 typeof p.tags === 'string'
                     ? p.tags
                     : Array.isArray(p.tags)
                         ? p.tags.join(', ')
                         : '';
-            contEl.value = p.content || '';
             saveModalBtn.dataset.mode = 'edit';
             saveModalBtn.dataset.id = p.id;
             modal.style.display = 'flex';
+
+            initEditor(p.content || '');
         }
 
         const addPostBtn = document.getElementById('add-post-btn');
@@ -368,7 +448,6 @@
             addPostBtn.addEventListener('click', openCreateModal);
         }
 
-        // Сохранение поста из модалки (create или edit)
         saveModalBtn.onclick = async () => {
             const mode = saveModalBtn.dataset.mode;
             const data = {
@@ -377,16 +456,15 @@
                 title: titleEl.value.trim(),
                 description: descEl.value.trim(),
                 image: imgEl.value.trim(),
-                date: dateEl.value,
+                date: formatDateForDB(dateEl.value),
                 tags: tagsEl.value.trim(),
-                content: contEl.value.trim()
+                content: simpleMde.value().trim()
             };
 
             try {
                 let res;
 
                 if (mode === 'create') {
-                    // создаём новый пост
                     res = await fetch(`${BASE}/api/blog_posts`, {
                         method: 'POST',
                         headers,
@@ -396,18 +474,14 @@
                         throw new Error((await res.json()).error || res.statusText);
                     }
                 } else {
-                    // редактируем уже существующую запись
                     const id = saveModalBtn.dataset.id;
-
-                    // воркер позволяет обновлять поля через /api/save-content
-                    for (let field of ['title', 'description', 'image', 'date', 'tags', 'content', 'post_key']) {
+                    for (let field of ['title', 'description', 'image', 'date', 'tags', 'content', 'post_key', 'language_code']) {
                         if (data[field] != null) {
                             res = await fetch(`${BASE}/api/save-content`, {
                                 method: 'PUT',
                                 headers,
                                 body: JSON.stringify({
                                     key: `blog_posts.${id}.${field}`,
-                                    lang: null,
                                     value: data[field]
                                 })
                             });
@@ -419,18 +493,18 @@
                 }
 
                 alert('Успешно сохранено!');
+                if (simpleMde) {
+                    simpleMde.toTextArea();
+                    simpleMde = null;
+                }
                 modal.style.display = 'none';
-                loadPosts(); // перезагружаем список постов после апдейта
+                loadPosts();
             } catch (err) {
                 alert('Ошибка при сохранении: ' + err.message);
             }
         };
 
-        // ------------------------
-        // 8. TRANSLATIONS
-        // ------------------------
-        let allTrans = {};
-        const langSelect = document.getElementById('lang-select');
+        // ---------- TRANSLATIONS (R2 editor for ANY json file) ----------
         const listEl = document.getElementById('translations-list');
         const editor = document.getElementById('translations-editor');
         const nameEl = document.getElementById('trans-file-name');
@@ -438,15 +512,10 @@
         const saveBtn = document.getElementById('save-translation');
 
         async function loadTranslations() {
-            // переводы в рабочей версии админки считаем приватной зоной
-            // поэтому на бэке /api/all-translations лучше тоже проверять ключ
-            const lang = langSelect.value;
+            currentLang = langSelect.value;
             listEl.innerHTML = 'Loading…';
 
-            const res = await fetch(`${BASE}/api/all-translations?lang=${lang}`, {
-                headers
-            });
-
+            const res = await fetch(`${BASE}/api/translations?lang=${currentLang}`, { headers });
             if (!res.ok) {
                 listEl.innerHTML = 'Access denied / error';
                 console.error('loadTranslations error', res.status);
@@ -468,55 +537,69 @@
             });
         }
 
+        // overwrite whole file in R2
         saveBtn.addEventListener('click', async () => {
             const fname = nameEl.innerText;
-            const content = JSON.parse(areaEl.value);
+            let content;
+            try {
+                content = JSON.parse(areaEl.value);
+            } catch (e) {
+                alert('JSON невалидный');
+                return;
+            }
 
-            await fetch(`${BASE}/api/save-content`, {
+            const res = await fetch(`${BASE}/api/file`, {
                 method: 'PUT',
                 headers,
                 body: JSON.stringify({
-                    key: fname.replace(/\//g, '.'),
-                    lang: langSelect.value,
-                    value: content
+                    lang: currentLang,
+                    file: fname,
+                    data: content
                 })
             });
+
+            if (!res.ok) {
+                alert('Ошибка сохранения');
+                return;
+            }
 
             alert('Translation saved!');
             await loadTranslations();
         });
 
-        // ------------------------
-        // 9. Финальная инициализация UI после загрузки DOM
-        // ------------------------
+        // ---------- INIT ----------
         document.addEventListener('DOMContentLoaded', () => {
+            // posts / links (D1)
             loadPosts();
-            loadEvents();
             loadLinks();
+
+            // events from R2
+            currentEventsLang = eventsLangSelect.value || 'ru';
+            loadEventsFile();
+
+            // translations browser
             loadTranslations();
-            langSelect.onchange = loadTranslations;
+
+            // language switches
+            langSelect.onchange = () => {
+                loadTranslations();
+            };
+
+            eventsLangSelect.onchange = () => {
+                currentEventsLang = eventsLangSelect.value;
+                loadEventsFile();
+            };
         });
     }
 
-    /**
-     * bootstrap():
-     * 1. Пытаемся добыть ключ.
-     * 2. Если нет ключа -> показываем Unauthorized и прекращаем работу.
-     * 3. Если ключ нашли -> инициализируем всё приложение с этим ключом.
-     */
     function bootstrap() {
         const apiKey = resolveApiKey();
-
-        // проверяем сразу здесь, до любой логики
         if (!apiKey) {
             blockUnauthorized();
             return;
         }
-
-        // грузим полноценную админку
         initApp(apiKey);
     }
 
-    // Запускаем bootstrap немедленно
     bootstrap();
 })();

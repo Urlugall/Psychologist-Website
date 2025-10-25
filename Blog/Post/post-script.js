@@ -67,8 +67,7 @@
           </div>
         `;
         } catch (err) {
-            console.error('Ошибка загрузки поста:', err);
-            displayError('Не удалось загрузить пост. Попробуйте позже.');
+            displayError('Error loading post. Please try again later.');
         }
     }
 

@@ -1,8 +1,9 @@
-/* Blog/responsive.css */
+/* Blog/responsive.css - Адаптивность Списка Постов */
 
 @media (max-width: 1200px) {
   .post-item {
-    width: calc((100% - 40px)/3);
+    width: calc((100% - 20px) / 2);
+    /* 2 в ряд */
   }
 }
 
@@ -21,7 +22,7 @@
   }
 
   .search-box input {
-    width: 100%; /* Полная ширина на мобильных устройствах */
+    width: 100%;
   }
 
   .blog-filters {
@@ -40,9 +41,10 @@
 
   .post-item {
     width: calc(100% - 40px);
+    /* 1 в ряд */
   }
 
-  .post-image {
+  .post-item .post-image {
     height: 200px;
   }
 }

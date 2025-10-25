@@ -1,4 +1,4 @@
-/* Blog/style.css */
+/* Blog/style.css - Стили Списка Постов */
 
 :root {
   --primary-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,31 +22,35 @@ main {
   padding: 20px;
 }
 
-/* Анимация кнопок */
+/* --- Анимации --- */
 
-a, button, .grid-item {
-  transition: transform 0.3s ease;
-}
-
-a:hover, button:hover, .grid-item:hover {
-  transform: scale(1.05);
-}
-
+a,
+button,
+.grid-item,
 .post-item {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer; 
+}
+
+a:hover,
+button:hover,
+.grid-item:hover {
+  transform: scale(1.05);
 }
 
 .post-item:hover {
   transform: scale(1.07);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
+
+/* --- Шапка Блога и Фильтры --- */
 
 .blog-header {
   background-color: white;
   border-radius: 15px;
   padding: 20px;
   margin-bottom: 20px;
+  box-shadow: var(--light-shadow);
 }
 
 .blog-title-box {
@@ -82,7 +86,7 @@ a:hover, button:hover, .grid-item:hover {
   border-radius: 30px;
   border: 2px solid var(--button-bg-color);
   font-size: 1em;
-  width: 300px; /* Увеличенная ширина */
+  width: 300px;
 }
 
 .white-button {
@@ -170,10 +174,11 @@ a:hover, button:hover, .grid-item:hover {
   transform: scale(1.2);
 }
 
-/* Новое правило для окраски галочек */
 .tag-checkbox {
-    accent-color: var(--button-bg-color);
+  accent-color: var(--button-bg-color);
 }
+
+/* --- Контейнер Списка Постов --- */
 
 .posts-container {
   max-width: 1200px;
@@ -184,19 +189,21 @@ a:hover, button:hover, .grid-item:hover {
   justify-content: flex-start;
 }
 
+/* --- Карточка Поста (в списке) --- */
+
 .post-item {
-  width: calc((1200px - 40px)/3);
+  width: calc((100% - 40px) / 3);
+  min-width: 300px;
+  flex-grow: 0;
   box-sizing: border-box;
   background-color: white;
   border-radius: 15px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  
-  /* Начальные стили для анимации */
+  box-shadow: var(--light-shadow);
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .post-item.visible {
@@ -204,58 +211,62 @@ a:hover, button:hover, .grid-item:hover {
   transform: translateY(0);
 }
 
-.post-image {
+.post-item .post-image {
   width: 100%;
-  height: 150px;
+  height: 200px;
   object-fit: cover;
 }
 
-.post-content {
+.post-item .post-content {
   padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  flex-grow: 1;
 }
 
-.post-title {
+.post-item .post-title {
   margin: 0;
   font-size: 1.5em;
   color: var(--button-bg-color);
 }
 
-.post-short {
+.post-item .post-short {
   font-size: 1em;
   margin: 10px 0;
   color: #555;
+  flex-grow: 1;
 }
 
-.post-footer {
+.post-item .post-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.9em;
   color: #777;
+  margin-top: 10px;
 }
 
-.post-date {
+.post-item .post-date {
   font-weight: bold;
 }
 
-.post-tags {
+.post-item .post-tags {
   color: var(--button-bg-color);
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100%;
-  margin-left: 20px;
+  max-width: 150px;
+  margin-left: 10px;
 }
 
-/* Подвал */
+/* --- Подвал --- */
+
 footer {
   text-align: center;
   padding: 20px 0;
   background-color: var(--main-bg-color);
   color: var(--footer-bg-color);
+  margin-top: 2rem;
 }
