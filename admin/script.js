@@ -24,23 +24,12 @@
         document.body.innerHTML = `
             <div style="
                 font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-height: 100vh;
-                background: #f8f8f8;
-                color: #333;
-                text-align: center;
-                padding: 2rem;
+                display: flex; align-items: center; justify-content: center; min-height: 100vh;
+                background: #f8f8f8; color: #333; text-align: center; padding: 2rem;
             ">
                 <div style="
-                    background: #fff;
-                    border: 1px solid #ddd;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-                    max-width: 360px;
-                    width: 100%;
-                    padding: 1.5rem;
+                    background: #fff; border: 1px solid #ddd; border-radius: 8px;
+                    box-shadow: 0 4px 16px rgba(0,0,0,0.08); max-width: 360px; width: 100%; padding: 1.5rem;
                 ">
                     <h1 style="margin-top:0; font-size:1.1rem; color:#c00;">Unauthorized</h1>
                     <p style="font-size:0.9rem; line-height:1.4;">
@@ -55,15 +44,12 @@
 
     function formatDateForInput(dateStr) {
         if (!dateStr) return '';
-        // Если уже YYYY-MM-DD (или полный ISO)
         if (/^\d{4}-\d{2}-\d{2}/.test(dateStr)) {
             return dateStr.slice(0, 10);
         }
-        // Если DD.MM.YYYY
         if (/^\d{2}\.\d{2}\.\d{4}$/.test(dateStr)) {
             return dateStr.split('.').reverse().join('-');
         }
-        // Неизвестный формат, пробуем парсить
         try {
             return new Date(dateStr).toISOString().slice(0, 10);
         } catch (e) {
@@ -73,7 +59,7 @@
 
     function formatDateForDB(dateStr) {
         if (!dateStr || !/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
-            return dateStr; // Возвращаем как есть, если формат не YYYY-MM-DD
+            return dateStr;
         }
         return dateStr.split('-').reverse().join('.');
     }
@@ -96,17 +82,19 @@
         });
 
         // ---------- STATE ----------
-        let currentLang = 'ru';                  // для translations / default
-        let currentEventsLang = 'ru';            // для events
-        let eventsData = [];                     // массив из events.json
-        let allTrans = {};                       // карта filename -> json
-        let simpleMde = null;                    // Переменная для хранения экземпляра редактора
+        let currentLang = 'ru';
+        let currentEventsLang = 'ru';
+        let eventsData = [];
+        let allTrans = {};
+        let simpleMde = null;
+
+        // [NEW] Переменная для хранения файла, который ждет загрузки
+        let pendingUploadFile = null;
 
         const langSelect = document.getElementById('lang-select');
         const eventsLangSelect = document.getElementById('events-lang-select');
 
         // ---------- HELPERS ----------
-        // attachRowBehavior for D1 rows (posts/social_links)
         function attachRowBehavior(tr, namespace, objForViewModal) {
             const saveBtn = tr.querySelector('.save-btn');
             const viewBtn = tr.querySelector('.view-btn');
@@ -125,7 +113,6 @@
             }
         }
 
-        // saveRow -> PUT /api/save-content (for blog_posts / social_links)
         async function saveRow(namespace, id, tr) {
             const dirty = Array.from(tr.querySelectorAll('[contenteditable].dirty'));
             if (!dirty.length) {
@@ -219,7 +206,7 @@
             });
         }
 
-        // ---------- EVENTS (R2: <lang>/events.json) ----------
+        // ---------- EVENTS ----------
         async function loadEventsFile() {
             const res = await fetch(`${BASE}/api/file?lang=${currentEventsLang}&file=events.json`, { headers });
             if (!res.ok) {
@@ -274,13 +261,9 @@
                     const dirtyCells = tr.querySelectorAll('[contenteditable].dirty');
                     try {
                         for (const cell of dirtyCells) {
-                            const field = cell.dataset.field; // "title" | "startDate" | "href"
+                            const field = cell.dataset.field;
                             const value = cell.innerText.trim();
-
-                            const body = {
-                                key: `events.${currentEventsLang}.${idx}.${field}`,
-                                value
-                            };
+                            const body = { key: `events.${currentEventsLang}.${idx}.${field}`, value };
 
                             const r = await fetch(`${BASE}/api/save-content`, {
                                 method: 'PUT',
@@ -288,14 +271,11 @@
                                 body: JSON.stringify(body)
                             });
 
-                            if (!r.ok) {
-                                throw new Error((await r.json()).error || r.statusText);
-                            }
+                            if (!r.ok) throw new Error((await r.json()).error || r.statusText);
 
                             eventsData[idx][field] = value;
                             cell.classList.remove('dirty');
                         }
-
                         saveBtn.disabled = true;
                         alert('Сохранено!');
                     } catch (err) {
@@ -309,13 +289,10 @@
             container.appendChild(table);
         }
 
-        // ---------- SOCIAL LINKS (D1: social_links) ----------
+        // ---------- SOCIAL LINKS ----------
         async function loadLinks() {
             const res = await fetch(`${BASE}/api/social_links`, { headers });
-            if (!res.ok) {
-                console.error('loadLinks error', res.status);
-                return;
-            }
+            if (!res.ok) return;
 
             const links = await res.json();
             const tbody = document.querySelector('#links-table tbody');
@@ -328,9 +305,7 @@
                     <td contenteditable data-field="network">${l.network || ''}</td>
                     <td contenteditable data-field="url">${l.url || ''}</td>
                     <td contenteditable data-field="icon_path">${l.icon_path || ''}</td>
-                    <td>
-                        <button class="save-btn" disabled>Save</button>
-                    </td>
+                    <td><button class="save-btn" disabled>Save</button></td>
                 `;
                 attachRowBehavior(tr, 'social_links', l);
                 tbody.appendChild(tr);
@@ -350,6 +325,9 @@
         const tagsEl = document.getElementById('modal-tags');
         const contEl = document.getElementById('modal-content');
         const saveModalBtn = document.getElementById('modal-save');
+        const uploadFileInput = document.getElementById('upload-file-input');
+        const triggerUploadBtn = document.getElementById('trigger-upload-btn');
+        const uploadStatus = document.getElementById('upload-status');
 
         document.getElementById('modal-close').onclick = () => {
             if (simpleMde) {
@@ -357,37 +335,38 @@
                 simpleMde = null;
             }
             modal.style.display = 'none';
+            // Сброс при закрытии
+            pendingUploadFile = null;
+            if (uploadFileInput) uploadFileInput.value = '';
+            if (uploadStatus) uploadStatus.textContent = '';
         };
 
-        function initEditor(initialValue = '') {
-            // Если редактор уже есть, сначала уничтожаем его
-            if (simpleMde) {
-                simpleMde.toTextArea();
-                simpleMde = null;
-            }
+        // [MODIFIED] Логика загрузки изображений
+        if (triggerUploadBtn && uploadFileInput) {
+            // 1. Клик по кнопке открывает системное окно
+            triggerUploadBtn.addEventListener('click', () => {
+                uploadFileInput.click();
+            });
 
-            simpleMde = new EasyMDE({
-                element: contEl,
-                initialValue: initialValue,
-                spellChecker: false,
-                status: false,
-                forceSync: true,
-                toolbar: [
-                    "bold", "italic", "heading", "|",
-                    "quote", "unordered-list", "ordered-list", "|",
-                    "link", "image", "|",
-                    "preview", "side-by-side", "fullscreen", "|",
-                    "guide"
-                ]
+            // 2. При выборе файла просто запоминаем его, НЕ грузим на сервер сразу
+            uploadFileInput.addEventListener('change', () => {
+                const file = uploadFileInput.files[0];
+                if (!file) return;
+
+                pendingUploadFile = file; // Запоминаем файл
+
+                // Показываем пользователю, что файл выбран
+                uploadStatus.textContent = `Выбран: ${file.name} (загрузится при сохранении)`;
+                uploadStatus.style.color = '#007bff'; // синий цвет
             });
         }
 
         function initEditor(initialValue = '') {
-            // Если редактор уже есть, сначала уничтожаем его
             if (simpleMde) {
                 simpleMde.toTextArea();
                 simpleMde = null;
             }
+            contEl.value = initialValue;
 
             simpleMde = new EasyMDE({
                 element: contEl,
@@ -403,18 +382,32 @@
                     "guide"
                 ]
             });
+
+            if (initialValue) {
+                simpleMde.value(initialValue);
+            }
         }
 
         function openCreateModal() {
             if (modalHeader) modalHeader.innerText = 'New Post';
             idInput.value = '';
             postKeyEl.value = '';
-            langCodeEl.value = 'en';
+
+            langCodeEl.value = 'ru';
+            langCodeEl.disabled = true;
+
             titleEl.value = '';
             descEl.value = '';
             imgEl.value = '';
             dateEl.value = '';
             tagsEl.value = '';
+            contEl.value = '';
+
+            // Сброс загрузки
+            pendingUploadFile = null;
+            if (uploadFileInput) uploadFileInput.value = '';
+            if (uploadStatus) uploadStatus.textContent = '';
+
             saveModalBtn.dataset.mode = 'create';
             modal.style.display = 'flex';
 
@@ -425,17 +418,23 @@
             if (modalHeader) modalHeader.innerText = 'Edit Post';
             idInput.value = p.id;
             postKeyEl.value = p.post_key || '';
-            langCodeEl.value = p.language_code || 'en';
+
+            langCodeEl.value = p.language_code || 'ru';
+            langCodeEl.disabled = true;
+
             titleEl.value = p.title || '';
             descEl.value = p.description || '';
             imgEl.value = p.image || '';
             dateEl.value = formatDateForInput(p.date);
-            tagsEl.value =
-                typeof p.tags === 'string'
-                    ? p.tags
-                    : Array.isArray(p.tags)
-                        ? p.tags.join(', ')
-                        : '';
+            tagsEl.value = typeof p.tags === 'string'
+                ? p.tags
+                : Array.isArray(p.tags) ? p.tags.join(', ') : '';
+
+            // Сброс загрузки
+            pendingUploadFile = null;
+            if (uploadFileInput) uploadFileInput.value = '';
+            if (uploadStatus) uploadStatus.textContent = '';
+
             saveModalBtn.dataset.mode = 'edit';
             saveModalBtn.dataset.id = p.id;
             modal.style.display = 'flex';
@@ -448,24 +447,58 @@
             addPostBtn.addEventListener('click', openCreateModal);
         }
 
+        // [MODIFIED] Сохранение: сначала грузим картинку (если есть), потом данные
         saveModalBtn.onclick = async () => {
             const mode = saveModalBtn.dataset.mode;
-            const data = {
-                post_key: postKeyEl.value.trim(),
-                language_code: langCodeEl.value,
-                title: titleEl.value.trim(),
-                description: descEl.value.trim(),
-                image: imgEl.value.trim(),
-                date: formatDateForDB(dateEl.value),
-                tags: tagsEl.value.trim(),
-                content: simpleMde.value().trim()
-            };
+            const currentId = saveModalBtn.dataset.id; // для режима edit
+
+            // Блокируем кнопку, чтобы не нажали дважды
+            saveModalBtn.disabled = true;
+            saveModalBtn.innerText = 'Processing...';
 
             try {
-                let res;
+                // 1. Если выбран файл, загружаем его
+                if (pendingUploadFile) {
+                    if (uploadStatus) uploadStatus.textContent = 'Uploading image...';
 
+                    const formData = new FormData();
+                    formData.append('file', pendingUploadFile);
+
+                    const uploadRes = await fetch(`${BASE}/api/upload`, {
+                        method: 'POST',
+                        headers: { 'Authorization': headers.Authorization },
+                        body: formData
+                    });
+
+                    if (!uploadRes.ok) {
+                        throw new Error('Image upload failed: ' + (await uploadRes.json()).error);
+                    }
+
+                    const uploadResult = await uploadRes.json();
+                    // Подставляем полученный URL в поле (и в переменную для сохранения)
+                    imgEl.value = uploadResult.url;
+
+                    if (uploadStatus) {
+                        uploadStatus.textContent = 'Image uploaded!';
+                        uploadStatus.style.color = 'green';
+                    }
+                }
+
+                // 2. Собираем данные (imgEl.value уже может содержать новую ссылку)
+                const data = {
+                    post_key: postKeyEl.value.trim(),
+                    language_code: langCodeEl.value,
+                    title: titleEl.value.trim(),
+                    description: descEl.value.trim(),
+                    image: imgEl.value.trim(),
+                    date: formatDateForDB(dateEl.value),
+                    tags: tagsEl.value.trim(),
+                    content: simpleMde.value().trim()
+                };
+
+                // 3. Сохраняем пост
                 if (mode === 'create') {
-                    res = await fetch(`${BASE}/api/blog_posts`, {
+                    const res = await fetch(`${BASE}/api/blog_posts`, {
                         method: 'POST',
                         headers,
                         body: JSON.stringify(data)
@@ -474,14 +507,14 @@
                         throw new Error((await res.json()).error || res.statusText);
                     }
                 } else {
-                    const id = saveModalBtn.dataset.id;
+                    // edit mode
                     for (let field of ['title', 'description', 'image', 'date', 'tags', 'content', 'post_key', 'language_code']) {
                         if (data[field] != null) {
-                            res = await fetch(`${BASE}/api/save-content`, {
+                            const res = await fetch(`${BASE}/api/save-content`, {
                                 method: 'PUT',
                                 headers,
                                 body: JSON.stringify({
-                                    key: `blog_posts.${id}.${field}`,
+                                    key: `blog_posts.${currentId}.${field}`,
                                     value: data[field]
                                 })
                             });
@@ -493,18 +526,24 @@
                 }
 
                 alert('Успешно сохранено!');
+
+                // Очистка
                 if (simpleMde) {
                     simpleMde.toTextArea();
                     simpleMde = null;
                 }
                 modal.style.display = 'none';
+                pendingUploadFile = null; // Очищаем файл
                 loadPosts();
             } catch (err) {
-                alert('Ошибка при сохранении: ' + err.message);
+                alert('Ошибка: ' + err.message);
+            } finally {
+                saveModalBtn.disabled = false;
+                saveModalBtn.innerText = 'Save';
             }
         };
 
-        // ---------- TRANSLATIONS (R2 editor for ANY json file) ----------
+        // ---------- TRANSLATIONS ----------
         const listEl = document.getElementById('translations-list');
         const editor = document.getElementById('translations-editor');
         const nameEl = document.getElementById('trans-file-name');
@@ -518,7 +557,6 @@
             const res = await fetch(`${BASE}/api/translations?lang=${currentLang}`, { headers });
             if (!res.ok) {
                 listEl.innerHTML = 'Access denied / error';
-                console.error('loadTranslations error', res.status);
                 return;
             }
 
@@ -537,7 +575,6 @@
             });
         }
 
-        // overwrite whole file in R2
         saveBtn.addEventListener('click', async () => {
             const fname = nameEl.innerText;
             let content;
@@ -569,18 +606,14 @@
 
         // ---------- INIT ----------
         document.addEventListener('DOMContentLoaded', () => {
-            // posts / links (D1)
             loadPosts();
             loadLinks();
 
-            // events from R2
             currentEventsLang = eventsLangSelect.value || 'ru';
             loadEventsFile();
 
-            // translations browser
             loadTranslations();
 
-            // language switches
             langSelect.onchange = () => {
                 loadTranslations();
             };
