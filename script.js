@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     loadAndDisplayEvents();
     setupNavigationScroll();
     setupServicesNavigation();
-    setupFade();
     setupCarousels();
     initializeFlip();
 });
@@ -37,7 +36,7 @@ function loadAndDisplayEvents() {
                     <div class="alert-box">
                         <div class="event-details">${event.startDate}</div>
                         <h2>${event.title}</h2>
-                        <button class="details-button">Детальнее...</button>
+                        <a class="details-button" href="${event.href}">Детальнее...</a>
                     </div>
                 `;
                 container.appendChild(eventElement);
@@ -74,29 +73,26 @@ const initializeFlip = () => {
 
 
 function setupServicesNavigation() {
+    // "Услуги" (скролл вниз)
     const servicesButton = document.getElementById('servicesButton');
-    servicesButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.getElementById('section-services').scrollIntoView({ behavior: 'smooth' });
-    });
-}
-
-
-function setupFade() {
-    const elementsToAnimate = document.querySelectorAll('[fade]');
-
-    const showOnScroll = () => {
-        elementsToAnimate.forEach(el => {
-            const elementTop = el.getBoundingClientRect().top;
-            const isVisible = (elementTop <= window.innerHeight);
-            if (isVisible) {
-                el.style.opacity = '1';
-                el.style.transform = 'translateX(0) scale(1)';
+    if (servicesButton) {
+        servicesButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            const section = document.getElementById('section-services');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
             }
         });
-    };
+    }
 
-    window.addEventListener('scroll', showOnScroll);
+    // "Блог" (переход на страницу)
+    const blogButton = document.getElementById('blogButton');
+    if (blogButton) {
+        blogButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = '/Blog/blog.html';
+        });
+    }
 }
 
 

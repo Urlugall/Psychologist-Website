@@ -66,7 +66,6 @@ function updateMetaTags(metaData) {
 
 // Функция для создания элемента поста
 function createPostElement(post) {
-    // Если tags почему-то не массив — приводим
     const tags = Array.isArray(post.tags)
         ? post.tags
         : (typeof post.tags === 'string'
@@ -809,7 +808,6 @@ function createContactPanel() {
     // Функция открытия модального окна
     function openModal() {
         modal.style.display = "block";
-        // Используем requestAnimationFrame для плавности
         requestAnimationFrame(() => {
             modal.style.opacity = "1";
         });

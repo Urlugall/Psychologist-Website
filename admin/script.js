@@ -167,8 +167,32 @@
             Object.entries(groups).forEach(([key, arr]) => {
                 const div = document.createElement('div');
                 div.className = 'group';
+
+                const ruPost = arr.find(p => p.language_code === 'ru');
+                const mainDate = ruPost ? ruPost.date : (arr[0]?.date || '');
+
+                // 2. Проверяем, у всех ли постов в группе такая же дата
+                const isAllSameDate = arr.every(p => p.date === mainDate);
+
+                let dateHtml = '';
+                if (isAllSameDate) {
+                    // Если даты совпадают (или пост один), показываем просто дату серым цветом
+                    dateHtml = `<span style="font-weight: normal; color: #666; font-size: 0.85em; margin-left: 10px;">📅 ${mainDate}</span>`;
+                } else {
+                    // Если даты разные, перечисляем их красным цветом
+                    const dateDetails = arr
+                        .map(p => `<b style="color: #333;">${p.language_code}</b>: ${p.date}`)
+                        .join(' | ');
+                    dateHtml = `<div style="font-weight: normal; color: #666; font-size: 0.85em; margin-top: 4px;">📅 Разные даты: ${dateDetails}</div>`;
+                }
+
                 div.innerHTML = `
-                    <h3>Post Key: ${key}</h3>
+                    <h3 style="margin-bottom: 0.5rem;">
+                        Post Key: ${key} 
+                        ${isAllSameDate ? dateHtml : ''}
+                    </h3>
+                    ${!isAllSameDate ? dateHtml : ''}
+                    
                     <table>
                         <thead>
                             <tr>
@@ -341,23 +365,19 @@
             if (uploadStatus) uploadStatus.textContent = '';
         };
 
-        // [MODIFIED] Логика загрузки изображений
         if (triggerUploadBtn && uploadFileInput) {
-            // 1. Клик по кнопке открывает системное окно
             triggerUploadBtn.addEventListener('click', () => {
                 uploadFileInput.click();
             });
 
-            // 2. При выборе файла просто запоминаем его, НЕ грузим на сервер сразу
             uploadFileInput.addEventListener('change', () => {
                 const file = uploadFileInput.files[0];
                 if (!file) return;
 
-                pendingUploadFile = file; // Запоминаем файл
+                pendingUploadFile = file;
 
-                // Показываем пользователю, что файл выбран
                 uploadStatus.textContent = `Выбран: ${file.name} (загрузится при сохранении)`;
-                uploadStatus.style.color = '#007bff'; // синий цвет
+                uploadStatus.style.color = '#007bff';
             });
         }
 
@@ -447,17 +467,14 @@
             addPostBtn.addEventListener('click', openCreateModal);
         }
 
-        // [MODIFIED] Сохранение: сначала грузим картинку (если есть), потом данные
         saveModalBtn.onclick = async () => {
             const mode = saveModalBtn.dataset.mode;
-            const currentId = saveModalBtn.dataset.id; // для режима edit
+            const currentId = saveModalBtn.dataset.id;
 
-            // Блокируем кнопку, чтобы не нажали дважды
             saveModalBtn.disabled = true;
             saveModalBtn.innerText = 'Processing...';
 
             try {
-                // 1. Если выбран файл, загружаем его
                 if (pendingUploadFile) {
                     if (uploadStatus) uploadStatus.textContent = 'Uploading image...';
 
@@ -475,7 +492,6 @@
                     }
 
                     const uploadResult = await uploadRes.json();
-                    // Подставляем полученный URL в поле (и в переменную для сохранения)
                     imgEl.value = uploadResult.url;
 
                     if (uploadStatus) {
@@ -484,7 +500,6 @@
                     }
                 }
 
-                // 2. Собираем данные (imgEl.value уже может содержать новую ссылку)
                 const data = {
                     post_key: postKeyEl.value.trim(),
                     language_code: langCodeEl.value,
@@ -496,7 +511,6 @@
                     content: simpleMde.value().trim()
                 };
 
-                // 3. Сохраняем пост
                 if (mode === 'create') {
                     const res = await fetch(`${BASE}/api/blog_posts`, {
                         method: 'POST',
@@ -533,7 +547,7 @@
                     simpleMde = null;
                 }
                 modal.style.display = 'none';
-                pendingUploadFile = null; // Очищаем файл
+                pendingUploadFile = null;
                 loadPosts();
             } catch (err) {
                 alert('Ошибка: ' + err.message);

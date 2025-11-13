@@ -460,7 +460,6 @@ footer {
 }
 
 .details-button {
-    background-color: var(--button-bg-color);
     color: white;
     border: none;
     cursor: pointer;
@@ -468,4 +467,5 @@ footer {
     font-size: 1em;
     padding: 12px 25px;
     text-align: center;
+    text-decoration: none;
 }
