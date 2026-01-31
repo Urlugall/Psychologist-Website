@@ -14,16 +14,25 @@
         left: 0;
         width: 100%;
         height: 2px;
-        background-color: #46992d;
-
         transform: translateY(100%);
         opacity: 0;
-
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     }
 
-    .help-column ul li:hover {
+    .help-column:not(.not-for) ul li::after {
+        background-color: #46992d;
+    }
+
+    .help-column:not(.not-for) ul li:hover {
         color: #46992d;
+    }
+
+    .help-column.not-for ul li::after {
+        background-color: #c0392b;
+    }
+
+    .help-column.not-for ul li:hover {
+        color: #c0392b;
     }
 
     .help-column ul li:hover::after {

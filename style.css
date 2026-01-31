@@ -7,7 +7,7 @@
     --footer-bg-color: #6a8faf;
     --button-bg-color: #46992d;
     --white: #fff;
-    --transparent-white: rgba(255, 255, 255, 0.8);
+    --transparent-white: rgba(255, 255, 255, 0.85);
     --light-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -135,6 +135,18 @@ footer {
     display: inline-block;
 }
 
+.sub-title {
+    margin-bottom: 0;
+    margin-top: -25px;
+    font-weight: 500;
+}
+
+.array-title {
+    margin-bottom: -15px;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
 .alert-box {
     display: flex;
     height: 100%;
@@ -200,6 +212,7 @@ footer {
     max-width: 800px;
     display: flex;
     flex-direction: column;
+    backdrop-filter: blur(4px);
 }
 
 .info-columns {
@@ -355,6 +368,11 @@ footer {
     font-size: 1.2em;
 }
 
+.help-column.not-for ul li::before {
+    content: '✕';
+    color: #c0392b;
+}
+
 /* Статистика */
 #stats {
     display: flex;
@@ -369,6 +387,99 @@ footer {
     padding-bottom: 15px;
     margin: 10px;
     box-sizing: border-box;
+}
+
+/* Блок о психологе */
+#aboutPsychologist-section {
+    margin-bottom: 20px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.about-card {
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: var(--light-shadow);
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+    cursor: default;
+}
+
+.about-card-base {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-card-icon {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.about-card h3 {
+    margin: 0;
+    font-size: 1.1em;
+    color: var(--button-bg-color);
+}
+
+.about-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    color: var(--button-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    text-align: center;
+}
+
+.about-card-overlay p {
+    margin: 0;
+}
+
+.about-card:hover .about-card-overlay {
+    opacity: 1;
+}
+
+.about-card-assoc .about-card-icon {
+    background-image: url('Extra/Icons/icon-assoc.svg');
+}
+
+.about-card-lead .about-card-icon {
+    background-image: url('Extra/Icons/icon-lead.svg');
+}
+
+.about-card-volunteer .about-card-icon {
+    background-image: url('Extra/Icons/icon-volunteer.svg');
+}
+
+.about-card-adults .about-card-icon {
+    background-image: url('Extra/Icons/icon-adults.svg');
+}
+
+@media only screen and (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Секция игр */
