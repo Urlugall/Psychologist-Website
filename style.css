@@ -135,10 +135,30 @@ footer {
     display: inline-block;
 }
 
+.name-title {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.sub-title-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: -20px;
+}
+
+.vine {
+    height: 10px;
+    width: auto;
+    flex-shrink: 0;
+}
+
 .sub-title {
-    margin-bottom: 0;
-    margin-top: -25px;
+    margin: 0;
     font-weight: 500;
+    font-size: 18px;
+    white-space: nowrap;
 }
 
 .array-title {
