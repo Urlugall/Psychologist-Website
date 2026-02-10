@@ -4,7 +4,7 @@
     "image": "/Extra/Images/Products/Games/psGames.png",
     "infoTitle": "Каталог психологических игр",
     "fullDescription": "<h3>Мой Ресурс</h3><p>Цель этой игры - найти ресурсы для решения любой жизненной ситуации. Игра предлагает перенестись в воображаемые красивые места, которые заряжают вдохновением и помогают найти новые решения. Каждое место символизирует этап вашего пути:</p><ul><li>Показывают, где требуется более серьезный подход к изменениям.</li><li>Помогают увидеть, что уже доступно для поддержки.</li></ul><p>Подходит для личных и групповых целей. Помогает командам и семьям проанализировать совместные задачи. Быстрая, легкая и эмоционально наполняющая. Решает текущую проблему, даже если она казалась сложной и запутанной.</p>",
-    "links": "<a onclick='openGameInfo('myResource')' class='game' id='gamesList-myResource-imageBG-img'><h2 id='gamesList-myResource-header'></h2><p id='gamesList-myResource-description-array-div'></p></a>",
+    "links": "<a href='/Games/game.html?game=myResource' class='game' id='gamesList-myResource-imageBG-img'><h2 id='gamesList-myResource-header'></h2><p id='gamesList-myResource-description-array-div'></p></a>",
     "gamesList": {
         "mySubpersonalities": {
             "header": "Мои Субличности",

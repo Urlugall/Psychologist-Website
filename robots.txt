@@ -1,2 +1,3 @@
 Allow: /
 Disallow: /admin/
+Sitemap: https://art-valentina.com/sitemap.xml
