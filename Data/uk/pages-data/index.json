@@ -184,6 +184,15 @@
         "text": "У грі ви можете прожити те, на що не осмілилися в реальному житті."
     },
     "groupsList": {
+        "happyRelationships": {
+            "header": "Щасливі стосунки",
+            "description": [
+                "Для жінок, які",
+                "хочуть будувати",
+                "теплі стосунки та зустріти свою людину"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/HappyRelationships.png"
+        },
         "twelveWeeks": {
             "header": "Тренінг «12 тижнів»",
             "description": [

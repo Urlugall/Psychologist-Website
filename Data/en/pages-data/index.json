@@ -184,6 +184,15 @@
         "text": "In the game, you can experience what you dare not in real life."
     },
     "groupsList": {
+        "happyRelationships": {
+            "header": "Happy Relationships",
+            "description": [
+                "For women who",
+                "want warm relationships",
+                "and meet the right person"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/HappyRelationships.png"
+        },
         "twelveWeeks": {
             "header": "12 Weeks Training",
             "description": [

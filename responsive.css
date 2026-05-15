@@ -162,14 +162,18 @@
     }
 
     #games {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
     }
 
-    .game {
-        flex: 1 1 100%;
+    #games > .game {
         width: 100%;
-        margin: 10px 0;
+        max-width: none;
+        margin: 0;
+    }
+
+    #games > .game:last-child:nth-child(odd) {
+        grid-column: auto;
+        width: 100%;
     }
 
     .text-section,

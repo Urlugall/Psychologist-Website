@@ -481,6 +481,13 @@ async function loadContentData() {
             }
             if (pageData) {
                 updateData(pageData, 'pages-data', filename);
+                if (filename === 'index') {
+                    const cardHeader = document.getElementById('groupsList-happyRelationships-header');
+                    const card = cardHeader?.closest('a.game');
+                    if (cardHeader && card && !cardHeader.textContent.trim()) {
+                        card.style.display = 'none';
+                    }
+                }
             }
         }
 

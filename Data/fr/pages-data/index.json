@@ -183,6 +183,15 @@
         "text": "Dans le jeu, vous pouvez vivre ce que vous n'osez pas dans la vraie vie."
     },
     "groupsList": {
+        "happyRelationships": {
+            "header": "Des relations heureuses",
+            "description": [
+                "Pour les femmes qui",
+                "veulent construire",
+                "des relations sincères et rencontrer la bonne personne"
+            ],
+            "imageBG": "Extra/Images/GroupsMini/HappyRelationships.png"
+        },
         "twelveWeeks": {
             "header": "Formation de 12 semaines",
             "description": [
