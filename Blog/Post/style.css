@@ -141,6 +141,66 @@ button:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.post-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 2rem 0;
+  overflow: visible;
+}
+
+.post-gallery-item {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f5f5f5;
+  aspect-ratio: 4 / 3;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0.25s ease;
+}
+
+.post-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-gallery-item:hover {
+  z-index: 2;
+}
+
+.post-gallery-floating-reveal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--reveal-width, 0px);
+  height: var(--reveal-height, 0px);
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  object-fit: fill;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(
+    calc(var(--reveal-left, 0px) - 50%),
+    calc(var(--reveal-top, 0px) - 50%)
+  );
+  transform-origin: center;
+  transition: opacity 0.12s ease;
+  z-index: 1000;
+  border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.post-gallery-floating-reveal.is-visible {
+  opacity: 1;
+}
+
 .post-content a {
   color: var(--button-bg-color);
   text-decoration: none;

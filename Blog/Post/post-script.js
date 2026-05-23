@@ -17,6 +17,50 @@
         container.appendChild(err);
     }
 
+    function setupGalleryReveal(container) {
+        let activeImage = null;
+        const reveal = document.createElement('img');
+        reveal.className = 'post-gallery-floating-reveal';
+        reveal.alt = '';
+        reveal.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(reveal);
+
+        const updateReveal = () => {
+            if (!activeImage || !activeImage.naturalWidth || !activeImage.naturalHeight) return;
+
+            const item = activeImage.closest('.post-gallery-item');
+            const rect = item.getBoundingClientRect();
+            const coverScale = Math.max(
+                rect.width / activeImage.naturalWidth,
+                rect.height / activeImage.naturalHeight
+            );
+
+            reveal.style.setProperty('--reveal-left', `${rect.left + rect.width / 2}px`);
+            reveal.style.setProperty('--reveal-top', `${rect.top + rect.height / 2}px`);
+            reveal.style.setProperty('--reveal-width', `${activeImage.naturalWidth * coverScale}px`);
+            reveal.style.setProperty('--reveal-height', `${activeImage.naturalHeight * coverScale}px`);
+        };
+
+        container.querySelectorAll('.post-gallery-item img').forEach((img) => {
+            img.classList.add('post-gallery-preview');
+
+            img.closest('.post-gallery-item').addEventListener('mouseenter', () => {
+                activeImage = img;
+                reveal.src = img.currentSrc || img.src;
+                updateReveal();
+                reveal.classList.add('is-visible');
+            });
+
+            img.closest('.post-gallery-item').addEventListener('mouseleave', () => {
+                reveal.classList.remove('is-visible');
+                activeImage = null;
+            });
+        });
+
+        window.addEventListener('resize', updateReveal);
+        window.addEventListener('scroll', updateReveal, { passive: true });
+    }
+
     // Основная функция загрузки
     async function loadPost() {
         const postKey = getPostKeyFromUrl();
@@ -66,6 +110,7 @@
             </span>
           </div>
         `;
+            setupGalleryReveal(container);
         } catch (err) {
             displayError('Error loading post. Please try again later.');
         }
