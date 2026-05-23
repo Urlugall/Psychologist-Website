@@ -16,6 +16,10 @@ const getCurrentLanguage = () => {
     return localStorage.getItem('selectedLanguage') || 'en';
 };
 
+const setDocumentLanguage = () => {
+    document.documentElement.lang = getCurrentLanguage();
+};
+
 function getGroupFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('group');
@@ -931,10 +935,7 @@ async function initHomeButton() {
 
 const initLanguageSelector = () => {
     const languages = { en: 'English', ru: 'Русский', uk: 'Українська', fr: 'Français' };
-    const defaultLang = 'en';
-    const browserLang = navigator.language.slice(0, 2);
-    const langCode = languages.hasOwnProperty(browserLang) ? browserLang : defaultLang;
-    const selectedLangCode = localStorage.getItem('selectedLanguage') || langCode;
+    const selectedLangCode = getCurrentLanguage();
 
     createLanguageSelector(languages, selectedLangCode);
 };
@@ -1024,8 +1025,9 @@ const setupEventListeners = (langSelector, langList) => {
     document.head.insertAdjacentHTML('beforeend', `<style>#language-list li:hover { background-color: #46992d; color: #ffffff; }</style>`);
 
     // Переключение отображения списка языков
-    langSelector.addEventListener('click', () => {
-        langList.style.display = langList.style.display === 'none' ? 'block' : 'none';
+    langSelector.addEventListener('click', e => {
+        e.stopPropagation();
+        langList.style.display = getComputedStyle(langList).display === 'none' ? 'block' : 'none';
     });
 
     // Внешний клик для закрытия списка
@@ -1035,6 +1037,7 @@ const setupEventListeners = (langSelector, langList) => {
 
     // Выбор языка
     langList.addEventListener('click', e => {
+        e.stopPropagation();
         const selectedLangCode = e.target.dataset.lang;
         if (selectedLangCode) {
             localStorage.setItem('selectedLanguage', selectedLangCode);
@@ -1047,6 +1050,7 @@ const setupEventListeners = (langSelector, langList) => {
 /* -- DOM -- */
 
 document.addEventListener('DOMContentLoaded', () => {
+    setDocumentLanguage();
     loadContentData();
     addFooterFromJSON();
     initJoinButtons();
